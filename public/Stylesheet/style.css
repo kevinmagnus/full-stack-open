@@ -1,7 +1,7 @@
 body {
 
     text-align: center;
-    background-color: white;
+    background-color: black;
 
 }
 
@@ -115,6 +115,6 @@ color: springgreen;
     color: turquoise;
     font-size: large;
     font-style: oblique;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
 }
