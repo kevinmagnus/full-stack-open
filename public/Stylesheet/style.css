@@ -10,6 +10,7 @@ body {
 
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
 
 }
 
@@ -67,6 +68,7 @@ img {
     width: 100%;
     height: auto;
     border: solid 2px gray;
+
 }
 
 p {
