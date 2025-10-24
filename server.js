@@ -6,7 +6,6 @@ const app = express();
 const __dirname = path.resolve();
 
 app.use(express.static('public'));
-app.use(express.static('public/Stylesheet'));
 
 
 
