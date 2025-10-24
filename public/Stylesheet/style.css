@@ -15,11 +15,12 @@ body {
 
 .item {
 
-    margin: 40px;
+    margin: 100%;
     background-color:  rgb(4, 67, 88);
     color: gray;
     border:  solid 3px yellowgreen;
     border-radius: 8px 8px 8px 8px;
+
     
 
     
