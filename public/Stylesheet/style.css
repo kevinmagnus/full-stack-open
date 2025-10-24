@@ -1,0 +1,31 @@
+body {
+
+    text-align: center;
+    background-color: black;
+
+}
+
+
+.container {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.item {
+
+    margin: 30px;
+    background-color: springgreen;
+    color: gray;
+    border: solid 5px turquoise;
+    border-radius: 8px 8px 8px 8px;
+
+    
+    
+}
+
+.dev {
+
+    background-color: yellow;
+}
