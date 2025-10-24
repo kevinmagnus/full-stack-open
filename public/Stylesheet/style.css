@@ -1,7 +1,7 @@
 body {
 
     text-align: center;
-    background-color: black;
+    background-color: white;
 
 }
 
@@ -20,6 +20,7 @@ body {
     color: gray;
     border:  solid 3px yellowgreen;
     border-radius: 8px 8px 8px 8px;
+    
 
     
     
@@ -62,7 +63,7 @@ img {
     padding: 5px;
     border-radius: 15px 10px 15px 10px;
     background-color: grey;
-    width: 50%;
+    width: 100%;
     height: auto;
     border: solid 2px gray;
 }
