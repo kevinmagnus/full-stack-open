@@ -16,7 +16,7 @@ body {
 
 .item {
 
-    margin: auto;
+    margin: 10px;
     background-color:  rgb(4, 67, 88);
     color: gray;
     border:  solid 3px yellowgreen;
@@ -110,7 +110,3 @@ color: springgreen;
 }
 
 
-div {
-
-    margin: 20px;
-}
