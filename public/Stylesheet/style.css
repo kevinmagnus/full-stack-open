@@ -68,12 +68,12 @@ justify-content: center;
 img {
 
     margin: auto;
-    padding: 10px;
+    padding: opx;
     border-radius: 10px 0px 10px 0px;
     background-color: rgb(1, 28, 37);
     width: 70%;
     height: auto;
-    border: solid 2px turquoise;
+    border: solid turquoise;
 
 
 }
