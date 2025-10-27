@@ -11,19 +11,23 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
 
 }
 
 .item {
-
-    margin: 15px;
+    
+justify-content: center;
+    margin: 25px;
     background-color:  rgb(4, 67, 88);
     color: gray;
     border:  solid 3px rgb(73, 88, 102);
     border-radius: 8px 8px 8px 8px;
-    padding: 0%;
-
-    
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
 
     
     
@@ -36,7 +40,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px; color: rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: auto%;
+    width: auto;
     transition: all 0.3s ease-in-out;
     margin: 80px;
 }
@@ -52,10 +56,10 @@ body {
 
     border: solid 3px gray;
     border-radius: 10px 0px 10px 0px;
-    font-size: 20px;
-    font-weight: 30px;
+    font-size: 25px;
+    font-weight: 50px;
     color: rgb(0, 255, 179);
-    width: auto;
+    width: 50%;
     background-color: black;
     
 }
@@ -63,12 +67,13 @@ body {
 img {
 
     margin: auto;
-    padding: 5px;
-    border-radius: 15px 10px 15px 10px;
-    background-color: grey;
-    width: 100%;
+    padding: 10px;
+    border-radius: 10px 0px 10px 0px;
+    background-color: rgb(1, 28, 37);
+    width: 70%;
     height: auto;
-    border: solid 2px gray;
+    border: solid 2px turquoise;
+
 
 }
 
@@ -114,8 +119,8 @@ color: springgreen;
 .course-title {
 
     color: turquoise;
-    font-size: large;
+    font-size: 25px;
     font-style: oblique;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-family:monospace;
     font-weight: bold;
 }
