@@ -2,7 +2,6 @@ body {
 
     text-align: center;
     background-color: black;
-
 }
 
 
@@ -67,8 +66,8 @@ justify-content: center;
 img {
 
     margin: auto;
-    padding: opx;
-    border-radius: 50px 50px 50px 50px;
+    padding: 0px;
+    border-radius: 20px 20px 20px 20px;
     background-color: rgb(1, 28, 37);
     height: auto;
     border: solid turquoise;
@@ -230,4 +229,15 @@ input {
     border: solid 2px gray;
     border-radius: 5px 5px 5px 5px;
     margin:5px;
+}
+
+
+strong {
+
+    font-size:xx-large;
+    font-weight: bolder;
+    font-style:oblique;
+    font-family:cursive;
+    color:rgb(65, 249, 255);
+    margin: 40px;
 }
