@@ -18,7 +18,7 @@ body {
 .item {
     
 justify-content: center;
-    margin: 5%;
+    margin: 0%;
     background-color:  rgb(4, 67, 88);
     color: gray;
     border:  solid 3px rgb(73, 88, 102);
