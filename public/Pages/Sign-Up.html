@@ -45,7 +45,9 @@
 
                 <label for = 'password-input'>Enter your password:</label> <br>
 
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' required> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
+                <input type="password" name ='password' placeholder="Enter password" id='password-input' required> 
+                <br>
+                <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
 
                 <label for="show-password-checkbox">Show password</label> <br> <br>
 
@@ -60,9 +62,33 @@
     </div>
     
 
-    <p>Already have an account?</p> <a href="/Log-In">Log In</a>
+    <p>Already have an account? <a href="/Log-In">Log In</a></p>
+
+
+
+
+    <footer class="footer item">
+
+<a href ='/'>About Us</a> <br>
+<a href = '/'>Our Mission</a> <br>
+<a href ='/'>Partners</a> <br>
+<a href ='/'>Board of Directors</a>
+
+
+
+    </footer>
+
+    <p id="copyright"> </p>
+
 
     <script>
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}`;
+  copyRightHolder.style.color = 'yellowGreen';
 
 function togglePasswordVisibility() {
 
@@ -77,6 +103,7 @@ passwordInput.type = 'text';
 
         passwordInput.type= 'password';
     }
+
 
 }
 

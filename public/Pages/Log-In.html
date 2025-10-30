@@ -19,7 +19,7 @@
             <fieldset>
 
                 <legend>
-                    Enter your log-in details
+                    Enter your log in details
                 </legend>
 
     
@@ -31,7 +31,7 @@
 
                 <label for="password">Enter your password:</label> <br> 
 
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' required> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
+                <input type="password" name ='password' placeholder="Enter password" id='password-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
 
                 <label for="show-password-checkbox">Show password</label> <br> <br>
 
@@ -45,15 +45,34 @@
 
         </form>
     </div>
-    <p>You don't have an account?</p>
-<br>
-  
 
-<a href="/Sign-Up">Create account</a>
+    <p>You don't have an account?
+<a href="/Sign-Up">Create account</a> </p>
 
 
 
-<script>
+<footer class="footer item">
+
+<a href ='/'>About Us</a> <br>
+<a href = '/'>Our Mission</a> <br>
+<a href ='/'>Partners</a> <br>
+<a href ='/'>Board of Directors</a>
+
+
+
+    </footer>
+
+    <p id="copyright"> </p>
+
+    <script>
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}`;
+  copyRightHolder.style.color = 'yellowGreen';
+
 
 function togglePasswordVisibility() {
 

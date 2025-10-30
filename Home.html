@@ -141,7 +141,7 @@
 
 
     <p>
-        <a href ='/Log-In'>Log-In</a> 
+        <a href ='/Log-In'>Log In</a> 
         <br>
         <br>
         New here? <a href = '/Sign-up'>Create account</a>
@@ -161,5 +161,17 @@
 
     </footer>
 
+    <p id="copyright"> </p>
+
+    <script>
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}`;
+  copyRightHolder.style.color = 'yellowGreen';
+
+    </script>
 </body>
 </html>

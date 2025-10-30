@@ -68,11 +68,11 @@ img {
 
     margin: auto;
     padding: opx;
-    border-radius: 10px 0px 10px 0px;
+    border-radius: 50px 50px 50px 50px;
     background-color: rgb(1, 28, 37);
     height: auto;
     border: solid turquoise;
-    width: 50%;
+    width: 100%;
 
 
 }
@@ -127,7 +127,7 @@ color: springgreen;
 
 .footer {
 
-    background-color: black;
+    background-color: rgb(82, 10, 150);
 }
 
 
@@ -193,6 +193,7 @@ header{
 
     background-color: black;
     text-align: left;
+    padding: 30px;
 }
 
 legend {
