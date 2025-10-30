@@ -18,7 +18,7 @@ body {
 .item {
     
 justify-content: center;
-    margin: 0%;
+    margin: 5%;
     background-color:  rgb(4, 67, 88);
     color: gray;
     border:  solid 3px rgb(73, 88, 102);
@@ -39,7 +39,7 @@ justify-content: center;
     box-shadow: 0 0 10px; color: rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: all 0.3s ease-in-out;
-    margin: 80px;
+    margin: 10px;
     flex-wrap: wrap;
     text-align: center;
 }
