@@ -1,7 +1,7 @@
 body {
 
     text-align: center;
-    background-color: white;
+    background-color: black;
 
 }
 
@@ -11,23 +11,22 @@ body {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 100%;
     justify-content: center;
+    
 
 }
 
 .item {
     
 justify-content: center;
-    margin: 25px;
+    margin: 5%;
     background-color:  rgb(4, 67, 88);
     color: gray;
     border:  solid 3px rgb(73, 88, 102);
     border-radius: 8px 8px 8px 8px;
     padding: 10px;
-    width: 100%;
-    height: auto;
-    flex-wrap: wrap;
+    width: auto;
+
 
     
     
@@ -40,7 +39,6 @@ justify-content: center;
     border-radius: 10px;
     box-shadow: 0 0 10px; color: rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: auto;
     transition: all 0.3s ease-in-out;
     margin: 80px;
     flex-wrap: wrap;
@@ -72,9 +70,9 @@ img {
     padding: opx;
     border-radius: 10px 0px 10px 0px;
     background-color: rgb(1, 28, 37);
-    width: 70%;
     height: auto;
     border: solid turquoise;
+    width: 50%;
 
 
 }
@@ -125,4 +123,110 @@ color: springgreen;
     font-style: oblique;
     font-family:monospace;
     font-weight: bold;
+}
+
+.footer {
+
+    background-color: black;
+}
+
+
+
+
+
+
+
+
+
+
+header{
+    width:98vw;
+    position:relative;
+    top: 0;
+    z-index:10;
+    justify-self: center;
+    margin: 50px;
+    border: solid 2px gray;
+    border-radius: 30px 0px 30px 0px;
+
+}
+
+
+
+.navBar{
+    background:var(--overlay);
+    height: 3em;
+    padding:0.75em;
+    display:flex;
+    justify-content:start;
+    align-items:center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: inset var(--overlayBoxShadow);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur;
+}
+.navBar nav{
+    padding:0 1em;
+    display:flex;
+    justify-content:end;
+    align-items:center;
+}
+
+
+.navBar-item{
+    text-decoration:none;
+    font: bold 1.5em Comic;
+    margin-left: 2em;
+}
+
+.active{
+    color: var(--primaryLight);
+}
+
+#home-nav {
+
+    color: rgb(17, 112, 103);
+}
+
+.head {
+
+    background-color: black;
+    text-align: left;
+}
+
+legend {
+    color: orange;
+}
+
+
+label {
+
+    color: rgb(39, 236, 154);
+}
+
+fieldset {
+
+    border-radius: 20px 20px 20px 20px;
+    margin: 30px;
+    border: solid 5px gray;
+    padding: 10px;
+}
+
+
+
+.submit-button {
+
+    background-color: rgb(1, 126, 84);
+    color: rgb(201, 199, 199);
+    margin: 40px;
+    padding: 30px;
+}
+
+input {
+
+    color: rgb(22, 133, 122);
+    border: solid 2px gray;
+    border-radius: 5px 5px 5px 5px;
+    margin:5px;
 }

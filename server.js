@@ -9,9 +9,37 @@ app.use(express.static('public'));
 
 
 
+
 app.get('/', (request, response) => {
 
     const filePath = path.join(__dirname, 'Home.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Testimonials', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Testimonial.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Sign-Up', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Sign-Up.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Log-In', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Log-In.html');
 
     response.sendFile(filePath);
 
