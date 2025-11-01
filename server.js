@@ -46,6 +46,24 @@ app.get('/Log-In', (request, response) => {
 });
 
 
+app.get('/Front-End-Learn-More', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Front-End-Learn-More.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Back-End-Learn-More', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Back-End-Learn-More.html');
+
+    response.sendFile(filePath);
+
+});
+
+
 app.listen(port, '0.0.0.0', () => {
 
     console.log(`Server is running on port ${port}.`);
