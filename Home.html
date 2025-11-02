@@ -42,7 +42,38 @@
 
     <strong id = 'qoute'>''The future is written in code.''</strong>
 
-    <div class="item">
+    
+
+
+        
+
+<div class="slider">
+
+  <img src="Images/fullstack2.jpeg" alt="Image 1" class="slide active">
+  <img src="Images/fullstack3.jpeg" alt="Image 2" class="slide">
+  <img src="Images/fullstack4.jpeg" alt="Image 3" class="slide">
+  <img src="Images/fullstack5.jpeg" alt="Image 4" class="slide">
+  <img src="Images/fullstack6.jpeg" alt="Image 5" class="slide">
+  <img src="Images/fullstack8.jpeg" alt="Image 6" class="slide">
+  <img src="Images/fullstack9.jpeg" alt="Image 7" class="slide">
+  <img src="Images/fullstack10.jpeg" alt="Image 8" class="slide">
+  <img src="Images/fullstack11.jpeg" alt="Image 9" class="slide">
+  <img src="Images/fullstack12.jpeg" alt="Image 10" class="slide">
+  <img src="Images/fullstack13.jpeg" alt="Image 11" class="slide">
+  <img src="Images/fullstack14.jpeg" alt="Image 12" class="slide">
+  <img src="Images/fullstack15.jpeg" alt="Image 13" class="slide">
+  <img src="Images/fullstack16.jpeg" alt="Image 14" class="slide">
+  <img src="Images/fullstack17.jpeg" alt="Image 15" class="slide">
+  <img src="Images/fullstack18.jpeg" alt="Image 16" class="slide">
+  <img src="Images/fullstack19.jpeg" alt="Image 17" class="slide">
+  <img src="Images/fullstack20.jpeg" alt="Image 18" class="slide">
+
+
+</div>
+
+
+
+<div class="item">
 
 <p>
     At Code Skill Academy, we believe that everyone deserves the opportunity to succeed in tech. Our Web Development course is designed to be accessible, engaging and effective. With a focus on hands-on learning and real-world projects, you'll gain the practical skills and experience needed to launch your career. Our expert instructors are dedicated to helping you every step of the way, from beginner to professional. Join our community and start building the skills that will take your career and finance to the next level.
@@ -55,18 +86,17 @@
 
        
 <hr>
-        
-
-
-<div class="item"> 
-
-    
+     
 
 
 <h2>
             Our Courses:
         </h2>
-        
+
+
+
+    <div class="item">
+
 <div class="card item">
 
 <h3 class="course-title">Front-End Development</h3> <br>
@@ -83,19 +113,12 @@
             <br> <br>
                     <a href="/Front-End-Enroll"><button class="enrollment">Enroll</button></a> 
             </div>
-
-
-
-
-
-
 </div>
 
 
 
 
 <div class="item">
-
 
 <div class="card item">   
 
@@ -113,13 +136,12 @@
             
 
             </div>
-
 </div>
-        
+
+
 
 
 <div class="item">
-
 
 <div class ='card item'>
 
@@ -136,9 +158,7 @@
      <a href="/FullStack-Enroll"><button class ="enrollment">Enroll</button></a>
 
             </div>
-
 </div>
-
 
     </main>
 
@@ -175,6 +195,18 @@
   const thisYear = today.getFullYear();
   copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}`;
   copyRightHolder.style.color = 'yellowGreen';
+
+
+  let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function slideImages() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+setInterval(slideImages, 3000);
 
     </script>
 </body>
