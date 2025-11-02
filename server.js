@@ -64,6 +64,42 @@ app.get('/Back-End-Learn-More', (request, response) => {
 });
 
 
+app.get('/Front-End-Enroll', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Front-End-Enroll.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Back-End-Enroll', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Back-End-Enroll.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/FullStack-Enroll', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'FullStack-Enroll.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Our-Mission', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Our-Mission.html');
+
+    response.sendFile(filePath);
+
+});
+
+
 app.listen(port, '0.0.0.0', () => {
 
     console.log(`Server is running on port ${port}.`);

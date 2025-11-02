@@ -25,6 +25,7 @@ justify-content: center;
     border-radius: 8px 8px 8px 8px;
     padding: 10px;
     width: auto;
+    flex-wrap: wrap;
    
     
     
@@ -36,12 +37,13 @@ justify-content: center;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px; color: rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 10px;
     transition: all 0.3s ease-in-out;
     margin: 10px;
     text-align: center;
-    flex-wrap: wrap;
-    
+
+
+
 }
 
 
@@ -252,11 +254,13 @@ strong {
 
 li {
 
-    color:springgreen;
+    color: rgb(175, 139, 139);
     margin: 10px;
 
 }
 
 
 
-
+em {
+    color: springgreen;
+}
