@@ -100,8 +100,26 @@ app.get('/Our-Mission', (request, response) => {
 });
 
 
+app.get('/Contact-Us', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Contact-Us.html');
+
+    response.sendFile(filePath);
+
+});
+
+app.get('/Payment-Success', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Payment-Success.html');
+
+    response.sendFile(filePath);
+
+});
+
 app.listen(port, '0.0.0.0', () => {
 
     console.log(`Server is running on port ${port}.`);
 
 });
+
+
