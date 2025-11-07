@@ -116,6 +116,15 @@ app.get('/Payment-Success', (request, response) => {
 
 });
 
+
+app.get('/Our-Mission', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages', 'Our-Mission.html');
+
+    response.sendFile(filePath);
+
+});
+
 app.listen(port, '0.0.0.0', () => {
 
     console.log(`Server is running on port ${port}.`);
