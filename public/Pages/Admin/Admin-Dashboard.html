@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="Stylesheet/style.css" rel="stylesheet">
+    <link rel = 'shortcut icon' type="image/png" href="Images/fullstack logo.png">
+</head>
+<body>
+
+    <header class='item head' >
+        
+    <nav class="navBar">
+        <div class="navbar-nav">
+                <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+                <a href="/Our-Mission" class="navBar-item">Our Mission</a>
+                <a class="navBar-item" href="/Contact-Us">Contact us</a>
+                
+            </div>
+    </nav><!--end nav-->
+    
+</header>
+
+    
+<main class="container">
+
+    <h1>
+        Admin, welcome to your dashboard!
+    </h1>
+
+    <div class="item">
+
+    <ul>
+
+      <li> <a href="/Students">Students' Data</a> </li><br>
+       <li><a href="/Finance">Finance</a> </li><br>
+      <li><a href="/Teachers">Teachers</a> </li><br>
+
+       </ul>
+
+            
+
+
+
+                
+            
+    </div>
+
+   </main>
+
+
+<footer class="footer item">
+
+<a href ='/Contact-Us'>Contact Us </a> <br>
+<a href = '/Our-Mission'>Our Mission</a> <br>
+
+
+    </footer>
+
+    <p id="copyright"> </p>
+
+    <script>
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}
+  Developed by Emmanuel Chigemezu`;
+  copyRightHolder.style.color = 'yellowGreen';
+
+
+function togglePasswordVisibility() {
+
+    const passwordInput = document.getElementById('password-input');
+    const showPasswordCheckbox = document.getElementById('show-password-checkbox');
+
+    if (showPasswordCheckbox.checked) {
+
+passwordInput.type = 'text';
+
+    }else{
+
+        passwordInput.type= 'password';
+    }
+
+}
+
+</script>
+</body>
+</html>

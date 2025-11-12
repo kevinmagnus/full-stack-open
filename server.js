@@ -21,8 +21,8 @@ const tranporter = nodemailer.createTransport({
     port: 465,
     auth: {
         user: 'chigemezuemmanuel641@gmail.com',
-        pass: 'vggkjnseqvwdhbdm',
-    },
+        pass: 'euqvaobvcrdnrots',
+        },
     tls: {
         rejectUnauthorized: false
     }
@@ -150,6 +150,24 @@ app.get('/Our-Mission', (request, response) => {
 });
 
 
+app.get('/Admin-Home-Page', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages/Admin', 'Admin-Home-Page.html');
+
+    response.sendFile(filePath);
+
+});
+
+
+app.get('/Admin-Dashboard', (request, response) => {
+
+    const filePath = path.join(__dirname,'public/Pages/Admin', 'Admin-Dashboard.html');
+
+    response.sendFile(filePath);
+
+});
+
+
 
 app.post('/Send-Email', (request, response) => {
 
@@ -160,8 +178,8 @@ const {first_name, last_name, email, message} = request.body;
 const mailOptions = {
 
     from: email ,
-    to: 'chigemezuemmanuel64@gmail.com',
-    subject: `Message from ${first_name} ${last_name}`,
+    to: 'chigemezuemmanuel641@gmail.com',
+    subject: `Code Skill Academy: Message from ${first_name} ${last_name} <br>, Email: ${email}.`,
     text: message
 }
 

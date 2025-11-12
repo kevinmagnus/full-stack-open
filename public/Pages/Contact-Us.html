@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us</title>
     <link href= "Stylesheet/style.css" rel='stylesheet'>
+    <link rel = 'icon' type="image/x-icon" href="Images/fullstack logo.png">
 </head>
 <body>
     
@@ -15,10 +16,9 @@
     <nav class="navBar">
         <div class="navbar-nav">
                 <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
-                <a class="navBar-item" href="/Testimonials">Courses </a>
-                <a class="navBar-item" href="./html/projects.html">About us </a>
-                <a class="navBar-item" href="./html/experience.html">Contact us</a>
-                <a class="navBar-item" href="./html/messages.html"></a>
+                <a class="navBar-item" href="/Our-Mission">Our Mission </a>
+                <a class="navBar-item" href="/Our-Partners">Our Partners </a>
+                
             </div>
     </nav><!--end nav-->
     
@@ -37,19 +37,21 @@
 <p>
     Tel: +2347078399448 <br>
 
+    Email: codeskillschool@gmail.com
+
     <address>
         Address: 18, Oredola street, Ajunwo, Lagos, Nigeria.
     </address>
 
     <br>
 
-    Email: chigemezuemmanuel641@gmail.com
+    
 </p>
 
 
 <form action="/Send-Email" method='POST'> 
 
-    <h2>Send Us Email:</h2>
+    <h2>Message Us:</h2>
     <fieldset>
 
 <legend>
@@ -58,21 +60,21 @@ Enter your details and message
 
 <label for ='first_name'>Enter your first name:</label> <br>
 
-<input type="text" name="first_name" id="first_name" placeholder="Enter your first name here..."> <br>
+<input type="text" name="first_name" id="first_name" placeholder="Enter your first name here..." required> <br>
 
 <label for="last_name"> Enter your last name:</label> <br>
 
-<input type="text" name="last_name" id="last_name" placeholder="Enter your last name here..."> <br>
+<input type="text" name="last_name" id="last_name" placeholder="Enter your last name here..." required> <br>
 
 <label>Enter your email address:</label> <br>
 
-<input type ='email' name ='email'id='email' placeholder="Enter your email address here.."> <br>
+<input type ='email' name ='email'id='email' placeholder="Enter your email address here.." required> <br>
 
 <label for ='message'> Enter your message: </label> <br>
 
-<textarea name="message" id="message"> Enter your message here..</textarea> <br>
+<textarea name="message" id="message" required></textarea> <br>
 
-<input type="submit" value="Send message">
+<input type="submit" value="Send message" class="enrollment">
 
 
 

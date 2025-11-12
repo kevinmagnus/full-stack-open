@@ -63,7 +63,7 @@ justify-content: center;
     font-size: 25px;
     font-weight: 50px;
     color: rgb(0, 255, 179);
-    width: 60%;
+    width: auto;
     background-color: black;
     
 }
@@ -83,7 +83,7 @@ img {
 
 p {
 
-    color: rgb(247, 215, 215);
+    color: rgb(111, 197, 197);
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
@@ -184,6 +184,8 @@ header{
     text-decoration:none;
     font: bold 1.5em Comic;
     margin-left: 2em;
+    display: flex;
+    flex-direction: column;
 }
 
 .active{
