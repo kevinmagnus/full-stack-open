@@ -9,7 +9,7 @@ body {
 
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    
     justify-content: center;
     
 
@@ -26,6 +26,7 @@ justify-content: center;
     padding: 10px;
     width:auto;
     flex-wrap: wrap;
+    
    
     
 }
@@ -40,6 +41,8 @@ justify-content: center;
     transition: all 0.3s ease-in-out;
     margin: 10px;
     text-align: center;
+    width:auto;
+    flex-wrap: wrap;
 
 
 
@@ -227,7 +230,7 @@ fieldset {
     padding: 30px;
 }
 
-input {
+input, textarea{
 
     color: rgb(22, 133, 122);
     border: solid 2px gray;

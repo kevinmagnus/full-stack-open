@@ -1,11 +1,35 @@
-import express from 'express';
+import express, { response } from 'express';
+import nodemailer from 'nodemailer';
 import path from 'path';
 
 const port = process.env.PORT || 4010;
 const app = express();
 const __dirname = path.resolve();
-
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
+
+
+
+
+
+
+const tranporter = nodemailer.createTransport({
+
+    host: 'smtp.gmail.com',
+    secure: true,
+    port: 465,
+    auth: {
+        user: 'chigemezuemmanuel641@gmail.com',
+        pass: 'vggkjnseqvwdhbdm',
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+
+});
+
+
 
 
 
@@ -124,6 +148,55 @@ app.get('/Our-Mission', (request, response) => {
     response.sendFile(filePath);
 
 });
+
+
+
+app.post('/Send-Email', (request, response) => {
+
+    
+
+const {first_name, last_name, email, message} = request.body;
+
+const mailOptions = {
+
+    from: email ,
+    to: 'chigemezuemmanuel64@gmail.com',
+    subject: `Message from ${first_name} ${last_name}`,
+    text: message
+}
+
+
+
+
+tranporter.sendMail(mailOptions, (error, info) => { 
+
+
+    if(error) {
+
+
+        console.log(error);
+        response.status(500).json({message: 'Error sending message.'});
+
+    }else{
+
+        console.log('Email sent: '+ info.response);
+        response.json({message: 'Message sent successfully!'});
+    }
+
+
+});
+
+
+
+});
+
+
+
+
+
+
+
+
 
 app.listen(port, '0.0.0.0', () => {
 

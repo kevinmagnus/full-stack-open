@@ -45,6 +45,40 @@
 
     Email: chigemezuemmanuel641@gmail.com
 </p>
+
+
+<form action="/Send-Email" method='POST'> 
+
+    <h2>Send Us Email:</h2>
+    <fieldset>
+
+<legend>
+Enter your details and message
+</legend>
+
+<label for ='first_name'>Enter your first name:</label> <br>
+
+<input type="text" name="first_name" id="first_name" placeholder="Enter your first name here..."> <br>
+
+<label for="last_name"> Enter your last name:</label> <br>
+
+<input type="text" name="last_name" id="last_name" placeholder="Enter your last name here..."> <br>
+
+<label>Enter your email address:</label> <br>
+
+<input type ='email' name ='email'id='email' placeholder="Enter your email address here.."> <br>
+
+<label for ='message'> Enter your message: </label> <br>
+
+<textarea name="message" id="message"> Enter your message here..</textarea> <br>
+
+<input type="submit" value="Send message">
+
+
+
+    </fieldset>
+
+</form>
         </div>
 
     </main>
@@ -67,6 +101,8 @@
      
     <script>
 
+const userMessage = document.getElementById('message');
+
 
  const copyRightHolder = document.getElementById("copyright");
   const today = new Date();
@@ -86,6 +122,16 @@ function slideImages() {
 }
 
 setInterval(slideImages, 3000);
+
+
+userMessage.addEventListener("input", () => {
+
+    userMessage.style.height = "auto";
+
+userMessage.style.height = userMessage.scrollHeight + "px";
+
+    
+});
 
     </script>
 </body>
