@@ -345,3 +345,7 @@ em {
   object-fit: cover;
 }
 
+#email-error-message {
+
+    color: red;
+}

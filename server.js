@@ -173,14 +173,18 @@ tranporter.sendMail(mailOptions, (error, info) => {
 
     if(error) {
 
-
+const filePath = path.join(__dirname,'public/Pages', 'Email-Error.html');
+        response.sendFile(filePath);
         console.log(error);
-        response.status(500).json({message: 'Error sending message.'});
+
+        
 
     }else{
 
+        const filePath = path.join(__dirname,'public/Pages', 'Email-Success.html');
+        response.sendFile(filePath);
         console.log('Email sent: '+ info.response);
-        response.json({message: 'Message sent successfully!'});
+    
     }
 
 
