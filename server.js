@@ -1,7 +1,7 @@
 import express, { response } from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
-import dotenv from 'dotenv';
+
 
 const port = process.env.PORT || 4010;
 const app = express();
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
-dotenv.config();
+
 
 
 
@@ -22,7 +22,7 @@ const tranporter = nodemailer.createTransport({
     port: 465,
     auth: {
         user: 'chigemezuemmanuel641@gmail.com',
-        pass: process.env.USER_PASSWORD,
+        pass: 'euqvaobvcrdnrots',
         },
     tls: {
         rejectUnauthorized: false
