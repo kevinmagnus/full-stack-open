@@ -2,11 +2,13 @@ import express, { response } from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
 import ejs from 'ejs';
+import cors from 'cors';
 
 
 const port = process.env.PORT || 4010;
 const app = express();
 const __dirname = path.resolve();
+app.use(cors({origin: '*'}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
@@ -197,7 +199,7 @@ tranporter.sendMail(mailOptions, (error, info) => {
 
         response.render('email-error', {first_name: first_name});
 
-        console.log(error);
+        console.log('Error: '+ error);
 
         
 
