@@ -284,7 +284,7 @@ em {
 }
 
 
-#payment-success-message {
+#payment-success-message, #email-success-message{
 
     color: springgreen;
 }

@@ -1,6 +1,7 @@
 import express, { response } from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
+import ejs from 'ejs';
 
 
 const port = process.env.PORT || 4010;
@@ -9,6 +10,7 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.set('view engine', 'ejs');
 
 
 
@@ -192,17 +194,17 @@ tranporter.sendMail(mailOptions, (error, info) => {
 
     if(error) {
 
-const filePath = path.join(__dirname,'public/Pages', 'Email-Error.html');
-        response.sendFile(filePath);
+
+        response.render('email-error', {first_name: first_name});
+
         console.log(error);
 
         
 
     }else{
 
-        const filePath = path.join(__dirname,'public/Pages', 'Email-Success.html');
+        response.render('email-success', {first_name: first_name});
 
-        response.sendFile(filePath);
         console.log('Email sent: '+ info.response);
     
     }
