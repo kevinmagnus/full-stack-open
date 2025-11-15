@@ -197,7 +197,7 @@ tranporter.sendMail(mailOptions, (error, info) => {
     if(error) {
 
 
-        response.render('email-error', {first_name: first_name});
+        response.render('email-error.ejs', {first_name: first_name});
 
         console.log('Error: '+ error);
 
@@ -205,7 +205,7 @@ tranporter.sendMail(mailOptions, (error, info) => {
 
     }else{
 
-        response.render('email-success', {first_name: first_name});
+        response.render('email-success.ejs', {first_name: first_name});
 
         console.log('Email sent: '+ info.response);
     
