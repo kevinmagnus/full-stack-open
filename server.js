@@ -1,4 +1,4 @@
-import express, { response } from 'express';
+import express from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
 import ejs from 'ejs';
