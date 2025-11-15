@@ -29,7 +29,7 @@ const tranporter = nodemailer.createTransport({
         pass: 'euqvaobvcrdnrots',
         },
     tls: {
-        rejectUnauthorized: false
+        rejectUnauthorized: true;
     }
 
 });
