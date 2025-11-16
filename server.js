@@ -181,7 +181,7 @@ app.post('/Send-Email', async (request, response) => {
                     </div>
                 </div>
             `,
-            text: `New Contact Form Message\n\nFrom: ${sanitizedFirstName} ${sanitizedLastName}\nEmail: ${sanitizedEmail}\n\nMessage:\n${sanitizedMessage}`
+            text: `New Code Skill Academy Message\n\nFrom: ${sanitizedFirstName} ${sanitizedLastName}\nEmail: ${sanitizedEmail}\n\nMessage:\n${sanitizedMessage}`
         };
 
         // Send email
