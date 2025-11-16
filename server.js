@@ -28,7 +28,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.USER_PASSWORD
         },
     tls: {
-        rejectUnauthorized: true;
+        rejectUnauthorized: false;
     }
 
 });
@@ -195,7 +195,7 @@ transporter.sendMail(mailOptions, (error, info) => {
     try(error) {
 
 
-        response.render('email-error', {first_name: request.body.first_name});
+        response.render('email-error');
 
         console.log('Error: '+ error);
 
@@ -203,7 +203,7 @@ transporter.sendMail(mailOptions, (error, info) => {
 
     }catch{
 
-        response.render('email-success', {first_name: request.body.first_name});
+        response.render('email-success');
 
         console.log('Email sent: '+ info.response);
     
