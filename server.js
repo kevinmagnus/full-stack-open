@@ -18,12 +18,6 @@ app.set('view engine', 'ejs');
 dotenv.config();
 
 
-
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 55dfcfa (Corrected email sending code errors)
 const transporter = nodemailer.createTransport({
 
     host: 'smtp.gmail.com',
@@ -183,14 +177,13 @@ app.post('/Send-Email', (request, response) => {
 
     
 
-const {first_name, last_name, email, message} = request.body;
 
 const mailOptions = {
 
-    from: email ,
+    from: request.body.email ,
     to: 'chigemezuemmanuel641@gmail.com',
-    subject: `Code Skill Academy: Message from ${first_name} ${last_name} , Email: ${email}.`,
-    text: message
+    subject: `Code Skill Academy: Message from ${request.body.first_name} ${request.body.last_name} , Email: ${request.body.email}.`,
+    text: request.body.message
 }
 
 
@@ -199,18 +192,18 @@ const mailOptions = {
 transporter.sendMail(mailOptions, (error, info) => { 
 
 
-    if(error) {
+    try(error) {
 
 
-        response.render('email-error', {first_name: first_name});
+        response.render('email-error', {first_name: request.body.first_name});
 
         console.log('Error: '+ error);
 
         
 
-    }else{
+    }catch{
 
-        response.render('email-success', {first_name: first_name});
+        response.render('email-success', {first_name: request.body.first_name});
 
         console.log('Email sent: '+ info.response);
     
