@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import path from 'path';
 import ejs from 'ejs';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 
 const port = process.env.PORT || 4010;
@@ -14,19 +15,23 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+dotenv.config();
 
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 55dfcfa (Corrected email sending code errors)
 const transporter = nodemailer.createTransport({
 
     host: 'smtp.gmail.com',
     secure: true,
     port: 465,
     auth: {
-        user: 'chigemezuemmanuel641@gmail.com',
-        pass: 'euqvaobvcrdnrots',
+        user: process.env.USER_EMAIL,
+        pass: process.env.USER_PASSWORD
         },
     tls: {
         rejectUnauthorized: true;
@@ -191,7 +196,7 @@ const mailOptions = {
 
 
 
-tranporter.sendMail(mailOptions, (error, info) => { 
+transporter.sendMail(mailOptions, (error, info) => { 
 
 
     if(error) {

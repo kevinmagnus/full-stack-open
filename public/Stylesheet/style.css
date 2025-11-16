@@ -33,10 +33,10 @@ justify-content: center;
 
 .card {
 
-    background-color: rgba(66, 53, 53, 0.733);
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 0 10px; color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px; 
+    background-color: rgba(66, 53, 53, 0.733);
     padding: 10px;
     transition: all 0.3s ease-in-out;
     margin: 10px;
@@ -296,9 +296,9 @@ em {
 }
 
 
-.ambition {
+.ambition , .introduction-paragraph {
 
-    color: rgb(128, 128, 128);
+    color: teal;
 }
 
 
@@ -307,7 +307,7 @@ em {
     margin: 40px;
 }
 
-.introduction-paragraph , .barrier-and-solution {
+ .barrier-and-solution {
 
     color:rgba(108, 255, 211, 0.89);
 }
@@ -350,4 +350,9 @@ em {
 #email-error-message {
 
     color: red;
+}
+
+.introduction-para {
+
+    color: rgb(95, 214, 214);
 }
