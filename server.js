@@ -15,28 +15,11 @@ const __dirname = path.resolve();
 // Middleware
 app.use(cors({ origin: '*' }));
 app.use(express.json());
-<<<<<<< HEAD
-<<<<<<< HEAD
-app.use(express.urlencoded({extended: false}));
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-
-dotenv.config();
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 55dfcfa (Corrected email sending code errors)
-=======
-=======
->>>>>>> 2781e3a (versoin 33)
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 // Email transporter configuration
->>>>>>> 5db3960 (verson 55)
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     secure: true,
@@ -46,14 +29,7 @@ const transporter = nodemailer.createTransport({
         pass: process.env.USER_PASSWORD
     },
     tls: {
-<<<<<<< HEAD
-        rejectUnauthorized: false;
-=======
         rejectUnauthorized: false  // Changed semicolon to proper syntax
-<<<<<<< HEAD
->>>>>>> 5db3960 (verson 55)
-=======
->>>>>>> 2781e3a (versoin 33)
     }
 });
 
@@ -179,37 +155,6 @@ app.post('/Send-Email', async (request, response) => {
             });
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-const mailOptions = {
-
-    from: request.body.email ,
-    to: 'chigemezuemmanuel641@gmail.com',
-<<<<<<< HEAD
-    subject: `Code Skill Academy: Message from ${request.body.first_name} ${request.body.last_name} , Email: ${request.body.email}.`,
-    text: request.body.message
-=======
-    subject: `Code Skill Academy: Message from ${first_name} ${last_name} , Email: ${email}.`,
-    text: message
->>>>>>> 55dfcfa (Corrected email sending code errors)
-}
-
-
-
-
-transporter.sendMail(mailOptions, (error, info) => { 
-
-
-    try(error) {
-
-
-        response.render('email-error');
-
-        console.log('Error: '+ error);
-=======
-=======
->>>>>>> 2781e3a (versoin 33)
         // Validate message length
         if (sanitizedMessage.length < 10) {
             return response.status(400).render('email-error', {
@@ -238,10 +183,6 @@ transporter.sendMail(mailOptions, (error, info) => {
             `,
             text: `New Contact Form Message\n\nFrom: ${sanitizedFirstName} ${sanitizedLastName}\nEmail: ${sanitizedEmail}\n\nMessage:\n${sanitizedMessage}`
         };
-<<<<<<< HEAD
->>>>>>> 5db3960 (verson 55)
-=======
->>>>>>> 2781e3a (versoin 33)
 
         // Send email
         const info = await transporter.sendMail(mailOptions);
@@ -252,21 +193,12 @@ transporter.sendMail(mailOptions, (error, info) => {
             success_message: 'Your message has been sent successfully!'
         });
 
-<<<<<<< HEAD
-    }catch{
-
-        response.render('email-success');
-
-        console.log('Email sent: '+ info.response);
-    
-=======
     } catch (error) {
         console.error('Error sending email:', error);
         response.status(500).render('email-error', {
             first_name: request.body.first_name || 'User',
             error_message: 'Failed to send email. Please try again later.'
         });
->>>>>>> 5db3960 (verson 55)
     }
 });
 
