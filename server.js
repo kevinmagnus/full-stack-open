@@ -16,6 +16,7 @@ const __dirname = path.resolve();
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 <<<<<<< HEAD
+<<<<<<< HEAD
 app.use(express.urlencoded({extended: false}));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -28,6 +29,8 @@ dotenv.config();
 
 >>>>>>> 55dfcfa (Corrected email sending code errors)
 =======
+=======
+>>>>>>> 2781e3a (versoin 33)
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -47,7 +50,10 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false;
 =======
         rejectUnauthorized: false  // Changed semicolon to proper syntax
+<<<<<<< HEAD
 >>>>>>> 5db3960 (verson 55)
+=======
+>>>>>>> 2781e3a (versoin 33)
     }
 });
 
@@ -174,6 +180,7 @@ app.post('/Send-Email', async (request, response) => {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const mailOptions = {
 
@@ -201,6 +208,8 @@ transporter.sendMail(mailOptions, (error, info) => {
 
         console.log('Error: '+ error);
 =======
+=======
+>>>>>>> 2781e3a (versoin 33)
         // Validate message length
         if (sanitizedMessage.length < 10) {
             return response.status(400).render('email-error', {
@@ -229,7 +238,10 @@ transporter.sendMail(mailOptions, (error, info) => {
             `,
             text: `New Contact Form Message\n\nFrom: ${sanitizedFirstName} ${sanitizedLastName}\nEmail: ${sanitizedEmail}\n\nMessage:\n${sanitizedMessage}`
         };
+<<<<<<< HEAD
 >>>>>>> 5db3960 (verson 55)
+=======
+>>>>>>> 2781e3a (versoin 33)
 
         // Send email
         const info = await transporter.sendMail(mailOptions);
