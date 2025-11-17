@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     secure: true,
-    port: 465,
+    port: 587,
     auth: {
         user: process.env.USER_EMAIL,
         pass: process.env.USER_PASSWORD
