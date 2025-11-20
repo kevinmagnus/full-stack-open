@@ -309,7 +309,7 @@ em {
 
  .barrier-and-solution {
 
-    color:rgba(108, 255, 211, 0.89);
+    color:#6cffd3e3;
 }
 
 
@@ -355,4 +355,20 @@ em {
 .introduction-para {
 
     color: rgb(95, 214, 214);
+}
+
+
+.awarded {
+
+    font-size: larger;
+    font-weight: 300;
+    font-style: italic;
+    color: rgb(212, 182, 182);
+ 
+}
+
+em {
+
+    color: springgreen;
+    font-size: 80px;
 }
