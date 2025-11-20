@@ -367,8 +367,13 @@ em {
  
 }
 
-em {
+.award-data{
 
     color: springgreen;
     font-size: 80px;
+}
+
+.offer {
+    color: springgreen;
+    font-size: 20px;
 }
