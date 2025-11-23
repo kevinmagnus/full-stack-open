@@ -84,6 +84,7 @@ const authenticate = async (request, response, next) => {
     response.clearCookie('token'); // Clear invalid token
     return response.redirect('/Log-In');
   }
+
 };
 
 // Update your login route with better cookie options
