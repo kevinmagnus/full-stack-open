@@ -287,11 +287,11 @@ app.get('/Sign-Up', (request, response) => {
 // Get all users route
 app.get('/users', async (request, response) => {
   try {
-    const users = await User.find().select('-password'); // exclude password field
-    response.send({ users });
+    const students = await User.find().select('-password'); // exclude password field
+    response.render('all-users',{ students });
   } catch (error) {
     console.error('Error fetching users:', error);
-    response.status(500).send({ message: 'Failed to fetch users' });
+    response.status(500).render('all-users', { error: "Failed to fetch students' data"});
   }
 });
 
