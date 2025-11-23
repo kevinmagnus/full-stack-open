@@ -551,7 +551,7 @@ let mailOptions = {
 };
 
 
-app.post('/congratulation-email',(request,response) => {
+app.get('/congratulation-email',(request,response) => {
 
 transporter.sendMail(mailOptions, (error, info) => {
   if (error) {
