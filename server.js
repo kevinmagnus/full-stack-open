@@ -405,7 +405,7 @@ app.get('/logout', (request, response) => {
 
 //Scholarship email code
 
-
+app.get('/congratulation-email', (request,response) => {
 
 // Create a transporter
 let transporter = nodemailer.createTransport({
@@ -551,7 +551,7 @@ let mailOptions = {
 };
 
 
-app.get('/congratulation-email',(request,response) => {
+
 
 transporter.sendMail(mailOptions, (error, info) => {
   if (error) {
@@ -561,6 +561,7 @@ transporter.sendMail(mailOptions, (error, info) => {
     console.log('Email sent: ' + info.response);
     response.send(info.response);
   }
+  
 });
 
 
