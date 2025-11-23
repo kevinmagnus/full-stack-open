@@ -15,7 +15,7 @@ dotenv.config();
 const port = process.env.PORT || 4010;
 const app = express();
 const __dirname = path.resolve();
-
+const router= express.Router();
 // Middleware
 app.use(cors({ origin: '*' }));
 app.use(express.json());
