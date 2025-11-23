@@ -214,10 +214,7 @@ app.get('/', (request, response) => {
   response.sendFile(filePath);
 });
 
-app.get('/Testimonials', (request, response) => {
-  const filePath = path.join(__dirname, 'public/Pages', 'Testimonial.html');
-  response.sendFile(filePath);
-});
+
 
 
 
