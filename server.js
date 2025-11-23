@@ -278,6 +278,10 @@ app.get('/Create-Account', (request, response) => {
   response.sendFile(filePath);
 });
 
+app.get('/Congrats', (request, response) => {
+  const filePath = path.join(__dirname, 'public/Pages', 'congratulations.html');
+  response.sendFile(filePath);
+});
 
 app.get('/Sign-Up', (request, response) => {
   
