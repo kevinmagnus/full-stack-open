@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
+</head>
+<body>
+  <header class='item head'>
+    <nav class="navBar">
+      <div class="navbar-nav">
+        <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+      </div>
+    </nav><!--end nav-->
+  </header>
+  <main class="container">
+
+    <div class="item">
+      <h1 style="color:springgreen;">Welcome, <%= user.firstName %>!</h1>
+      <ul>
+        <li><a href="/change-password">Change Password</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <h2>Enrolled Courses:</h2>
+      <ul>
+        <% if (user.enrolledCourses.includes('Front-End Web Development')) { %>
+          <li>Front-End Web Development</li>
+        <% } %>
+        <% if (user.enrolledCourses.includes('Back-End Web Development')) { %>
+          <li>Back-End Web Development</li>
+        <% } %>
+        <% if (user.enrolledCourses.includes('Full Stack Web Development')) { %>
+          <li>Full Stack Web Development</li>
+        <% } %>
+        <% if (user.enrolledCourses.includes('Cyber Security')) { %>
+          <li>Cyber Security</li>
+        <% } %>
+      </ul>
+      <h2><a href="/all-courses">View All Courses</a></h2>
+      
+    </div>
+  </main>
+  <footer class="footer item">
+    <a href='/'>About Us</a>
+    <br>
+    
+  </footer>
+  <p id="copyright"></p>
+  <script>
+    const copyRightHolder = document.getElementById("copyright");
+    const today = new Date();
+    const thisYear = today.getFullYear();
+    copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+    copyRightHolder.style.color = 'yellowGreen';
+
+    // REMOVED THE PROBLEMATIC CODE
+    // The server-side authentication middleware already handles checking if the user is logged in
+    // No need to check localStorage since we're using HTTP-only cookies
+  </script>
+</body>
+</html>

@@ -29,7 +29,7 @@
     <div class="item">
         <h1>Log In:</h1>
 
-        <form>
+        <form action="/User-Log-In" method="POST">
 
             <fieldset>
 
@@ -42,15 +42,15 @@
                 
                 <label for="email">Enter your email address:</label> <br>
 
-                <input type="email" name ='email' id="email" placeholder="Enter email" required> <br>
+                <input type="email" name ='email' id="email" placeholder="Enter email" autocomplete="off" class='log-in-input' required >  <br>
 
                 <label for="password">Enter your password:</label> <br> 
 
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
+                <input type="password" name ='password' placeholder="Enter password" id='password-input' autocomplete="off" class='log-in-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
 
                 <label for="show-password-checkbox">Show password</label> <br> <br>
 
-               <a href="/Log-in-submit"><input type ="submit" value="Log In" id = 'sign-up-button'></a>
+               <input type ="submit" value="Log In" id = 'sign-up-button' >
                <br>
 
                
@@ -62,7 +62,7 @@
     </div>
 
     <p class="link-paragraph">You don't have an account?
-<a href="/Sign-Up">Create account</a> </p>
+<a href="/Create-Account">Create account</a> </p>
 
 
 
@@ -70,8 +70,7 @@
 
 <a href ='/'>About Us</a> <br>
 <a href = '/'>Our Mission</a> <br>
-<a href ='/'>Partners</a> <br>
-<a href ='/'>Board of Directors</a>
+
 
 
 
@@ -85,8 +84,7 @@
  const copyRightHolder = document.getElementById("copyright");
   const today = new Date();
   const thisYear = today.getFullYear();
-  copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}
-  Developed by Emmanuel Chigemezu`;
+  copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
   copyRightHolder.style.color = 'yellowGreen';
 
 
@@ -105,6 +103,51 @@ passwordInput.type = 'text';
     }
 
 }
+
+
+function clearLoginForm() {
+    const loginForm = document.querySelector('form');
+    if (loginForm) {
+      loginForm.reset();
+      
+      // Also clear any input fields manually (in case reset doesn't work)
+      const inputs = loginForm.querySelectorAll('.log-in-input');
+      inputs.forEach(input => {
+        input.value = '';
+      });
+      
+      // Clear any error messages if they exist
+      const errorMessages = document.querySelectorAll('.error-message');
+      errorMessages.forEach(error => {
+        error.textContent = '';
+      });
+    }
+  }
+
+  // Clear form when page loads
+  window.addEventListener('load', clearLoginForm);
+
+  // Clear form on page show (handles browser back/forward)
+  window.addEventListener('pageshow', (event) => {
+    // Force clear even from cache
+    clearLoginForm();
+  });
+
+  // Clear form when user leaves and comes back
+  window.addEventListener('focus', clearLoginForm);
+
+  // Prevent autocomplete from persisting data
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('form');
+    if (loginForm) {
+      loginForm.setAttribute('autocomplete', 'off');
+      
+      const inputs = loginForm.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.setAttribute('autocomplete', 'off');
+      });
+    }
+  });
 
 </script>
 </body>

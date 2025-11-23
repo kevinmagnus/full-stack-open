@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Creation Response</title>
+  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
+</head>
+<body>
+  <header class='item head'>
+    <nav class="navBar">
+      <div class="navbar-nav">
+        <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+        <a class="navBar-item" href="/Testimonials">Courses </a>
+        <a class="navBar-item" href="./html/projects.html">About us </a>
+        <a class="navBar-item" href="./html/experience.html">Contact us</a>
+        <a class="navBar-item" href="./html/messages.html"></a>
+      </div>
+    </nav><!--end nav-->
+  </header>
+  <main class="container">
+    <div class="item">
+      <% if (locals.message) { %>
+        <h1 style="color: springgreen"><%= locals.message %></h1> <br> <button class="sign-up-response"> <a href="/Log-In">Log In</a> </button>
+      <% } else if (locals.error) { %>
+        <h1 style="color: red"><%= locals.error %></h1> <br> <button class="sign-up-response"> <a href="/Log-In">Try Again</a> </button>
+      <% } else { %>
+        <h1>Unknown error occurred</h1>
+      <% } %>
+
+      <br>
+
+     
+    </div>
+  </main>
+  <footer class="footer item">
+    <a href='/'>About Us</a>
+    <br>
+    <a href='/'>Our Mission</a>
+    <br>
+    <a href='/'>Partners</a>
+    <br>
+    <a href='/'>Board of Directors</a>
+  </footer>
+  <p id="copyright"></p>
+  <script>
+    const copyRightHolder = document.getElementById("copyright");
+    const today = new Date();
+    const thisYear = today.getFullYear();
+    copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear} Developed by Emmanuel Chigemezu`;
+    copyRightHolder.style.color = 'yellowGreen';
+  </script>
+</body>
+</html>
