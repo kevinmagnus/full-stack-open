@@ -472,9 +472,11 @@ const emailTemplate = (name, paymentLink) => {
   `;
 };
 
+router.get('/send-email', (request,response) => {
+response.send('/send-email'); });
 
-router.post('/send-email', (req, res) => {
-  const { name, email, paymentLink } = req.body;
+router.post('/send-email', (request, response) => {
+  const { name, email, paymentLink } = request.body;
 
   let mailOptions = {
     from: "chigemezuemmanuel641@gmail.com",
@@ -486,10 +488,10 @@ router.post('/send-email', (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.status(500).send('Error sending email');
+      response.status(500).send('Error sending email');
     } else {
       console.log('Email sent: ' + info.response);
-      res.send('Email sent successfully');
+      response.send('Email sent successfully');
     }
   }
 
