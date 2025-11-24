@@ -402,8 +402,99 @@ app.get('/logout', (request, response) => {
 });
 
 
+// Create a transporter
+let transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // or 'STARTTLS'
+  auth: {
+    user: process.env.USER_EMAIL,
+    pass: process.env.USER_PASSWORD
+  }
+});
 
-//Scholarship email code
+// Define the email options
+const emailTemplate = (name, paymentLink) => {
+  return `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Congratulations on Your Scholarship!</title>
+      <style>
+                              
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="item">
+          <h1>Congratulations on Your Scholarship! 🎉</h1>
+          <img src="https:                                                 
+          <p>Dear ${name},</p>
+          <p>We’re delighted to inform you that you’ve officially been awarded a Tech Scholarship with TS Academy to study Software Development.</p>
+          <p>This scholarship covers up to 100% of your tuition (₦658,000).</p>
+          <p>To secure your spot, please complete your application fee payment using the button below:</p>
+          <a href="${paymentLink}" class="enrollment">Pay Application Fee</a>
+          <p>Your scholarship spot is reserved for a limited time. Completing this step secures your place in the program and unlocks access to our Learning Management System (LMS).</p>
+          <p>Our team will reach out to you shortly with your course information and onboarding details.</p>
+          <p>We’re excited to welcome you into the Code Skill Africa community and can’t wait to see the impact you’ll make in Software Development.</p>
+          <p id="motto">Empowering Africa through Technology</p>
+          <p>Best regards,</p>
+          <p>Code Skill Africa Team</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `/* your styles here */
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="item">
+          <h1>Congratulations on Your Scholarship! 🎉</h1>
+          <img src="https://example.com/image.jpg" alt="Scholarship Image">
+          <p>Dear ${name},</p>
+          <p>We’re delighted to inform you that you’ve officially been awarded a Tech Scholarship with TS Academy to study Software Development.</p>
+          <p>This scholarship covers up to 100% of your tuition (₦658,000).</p>
+          <p>To secure your spot, please complete your application fee payment using the button below:</p>
+          <a href="${paymentLink}" class="enrollment">Pay Application Fee</a>
+          <p>Your scholarship spot is reserved for a limited time. Completing this step secures your place in the program and unlocks access to our Learning Management System (LMS).</p>
+          <p>Our team will reach out to you shortly with your course information and onboarding details.</p>
+          <p>We’re excited to welcome you into the Code Skill Africa community and can’t wait to see the impact you’ll make in Software Development.</p>
+          <p id="motto">Empowering Africa through Technology</p>
+          <p>Best regards,</p>
+          <p>Code Skill Africa Team</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+};
+
+
+router.post('/send-email', (req, res) => {
+  const { name, email, paymentLink } = req.body;
+
+  let mailOptions = {
+    from: "chigemezuemmanuel641@gmail.com",
+    to: "chigemezuemmanuel64@gmail.com", 
+    subject: 'Congratulations on Your Scholarship!',
+    html: emailTemplate("Emmanuel", "https:paystack.com")
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      res.status(500).send('Error sending email');
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send('Email sent successfully');
+    }
+  }
+
+
+
 
 
 app.listen(port, '0.0.0.0', () => {
