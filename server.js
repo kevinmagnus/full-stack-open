@@ -110,7 +110,7 @@ app.post('/User-Log-In', async (request, response) => {
     }
 
     // Generate a token with longer expiration
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '7d' });
+    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2m' });
     
     // Set cookie with proper options
     response.cookie('token', token, { 
