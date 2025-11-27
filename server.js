@@ -12,7 +12,6 @@ import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 
 dotenv.config();
-const port = process.env.PORT || 4010;
 const app = express();
 const __dirname = path.resolve();
 const router= express.Router();
@@ -329,7 +328,7 @@ app.get('/logout', (request, response) => {
 
 
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(process.env.PoRT || 4010, '0.0.0.0', () => {
   console.log(`Server is running on port ${port}`);
 });
 
