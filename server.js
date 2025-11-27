@@ -128,34 +128,6 @@ app.post('/User-Log-In', async (request, response) => {
 });
 
 
-const authenticate = async (request, response, next) => {
-  console.log('Authenticate middleware called');
-  const token = request.cookies.token;
-  console.log('Token:', token);
-  if (!token) {
-    console.log('No token found, redirecting to login');
-    return response.redirect('/Log-In');
-  }
-
-  try {
-    const decoded = jwt.verify(token, secretKey);
-    console.log('Decoded token:', decoded);
-    const user = await User.findById(decoded.userId);
-    console.log('User:', user);
-    if (!user) {
-      console.log('User not found, redirecting to login');
-      return response.redirect('/Log-In');
-    }
-
-    request.user = user;
-    console.log('User authenticated, proceeding to next middleware');
-    next();
-  } catch (error) {
-    console.log('Error authenticating user:', error);
-    return response.redirect('/Log-In');
-  }
-
-}
 
 
 app.get('/', (request, response) => {
@@ -300,7 +272,7 @@ app.post('/User-Log-In', async (request, response) => {
     }
 
     // Generate a token
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2m' });
     response.cookie('token', token, { httpOnly: true });
     response.redirect('/dashboard');
   } catch (error) {
