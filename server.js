@@ -116,7 +116,7 @@ app.post('/User-Log-In', async (request, response) => {
     response.cookie('token', token, { 
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
-      sameSite: 'lax' // Add this for better security
+      sameSite: 'Strict' // Add this for better security
     });
     
     response.redirect('/dashboard');
