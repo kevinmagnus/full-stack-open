@@ -8,7 +8,6 @@ import mongoose from 'mongoose';
 import connectDB from './public/config/database.js';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
-import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 
 dotenv.config();
@@ -21,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
-app.use(cookieParser());
 app.use(router);
 
 // Database connection
@@ -329,7 +327,7 @@ app.get('/logout', (request, response) => {
 
 
 app.listen(process.env.PoRT || 4010, '0.0.0.0', () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
 
 
