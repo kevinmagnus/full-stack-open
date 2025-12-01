@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Students</title>
+  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
+</head>
+<body>
+  <header class='item head'>
+    <nav class="navBar">
+      <div class="navbar-nav">
+        <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+        
+      </div>
+    </nav><!--end nav-->
+  </header>
+  <main class="container">
+
+    <div class="item">
+
+<h1>All Students Data </h1>
+      <p style="color:springgreen;"> <%= students %> </p>
+
+<p style="color:red;"> <%= error %> </p>
+
+      
+    </div>
+  </main>
+  <footer class="footer item">
+    <a href='/Contact-Us'>Contact Us</a> <br>
+<a href='/Our-Mission'>Our Mission </a>
+    <br>
+    
+  </footer>
+  <p id="copyright"></p>
+  <script>
+    const copyRightHolder = document.getElementById("copyright");
+    const today = new Date();
+    const thisYear = today.getFullYear();
+    copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+    copyRightHolder.style.color = 'yellowGreen';
+
+    // REMOVED THE PROBLEMATIC CODE
+    // The server-side authentication middleware already handles checking if the user is logged in
+    // No need to check localStorage since we're using HTTP-only cookies
+  </script>
+</body>
+</html>
