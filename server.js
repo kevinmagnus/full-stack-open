@@ -89,7 +89,7 @@ app.post('/User-Log-In', async (request, response) => {
     }
 
     // Find the user
-    const user = await User.find({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return response.status(401).render('response', { error: 'Invalid email or password' });
     }
@@ -241,6 +241,7 @@ app.post('/Sign-Up', async (request, response) => {
 
 
 
+
 app.post('/User-Log-In', async (request, response) => {
   try {
     const { email, password } = request.body;
@@ -295,28 +296,19 @@ app.get('/change-password', authenticate, (request, response) => {
 
 
 app.post('/change-password', authenticate, async (request, response) => {
+
   const user = request.user;
   const { oldPassword, newPassword } = request.body;
 
   // Validate old password
   const isValidPassword = await bcrypt.compare(oldPassword, user.password);
+
   if (!isValidPassword) {
+
     return response.render('change-password', { error: 'Invalid old password' });
+
   }
 
-  // Hash new password
-  const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-  // Update user password
-  user.password = hashedPassword;
-  await user.save();
-
-  response.render('dashboard', { user, message: 'Password changed successfully' });
-});
-
-app.get('/logout', (request, response) => {
-  response.clearCookie('token');
-  response.redirect('/Log-In');
 });
 
 
