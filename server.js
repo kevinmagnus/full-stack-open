@@ -2,10 +2,11 @@ import express from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
 import ejs from 'ejs';
+import connectDB from './config/database.js';
+import User from './models/userSignUpModel.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import connectDB from './public/config/database.js';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import cookieParser from 'cookie-parser';
@@ -27,28 +28,9 @@ app.use(cookieParser());
 // Database connection
 connectDB();
 
-const startServer = async () => {
-  try {
-    const connect = await connectDB();
-    console.log(`Database connected successfully!`);
-  } catch (error) {
-    console.log('Error starting server:', error);
-  }
-}
-startServer();
 
-// Define the user schema
-const userSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  enrolledCourses: [String]
-});
 
-// Create the user model
-const User = mongoose.model('User', userSchema);
-
+//
 // Generate a random secret key
 const secretKey = crypto.randomBytes(32).toString('hex');
 
@@ -98,7 +80,7 @@ app.post('/User-Log-In', async (request, response) => {
     }
 
     // Find the user
-    const user = await User.findOne({ email });
+    const user = await User.find({ email });
     if (!user) {
       return response.status(401).render('response', { error: 'Invalid email or password' });
     }

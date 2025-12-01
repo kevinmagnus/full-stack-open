@@ -1,53 +1,24 @@
-/* import mongoose from 'mongoose';
-
-const connectDB = async () => {
-
-
-    try {
-
-
-        const connectionInstance = await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-
-
-        console.log(`\n MongoDB connected successfully!`);
-
-    }catch(error) {
-
-        console.log("MongoDB connection failed", error);
-
-        process.exit(1);
-
-
-    }
-    
-}
-
-export default connectDB;
-
-*/
-
 import mongoose from 'mongoose';
 
 const connectDB = async () => {
+
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
-      useNewUrlParser: true,
-      
-    });
+    
+    const conn = await mongoose.connect(process.env.MONGODB_URI);
 
     
   } catch (error) {
+
     console.error(`Error: ${error.message}`);
     process.exit(1);
+
   }
+
 };
 
 // Handle connection events
 mongoose.connection.on('connected', () => {
-  console.log('Mongoose connected to MongoDB Atlas');
+  console.log('Mongoose connected to MongoDB Atlas database');
 });
 
 mongoose.connection.on('error', (err) => {
