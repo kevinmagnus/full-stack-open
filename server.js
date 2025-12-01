@@ -254,10 +254,15 @@ app.post('/User-Log-In', async (request, response) => {
 
     // Generate a token
     const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2m' });
+
     response.cookie('token', token, { httpOnly: true });
+
     response.redirect('/dashboard');
+
   } catch (error) {
+
     console.error('Log in unsuccessful.:', error);
+
     response.status(500).render('response', { error: 'Failed to log in user' });
   }
 });
