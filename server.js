@@ -447,7 +447,8 @@ const emailTemplate = (name, paymentLink) => {
     </body>
     </html>
   `/* your styles here */
-      </style>
+
+    /*
     </head>
     <body>
       <div class="container">
@@ -469,7 +470,8 @@ const emailTemplate = (name, paymentLink) => {
       </div>
     </body>
     </html>
-  `;
+
+  */
 };
 
 router.get('/send-email', (request,response) => {
