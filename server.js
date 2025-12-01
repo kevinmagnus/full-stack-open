@@ -230,7 +230,6 @@ app.post('/Sign-Up', async (request, response) => {
 
 
 
-}
 
   // Hash new password
   
