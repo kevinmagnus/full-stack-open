@@ -1,6 +1,7 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 import path from 'path';
+import cookieParser from 'cookie-parser';
 import ejs from 'ejs';
 import connectDB from './config/database.js';
 import User from './models/userSignUpModel.js';
@@ -14,14 +15,17 @@ import jwt from 'jsonwebtoken';
 dotenv.config();
 const app = express();
 const __dirname = path.resolve();
-const router= express.Router();
+app.use(cookieParser());
+const router = express.Router();
+app.use(router);
+
 // Middleware
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
-app.use(router);
+
 
 // Database connection
 connectDB();
@@ -41,7 +45,7 @@ startServer();
 
 //
 // Generate a random secret key
-const secretKey = crypto.randomBytes(32).toString('hex');
+
 
 
 const authenticate = async (request, response, next) => {
@@ -55,7 +59,7 @@ const authenticate = async (request, response, next) => {
   }
 
   try {
-    const decoded = jwt.verify(token, secretKey);
+    const decoded = jwt.verify(token, process.env.SECRET_KEY);
     console.log('Decoded token:', decoded);
     
     const user = await User.findById(decoded.userId);
@@ -168,20 +172,26 @@ app.get('/Sign-Up', (request, response) => {
 // Get all users route
 app.get('/users', async (request, response) => {
   try {
-    const students = await User.find().select('-password'); // exclude password field
+
+    const students = await User.find().select('-password'); 
+
     response.render('all-users',{ students });
+
   } catch (error) {
+
     console.error('Error fetching users:', error);
+
     response.status(500).render('all-users', { error: "Failed to fetch students' data"});
   }
 });
 
 
-app.post('/Sign-Up', async (request, response) => {
+router.post('/Sign-Up', async (request, response) => {
   try {
     const { firstName, lastName, email, password } = request.body;
     // Validate inputs
     if (!firstName || !lastName || !email || !password) {
+
       return response.status(400).render('response', { error: 'All fields are required' });
     }
 
@@ -208,7 +218,7 @@ app.post('/Sign-Up', async (request, response) => {
 
 
 
-app.post('/User-Log-In', async (request, response) => {
+router.post('/User-Log-In', async (request, response) => {
   try {
     const { email, password } = request.body;
     // Validate inputs
