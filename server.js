@@ -27,6 +27,17 @@ app.use(router);
 connectDB();
 
 
+const startServer = async () => {
+  try {
+    const connect = await connectDB();
+    console.log(`Database connected successfully!`);
+  } catch (error) {
+    console.log('Error starting server:', error);
+  }
+}
+
+startServer();
+
 
 //
 // Generate a random secret key
@@ -263,6 +274,7 @@ app.post('/User-Log-In', async (request, response) => {
 
     response.status(500).render('response', { error: 'Failed to log in user' });
   }
+  
 });
 
 
