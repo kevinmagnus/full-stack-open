@@ -78,7 +78,7 @@ app.post('/User-Log-In', async (request, response) => {
     }
 
     // Find the user
-    const user = await User.find({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return response.status(401).render('response', { error: 'Invalid email or password' });
     }
@@ -230,82 +230,10 @@ app.post('/Sign-Up', async (request, response) => {
 
 
 
-app.post('/User-Log-In', async (request, response) => {
-  try {
-    const { email, password } = request.body;
-    // Validate inputs
-    if (!email || !password) {
-      return response.status(400).render('response', { error: 'Email and password are required' });
-    }
-
-    // Find the user
-    const user = await User.findOne({ email });
-    if (!user) {
-      return response.status(401).render('response', { error: 'Invalid email or password' });
-    }
-
-    // Compare passwords
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return response.status(401).render('response', { error: 'Invalid email or password' });
-    }
-
-    // Generate a token
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2m' });
-
-    response.cookie('token', token, { httpOnly: true });
-
-    response.redirect('/dashboard');
-
-  } catch (error) {
-
-    console.error('Log in unsuccessful.:', error);
-
-    response.status(500).render('response', { error: 'Failed to log in user' });
-  }
-});
-
-
-
-
-app.get('/dashboard', authenticate, (request, response) => {
-  const user = request.user;
-  response.render('dashboard', { user });
-});
-
-app.get('/all-courses', authenticate, (request, response) => {
-  response.render('all-courses');
-});
-
-app.get('/change-password', authenticate, (request, response) => {
-  response.render('change-password');
-});
-
-
-app.post('/change-password', authenticate, async (request, response) => {
-  const user = request.user;
-  const { oldPassword, newPassword } = request.body;
-
-  // Validate old password
-  const isValidPassword = await bcrypt.compare(oldPassword, user.password);
-  if (!isValidPassword) {
-    return response.render('change-password', { error: 'Invalid old password' });
-  }
+}
 
   // Hash new password
-  const hashedPassword = await bcrypt.hash(newPassword, 10);
-
-  // Update user password
-  user.password = hashedPassword;
-  await user.save();
-
-  response.render('dashboard', { user, message: 'Password changed successfully' });
-});
-
-app.get('/logout', (request, response) => {
-  response.clearCookie('token');
-  response.redirect('/Log-In');
-});
+  
 
 
 
