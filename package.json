@@ -10,7 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
@@ -31,5 +30,14 @@
     "nodemailer": "^7.0.10",
     "nodemon": "^3.1.11",
     "xss-clean": "^0.1.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinmagnus/full-stack-open.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kevinmagnus/full-stack-open/issues"
+  },
+  "homepage": "https://github.com/kevinmagnus/full-stack-open#readme",
+  "description": ""
 }
