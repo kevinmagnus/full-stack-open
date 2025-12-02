@@ -246,7 +246,14 @@ app.get('/change-password', authenticate, (request, response) => {
 
 
 app.post('/change-password', authenticate, async (request, response) => {
-  const user = request.user;
+
+  
+
+
+  try {
+
+    const user = request.user;
+
   const { oldPassword, newPassword } = request.body;
 
   // Validate old password
@@ -262,9 +269,14 @@ app.post('/change-password', authenticate, async (request, response) => {
   user.password = hashedPassword;
   await user.save();
 
-  response.render('dashboard', { user, message: 'Password changed successfully' });
+  response.render('dashboard', { message: 'Password changed successfully' });
 
-  
+}catch(error) {
+
+console.log(error);
+
+}
+
 });
 
 app.get('/logout', (request, response) => {
