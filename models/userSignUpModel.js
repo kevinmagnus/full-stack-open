@@ -1,16 +1,35 @@
-import mongoose from "mongoose";
- 
- //Define the user schema
+import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  enrolledCourses: [String]
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  resetPasswordToken: {
+    type: String,
+    default: null
+  },
+  resetPasswordExpires: {
+    type: Date,
+    default: null
+  }
+}, {
+  timestamps: true
 });
 
-// Create the user model
 const User = mongoose.model('User', userSchema);
 
 export default User;
