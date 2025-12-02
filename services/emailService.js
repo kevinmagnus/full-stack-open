@@ -9,7 +9,6 @@ const createTransporter = () => {
     tls: {
 rejectUnauthorized: false,
     },
-    connectionTimeout: 10000,
      // or 'smtp.gmail.com'
     auth: {
       user: process.env.EMAIL_USER,
