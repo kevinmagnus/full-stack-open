@@ -423,10 +423,10 @@ em {
         <div class="container">
           <div class="content">
             <h2>Password Reset Request</h2>
-            <img src='
+    
             <p>Hi ${firstName},</p>
             <p>You requested to reset your password. Click the button below to reset it:</p>
-            <a href="${resetUrl}" class="button">Reset Password</a>
+            <a href="${resetUrl}" class="button"><button class='enrollment'>Reset Password</button></a>
             <p>Or copy and paste this link into your browser:</p>
             <p style="word-break: break-all; color: #007bff;">${resetUrl}</p>
             <p><strong>This link will expire in 1 hour.</strong></p>
