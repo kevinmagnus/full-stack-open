@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import nodemailer from 'nodemailer';
 import path from 'path';
 import ejs from 'ejs';
@@ -6,7 +7,6 @@ import connectDB from './config/database.js';
 import User from './models/userSignUpModel.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
 import cookieParser from 'cookie-parser';
@@ -72,15 +72,15 @@ const authenticate = async (request, response, next) => {
 // Update your login route with better cookie options
 app.post('/User-Log-In', async (request, response) => {
   try {
-    const { email, password } = request.body;
-    
+    const { email, password} = request.body;
+
     // Validate inputs
     if (!email || !password) {
       return response.status(400).render('response', { error: 'Email and password are required' });
     }
 
     // Find the user
-    const user = await User.find({ email });
+    const user = await User.findOne({ email });
     if (!user) {
       return response.status(401).render('response', { error: 'Invalid email or password' });
     }
@@ -102,9 +102,10 @@ app.post('/User-Log-In', async (request, response) => {
     });
     
     response.redirect('/dashboard');
+
   } catch (error) {
     console.error('Log in unsuccessful:', error);
-    response.status(500).render('response', { error: 'Failed to log in user' });
+    response.status(500).render('response', { error: 'An error occured while logging to your account.' });
   }
 });
 
@@ -190,16 +191,6 @@ app.get('/Sign-Up', (request, response) => {
   response.render('Sign-Up');
 });
 
-// Get all users route
-app.get('/users', async (request, response) => {
-  try {
-    const students = await User.find().select('-password'); // exclude password field
-    response.render('all-users',{ students });
-  } catch (error) {
-    console.error('Error fetching users:', error);
-    response.status(500).render('all-users', { error: "Failed to fetch students' data"});
-  }
-});
 
 
 app.post('/Sign-Up', async (request, response) => {
@@ -232,40 +223,10 @@ app.post('/Sign-Up', async (request, response) => {
 
 
 
-app.post('/User-Log-In', async (request, response) => {
-  try {
-    const { email, password } = request.body;
-    // Validate inputs
-    if (!email || !password) {
-      return response.status(400).render('response', { error: 'Email and password are required' });
-    }
 
-    // Find the user
-    const user = await User.findOne({ email });
-    if (!user) {
-      return response.status(401).render('response', { error: 'Invalid email or password' });
-    }
 
-    // Compare passwords
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return response.status(401).render('response', { error: 'Invalid email or password' });
-    }
-
-    // Generate a token
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '2m' });
-
-    response.cookie('token', token, { httpOnly: true });
-
-    response.redirect('/dashboard');
-
-  } catch (error) {
-
-    console.error('Log in unsuccessful.:', error);
-
-    response.status(500).render('response', { error: 'Failed to log in user' });
-  }
-});
+    
+    
 
 
 
@@ -302,6 +263,8 @@ app.post('/change-password', authenticate, async (request, response) => {
   await user.save();
 
   response.render('dashboard', { user, message: 'Password changed successfully' });
+
+  
 });
 
 app.get('/logout', (request, response) => {
