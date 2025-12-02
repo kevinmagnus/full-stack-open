@@ -219,7 +219,9 @@ router.post('/Sign-Up', async (request, response) => {
 
 
 router.post('/User-Log-In', async (request, response) => {
+  
   try {
+    
     const { email, password } = request.body;
     // Validate inputs
     if (!email || !password) {
