@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Setting</title>
+    <link href= "../public/Stylesheet/style.css" rel='stylesheet'>
+    <link rel = 'icon' type="image/x-icon" href="Images/fullstack logo.png">
+</head>
+<body>
+
+    
+
+    
+    <header class='item head' >
+
+        
+    <nav class="navBar">
+        <div class="navbar-nav">
+                <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home Page</a>
+                <a href="../views/admin-dashboard.ejs" class="navBar-item">Go to Dashboard</a>
+                
+            </div>
+    </nav><!--end nav-->
+    
+</header>
+
+
+
+
+    <main class="container">
+
+       
+        <div class="item">
+
+<ul>
+<li><strong><a href='/'>Change password</a></strong>
+</li>
+<li><strong><a href='/'>Change profile picture</a></strong></li>
+<li><strong><a href='/'>Change email address</a></strong></li>
+<li><strong><a href="/">Change name</a></strong></li>
+<li><strong><a href='/'>Change phone number</a></strong></li>
+
+</ul>
+
+</div>
+
+
+
+
+
+
+</main>
+
+
+    <footer class="footer item">
+
+<a href ='/Contac-Us'>Contact Us</a> <br>
+<a href = '/Our-Mission'>Our Mission</a> <br>
+
+
+
+    </footer>
+
+    <p id="copyright"> </p>
+
+    <script>
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Academy \u00A9 ${thisYear}. All Rights Reserved.`;
+  copyRightHolder.style.color = 'yellowGreen';
+
+    </script>
+
+</body>
+</html>

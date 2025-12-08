@@ -50,7 +50,7 @@ export const forgotPassword = async (request, response) => {
     await user.save();
 
     // Create reset URL
-    const resetUrl = `https://codeskillafricapro.onrender.com/reset-password/${resetToken}`;
+    const resetUrl = `https://codeskillafricapro.onrender.com/password-reset/reset-password/${resetToken}`;
 
     // Send email
     try {

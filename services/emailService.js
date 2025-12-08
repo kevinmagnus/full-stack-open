@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
+    port: 2525,
     secure: false,
     tls: {
 rejectUnauthorized: false,
@@ -19,6 +19,7 @@ rejectUnauthorized: false,
 
 // Send password reset email
 export const sendPasswordResetEmail = async (email, resetUrl, firstName) => {
+    
   const transporter = createTransporter();
 
   const mailOptions = {
@@ -429,7 +430,7 @@ em {
             <a href="${resetUrl}" class="button"><button class='enrollment'>Reset Password</button></a>
             <p>Or copy and paste this link into your browser:</p>
             <p style="word-break: break-all; color: #007bff;">${resetUrl}</p>
-            <p><strong>This link will expire in 1 hour.</strong></p>
+            <p>This link will expire in 1 hour.</p>
             <p>If you didn't request a password reset, please ignore this email or contact support if you have concerns.</p>
             <div class="footer">
               <p>Best regards,<br>Code Skill Africa Team</p>

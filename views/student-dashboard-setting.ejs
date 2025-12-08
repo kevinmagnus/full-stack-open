@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard</title>
-  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link href="../public/Stylesheet/style.css" rel="stylesheet">
   <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
 </head>
 <body>
@@ -15,7 +15,7 @@
       <div class="navbar-nav">
         <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
         <a class="navBar-item" href="/">Menu</a>
-        <a class="navBar-item" href="/student-dashboard-setting.html">Settings</a>
+        <a class="navBar-item" href="/">Settings</a>
       </div>
 
     </nav><!--end nav-->
@@ -25,14 +25,13 @@
 
     <div class="item">
 
-      <h1 style="color:springgreen;">Welcome, <%= user.firstName %>!</h1>
+      <ul>
+        <li>
+            <a href="/change-password">Change password</a>
+        </li>
+      </ul>
       
-      <h2>Enrolled Courses:</h2>
-       
-      <h2>
-        <a href="/all-courses">View All Courses</a>
-      </h2>
-
+      
     </div>
 
   </main>

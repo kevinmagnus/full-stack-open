@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account Creation Response</title>
+  <title>Admin Create Account Response</title>
   <link href="../Stylesheet/style.css" rel="stylesheet">
   <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
 </head>
@@ -11,28 +11,25 @@
   <header class='item head'>
     <nav class="navBar">
       <div class="navbar-nav">
-        <a class="navBar-item" href="/" id="'home-nav">Home</a>
-        <a class="navBar-item" href="/About-Us">About us </a>
-        <a class="navBar-item" href="/Contact-Us">Contact us</a>
-        <a class="navBar-item" aria-current="page" href="/Sign-Up">Log In/Sign Up</a>
+        <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+
         
       </div>
     </nav><!--end nav-->
   </header>
   <main class="container">
-    <div class="item">
-      <% if (locals.message) { %>
-        <p style="color: springgreen"><%= locals.message %></p> <br> <button class="sign-up-response"> <a href="/Log-In">Log In</a> </button>
-      <% } else if (locals.error) { %>
-        <p style="color: red"><%= locals.error %></p> <br> <button class="sign-up-response"> <a href="/Create-Account">Try Again</a> </button>
-      <% } else { %>
-        <p>Unknown error occurred</p>
-      <% } %>
 
-      <br>
+    <div class="item">
+      
+<% if (locals.message) { %>
+        <p style="color: springgreen"><%= locals.message %></p> <br> <button class="sign-up-response"> <a href="/">Log In</a> </button>
+      <% } else { %>
+        <p style="color: red"><%= locals.error %></p>
+      <% }  %>
 
      
     </div>
+
   </main>
   <footer class="footer item">
     <a href='/About-Us'>About Us</a>

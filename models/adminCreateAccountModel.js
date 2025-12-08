@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-const userSchema = new mongoose.Schema({
+const adminCreateAcountSchema = new mongoose.Schema({
 
-  firstName: {
+    firstName: {
     type: String,
     required: true
   },
@@ -21,22 +21,13 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-
-  resetPasswordToken: {
-    type: String,
-    default: null
-  },
-
-  resetPasswordExpires: {
-    type: Date,
-    default: null
   }
-  
-}, {
+
+  }, {
   timestamps: true
-} );
 
-const User = mongoose.model('User', userSchema);
+});
 
-export default User;
+const adminCreateAccountModel = mongoose.model('adminCreateAccountModel', adminCreateAcountSchema);
+
+export default adminCreateAccountModel;

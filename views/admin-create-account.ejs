@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account/Log In</title>
-    <link href="Stylesheet/style.css" rel="stylesheet">
+    <title>Admin Create Account</title>
+    <link href="../Stylesheet/style.css" rel="stylesheet">
     <link rel = 'shortcut icon' type="image/png" href="Images/fullstack logo.png">
 </head>
 <body>
@@ -15,9 +15,7 @@
     <nav class="navBar">
         <div class="navbar-nav">
                 <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
-                <a class="navBar-item" href = '/Our-Mission'>Our Mission</a>
-<a class="navBar-item" href ='/Contac-Us'>Contact Us</a>
-
+                
             </div>
     </nav><!--end nav-->
     
@@ -29,14 +27,21 @@
     <div class="item">
         
 
-        <h1>Create Account:</h1>
+        <h1>Admin Account Creation:</h1>
 
-        <form action="/Sign-Up" method = 'POST'>
+
+        <% if (locals.message) { %>
+        <p style="color: springgreen"><%= locals.message %></p> <br> <button class="sign-up-response"> <a href="/">Log In</a> </button>
+      <% } else { %>
+        <p style="color: red"><%= locals.error %></p>
+      <% }  %>
+      
+        <form action="/api/admin-create-account" method = 'POST'>
 
             <fieldset>
 
                 <legend>
-                    Enter your details to create your account
+                    Enter your details to create your admin account:
                 </legend>
 
     
@@ -48,13 +53,13 @@
 
                 <label for="last_name">Enter your last name:</label> <br> 
 
-                <input type="text" name ='lastName'  id='last_name' autocomplete="off" class="log-in-input" required> <br>
+                <input type="text" name ='lastName'  id='first_name' autocomplete="off" class="log-in-input" required> <br>
 
                 <label for="email">Enter your email address: </label> <br>
 
                 <input type = 'email' name="email"  id="email" autocomplete="off" class="log-in-input" required> <br>
 
-                <label for ='password-input'>Enter your password: </label> <br>
+                <label for ='password'>Enter your password: </label> <br>
 
                 <input type="password" name="password" id="password-input" autocomplete="off" class="log-in-input" required> <br>
 
@@ -82,44 +87,10 @@
     </p>
 
     -->
-    <p><strong>Or</strong></p>
-
-    <div class="item">
-        <h1>Log In:</h1>
-
-        <form action="/User-Log-In"  method="POST">
-
-            <fieldset>
-
-                <legend>
-                    Enter your log in details
-                </legend>
-
     
 
                 
-                <label for="email">Enter your email address:</label> <br>
-
-                <input type="email" name ='email' id="email" placeholder="Enter email" autocomplete="off" class='log-in-input' required >  <br>
-
-                <label for="password-input">Enter your password:</label> <br> 
-
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' autocomplete="off" class='log-in-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
-
-                <label for="show-password-checkbox">Show password</label> <br> <br>
-
-               <input type ="submit" value="Log In" id = 'sign-up-button' >
-               <br>
-
-               
-
                 
-            </fieldset>
-            <a href="/password-reset/forgot-password">Forgotten password</a>
-
-        </form>
-    </div>
-
 
     </main>
     
