@@ -1,5 +1,4 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import path from 'path';
 import ejs from 'ejs';
 import connectDB from './config/database.js';
@@ -17,6 +16,7 @@ import scholarshipRegistrationRoute from './routes/studentScholarshipRegistratio
 import passwordRoutes from './routes/passwordRoutes.js';
 import adminCreateAccountRoutes from './routes/adminCreateAccountRoutes.js';
 import adminLogInRoutes from './routes/adminLogInRoutes.js';
+import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
 
 // Load environment variables first
 dotenv.config();
@@ -39,14 +39,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(cookieParser());
-app.use('/', scholarshipRegistrationRoute);
+app.use('/', scholarshipRegistrationRoute); //This route is for the students scholarhip registration logics.
 app.use('/', adminCreateAccountRoutes);
 app.use('/', adminLogInRoutes);
+app.use('/', getAllStudentsDataRoutes); 
 
 
 // Database connection
 
-connectDB();
+//connectDB();
 
 // Authentication Middleware
 const authenticate = async (request, response, next) => {

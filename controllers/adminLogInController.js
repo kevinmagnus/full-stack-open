@@ -1,6 +1,5 @@
 import adminCreateAccountModel from "../models/adminCreateAccountModel.js";
 import bcrypt from 'bcrypt';
-import cookieParser from "cookie-parser";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 

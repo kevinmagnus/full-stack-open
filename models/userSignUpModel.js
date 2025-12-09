@@ -31,7 +31,13 @@ const userSchema = new mongoose.Schema({
   resetPasswordExpires: {
     type: Date,
     default: null
-  }
+  },
+
+  enrolledCourses: {
+type: String,
+default: null
+
+  },
   
 }, {
   timestamps: true

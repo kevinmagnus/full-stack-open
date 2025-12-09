@@ -33,7 +33,9 @@
 
         <p>
     <% if (error) { %>
-      <div id='scholarship-submit-error' ><%= error %></div>
+      <div id='scholarship-submit-error' ><%= error %> <br>
+      
+      <a href='/api/scholarship-registration-page'><button class="enrollment">Re-apply again</button></a></div>
     <% } %>
 
     <% if (message) { %>
