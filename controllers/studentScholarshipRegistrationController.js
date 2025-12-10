@@ -13,6 +13,8 @@ export const createScholarshipRegistration = async(request, response) =>{
 
         console.log('Scholarship application submitted successfully!');
 
+
+
         response.render('scholarship-registration-response', {error: null, message: `${firstName}, your scholarship application was submitted successfully! Look forward to hear from us sooner.`});
 
         
