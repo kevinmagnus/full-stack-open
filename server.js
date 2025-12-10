@@ -47,7 +47,7 @@ app.use('/', getAllStudentsDataRoutes);
 
 // Database connection
 
-//connectDB();
+connectDB();
 
 // Authentication Middleware
 const authenticate = async (request, response, next) => {
@@ -128,11 +128,13 @@ app.post('/User-Log-In', async (request, response) => {
       secure: process.env.NODE_ENV === 'production'
     });
     
+    console.log(response);
+
     response.redirect('/dashboard');
 
   } catch (error) {
     console.error('Log in unsuccessful:', error);
-    response.status(500).render('response', { error: 'An error occurred while logging to your account. Check your internet connection and try again' });
+    response.status(500).render('response', { error: 'An error occurred while logging to your account. Please try again.' });
   }
 });
 
@@ -241,6 +243,7 @@ app.post('/Sign-Up', async (request, response) => {
     await user.save();
 
     response.render('response', { message: 'Your account was created successfully!' });
+
   } catch (error) {
     console.error('Error creating user:', error);
     response.status(500).render('response', { error: 'An error occured while trying to create your account. Make sure you have a good internet connection.' });
