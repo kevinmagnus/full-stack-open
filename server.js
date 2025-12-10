@@ -47,7 +47,7 @@ app.use('/', getAllStudentsDataRoutes);
 
 // Database connection
 
-connectDB();
+//connectDB();
 
 // Authentication Middleware
 const authenticate = async (request, response, next) => {
