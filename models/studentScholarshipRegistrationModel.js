@@ -16,7 +16,7 @@ const studentScholarshipRegitrationSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
     },
     phone_number: {
         type: Number,
