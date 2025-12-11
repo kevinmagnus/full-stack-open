@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const studentScholarshipRegitrationSchema = new mongoose.Schema({
+const studentScholarshipRegistrationSchema = new mongoose.Schema({
 
     first_name: {
 
@@ -26,10 +26,15 @@ const studentScholarshipRegitrationSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    course: {
-        type: String,
-        required: true,
+    enrolledCourses: {
+        type: [String],
+        default: [],
+    },
+    scholarshipAppliedCourses: {
+        type: [String],
+        default: [],
     }
+
 
 }, {
 
@@ -37,6 +42,6 @@ timestamps: true
 
 });
 
-const studentScholarshipRegistrationModel = mongoose.model('studentScholarshipRegistrationModel', studentScholarshipRegitrationSchema);
+const studentScholarshipRegistrationModel = mongoose.model('studentScholarshipRegistrationModel', studentScholarshipRegistrationSchema);
 
 export default studentScholarshipRegistrationModel;

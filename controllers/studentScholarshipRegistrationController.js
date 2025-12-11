@@ -4,6 +4,8 @@ import studentScholarshipRegistrationModel from "../models/studentScholarshipReg
 export const createScholarshipRegistration = async(request, response) =>{
 
     try {
+
+      
       
         const scholar = new studentScholarshipRegistrationModel(request.body);
 
@@ -43,7 +45,7 @@ export const showScholarshipApplicationPage = async (request, response) => {
         
       } catch (error) {
     
-        response.render('scholarship-registration-response', {error: 'There was an error showing loading the page. Please make sure you have a good internet connection and try again.', message: null})
+        response.render('scholarship-registration-response', {error: 'There was an error loading the scholarship application page. Please try again.', message: null})
         
       }
 
