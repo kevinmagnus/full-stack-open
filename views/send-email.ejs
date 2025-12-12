@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Email</title>
+    <link href= "Stylesheet/style.css" rel='stylesheet'>
+    <link rel = 'icon' type="image/x-icon" href="Images/fullstack logo.png">
+</head>
+<body>
+    
+
+    <header class='item head' >
+
+        
+    <nav class="navBar">
+        <div class="navbar-nav">
+                <a  href="/" class="navBar-item">Home</a>
+                <a class="navBar-item" href="/Our-Mission">Our Mission</a>
+                <a class="navBar-item active" aria-current="page" class="navBar-item" href="/Contact-Us">Contact us</a>
+            </div>
+    </nav><!--end nav-->
+    
+</header>
+
+
+
+
+    <main class="container">
+
+        <div class="item">
+
+            <h1>
+                Contact Us:
+            </h1>
+<p>
+    Tel: +2347078399448 <br>
+
+    Email: codeskillafr@gmail.com
+
+    <address>
+        Address: 18, Oredola street, Ajunwo, Lagos, Nigeria.
+    </address>
+
+    <br>
+
+    
+</p>
+
+
+<form action="/send-email" autocomplete="off" method='POST'> 
+
+    <h2>Message Us:</h2>
+    <fieldset>
+
+<legend>
+Enter your details and message
+</legend>
+
+<label for ='subject'> Enter message subject: </label> <br>
+
+<input type ='text' id="subject" name="subject"> <br>
+
+<label for ='message'> Enter your message: </label> <br>
+
+<textarea name="message" id="message" required></textarea> <br>
+
+<input type="submit" value="Send message" class="enrollment">
+
+
+
+    </fieldset>
+
+</form>
+        </div>
+
+    </main>
+
+
+    
+
+<footer class="footer item">
+
+<a href ='/Contact-Us'>Contact Us</a> <br>
+<a href = '/Our-Mission'>Our Mission</a> <br>
+
+
+
+
+    </footer>
+
+    <p id="copyright"> </p>
+     
+    <script>
+
+const userMessage = document.getElementById('message');
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved`;
+  copyRightHolder.style.color = 'yellowGreen';
+
+
+  let slides = document.querySelectorAll('.slide');
+let currentSlide = 0;
+
+function slideImages() {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+setInterval(slideImages, 3000);
+
+
+userMessage.addEventListener("input", () => {
+
+    userMessage.style.height = "auto";
+
+userMessage.style.height = userMessage.scrollHeight + "px";
+
+    
+});
+
+    </script>
+</body>
+</html>

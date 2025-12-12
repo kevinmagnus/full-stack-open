@@ -17,7 +17,9 @@ import passwordRoutes from './routes/passwordRoutes.js';
 import adminCreateAccountRoutes from './routes/adminCreateAccountRoutes.js';
 import adminLogInRoutes from './routes/adminLogInRoutes.js';
 import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
-
+import createStudentAccountRoutes from './routes/studentCreateAccountRoutes.js';
+import emailRoutes from './routes/emailRoutes.js';
+import studenDashboardSettingRoutes from './routes/studentDashboardSettingsRoutes.js';
 // Load environment variables first
 dotenv.config();
 
@@ -39,11 +41,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(cookieParser());
+
 app.use('/', scholarshipRegistrationRoute); //This route is for the students scholarhip registration logics.
 app.use('/', adminCreateAccountRoutes);
 app.use('/', adminLogInRoutes);
 app.use('/', getAllStudentsDataRoutes); 
-
+app.use('/', createStudentAccountRoutes);
+app.use('/', emailRoutes);
+app.use('/', studenDashboardSettingRoutes); //This is the routes for student dashboard settings.
 
 // Database connection
 
@@ -102,6 +107,7 @@ app.use('/password-reset', passwordRoutes);
 
 // Login Route
 app.post('/User-Log-In', async (request, response) => {
+
   try {
     const { email, password } = request.body;
 
@@ -166,6 +172,8 @@ app.get('/Back-End-Learn-More', (request, response) => {
   response.sendFile(filePath);
 });
 
+
+
 app.get('/Front-End-Enroll', (request, response) => {
   const filePath = path.join(__dirname, 'public/Pages', 'Front-End-Enroll.html');
   response.sendFile(filePath);
@@ -206,49 +214,26 @@ app.get('/Admin-Dashboard', (request, response) => {
   response.sendFile(filePath);
 });
 
-app.get('/Create-Account', (request, response) => {
-  const filePath = path.join(__dirname, 'public/Pages', 'Sign-Up.html');
-  response.sendFile(filePath);
-});
+
 
 app.get('/Congrats', (request, response) => {
   const filePath = path.join(__dirname, 'public/Pages', 'congratulations.html');
   response.sendFile(filePath);
 });
 
-app.get('/Sign-Up', (request, response) => {
-  response.render('Sign-Up');
-});
 
 app.get('/forgot-password-page', (request, response) => {
   response.render('forgot-password');
 });
 
-// Sign Up Route
-app.post('/Sign-Up', async (request, response) => {
-  try {
-    const { firstName, lastName, email, password } = request.body;
-    
-    if (!firstName || !lastName || !email || !password) {
-      return response.status(400).render('response', { error: 'All fields are required' });
-    }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return response.status(400).render('response', { error: 'Email already exists' });
-    }
+app.get('/send-email-page', (request, response) => {
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ firstName, lastName, email, password: hashedPassword });
-    await user.save();
-
-    response.render('response', { message: 'Your account was created successfully!' });
-
-  } catch (error) {
-    console.error('Error creating user:', error);
-    response.status(500).render('response', { error: 'An error occured while trying to create your account. Make sure you have a good internet connection.' });
-  }
+  response.render('send-email');
+  
 });
+
+
 
 // Protected Routes
 app.get('/dashboard', authenticate, (request, response) => {

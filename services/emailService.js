@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 2525,
+    port: 547,
     secure: false,
     tls: {
 rejectUnauthorized: false,
@@ -34,7 +34,7 @@ export const sendPasswordResetEmail = async (email, resetUrl, firstName) => {
           body {
 
     text-align: center;
-    background-color: white;
+    background-color: black;
 }
 
 

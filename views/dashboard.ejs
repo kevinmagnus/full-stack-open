@@ -14,8 +14,8 @@
 
       <div class="navbar-nav">
         <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
-        <a class="navBar-item" href="/">Menu</a>
-        <a class="navBar-item" href="/student-dashboard-setting.html">Settings</a>
+        <a class="navBar-item" href="/logout">Log Out</a>
+        <a class="navBar-item" href="/student-dashboard-setting">Settings</a>
       </div>
 
     </nav><!--end nav-->
@@ -52,7 +52,25 @@
 
     </div>
 
-    
+    <div class="item">
+
+      <h1>Course Videos:</h1>
+
+    </div>
+
+
+    <div class="item">
+
+     <h1> Code Editor: </h1>
+
+    </div>
+
+
+    <div class="item">
+
+      <a href="/send-email-page"><button class="enrollment">Send Email</button></a>
+      
+    </div>
     
 
   </main>
@@ -70,9 +88,7 @@
     copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
     copyRightHolder.style.color = 'yellowGreen';
 
-    // REMOVED THE PROBLEMATIC CODE
-    // The server-side authentication middleware already handles checking if the user is logged in
-    // No need to check localStorage since we're using HTTP-only cookies
+    
   </script>
 </body>
 </html>

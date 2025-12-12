@@ -23,6 +23,14 @@ const userSchema = new mongoose.Schema({
     required: true
   },
 
+  country: {
+
+type: String,
+required: true,
+
+
+  },
+  
   resetPasswordToken: {
     type: String,
     default: null
@@ -34,12 +42,17 @@ const userSchema = new mongoose.Schema({
   },
 
   enrolledCourses: {
-type: String,
-default: null
+        type: [String],
+        default: [],
+    },
+    scholarshipAppliedCourses: {
+        type: [String],
+        default: [],
+    }
 
   },
   
-}, {
+ {
   timestamps: true
 } );
 

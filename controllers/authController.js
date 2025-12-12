@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import cookieParser from "cookie-parser";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import User from '../models/userSignUpModel.js';
 
 
 
@@ -32,7 +33,7 @@ export const authenticate = async (request, response, next) => {
 
     console.log('Decoded token:', decoded);
     
-    const user = await adminCreateAccountModel.findById(decoded.userId);
+    const user = await User.findById(decoded.userId);
 
     console.log('User:', user);
     
@@ -57,7 +58,10 @@ export const authenticate = async (request, response, next) => {
 
     response.clearCookie('token');
 
-    return response.render('/Log-In');
+    return response.redirect('/Log-In');
 
   }
 };
+
+
+export default authenticate;
