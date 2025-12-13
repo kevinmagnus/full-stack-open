@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 
 const counterSchema = new mongoose.Schema({
 
-  name: String,
-  count: Number,
+_id: { type: String, required: true },
+ sequence_value: { type: Number, default: 1000 }
 
 });
 
 
-const Counter = new mongoose.model('Counter', counterSchema);
+const Counter = mongoose.model('Counter', counterSchema);
 
 const userSchema = new mongoose.Schema({
 
@@ -49,6 +49,13 @@ required: true,
 
   },
   
+  registrationDate: {
+
+    type: Date,
+    default: Date.now
+
+  },
+
   resetPasswordToken: {
     type: String,
     default: null
@@ -80,44 +87,42 @@ userSchema.pre('save', async function(next) {
 
   if(this.isNew) {
 
-    const counter = await Counter.findOneAndUpdate(
+    try {
+      
+      const counter = await Counter.findByIdAndUpdate(
 
-      { name: 'studentId' },
-      {$inc: { count: 1 } },
-      { new: true, upsert: true, setDefaultsOnInsert: true }
+      { _id: 'studentId' },
+      {$inc: { sequence_value: 1 } },
+      { new: true, upsert: true }
     );
-
-    
-if(!counter.count) {
-
-  await Counter.updateOne({ name: 'studentId' }, { count: 1000 });
-
-  this.studentId = 1000;
-}else{
-
-  this.studentId = counter.count;
-}
   
-  }
+
+  this.studentId = counter.sequence_value;
+
   next();
+
+
+}catch(error){
+
+  next(error);
+
+  console.log('Error', error);
+
+}
+
+  }else{
+
+    next();
+
+  }
+    
 
 });
 
 
 const User = mongoose.model('User', userSchema);
 
-//initialize the counter if it doesn't exist
 
-( async () => {
-
-  const counter = await Counter.findOne({ name: 'studentId'});
-
-  if (!counter) {
-
-    await Counter.create({ name: 'studentId', count: 999});
-  }
-
-})();
 
 
 

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get('/Create-Account', getStudentCreateAccountPage);
 
-router.post('/Sign-Up', createStudentAccount);
+router.post('/api/Sign-Up', createStudentAccount);
 
 
 export default router;
