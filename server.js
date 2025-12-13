@@ -216,10 +216,7 @@ app.get('/Admin-Dashboard', (request, response) => {
 
 
 
-app.get('/Congrats', (request, response) => {
-  const filePath = path.join(__dirname, 'public/Pages', 'congratulations.html');
-  response.sendFile(filePath);
-});
+
 
 
 app.get('/forgot-password-page', (request, response) => {
@@ -240,7 +237,7 @@ app.get('/dashboard', authenticate, (request, response) => {
 
   const user = request.user;
 
-  response.render('dashboard', { user });
+  response.render('dashboard', { firstName: user.firstName, studentId: user.studentId });
 
 });
 

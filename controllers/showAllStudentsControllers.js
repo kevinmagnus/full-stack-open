@@ -46,7 +46,7 @@ export const getStudentById = async (request, response) => {
 
             console.log('Student with that ID does not exist.')
 
-           return response.render('getStudentById', { error: null, message: 'Student with that ID was not found.'});
+        response.render('getStudentById', { error: null, message: 'Student with that ID was not found.'});
 
         }else{
 

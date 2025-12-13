@@ -82,15 +82,23 @@ userSchema.pre('save', async function(next) {
 
     const counter = await Counter.findOneAndUpdate(
 
-      { name: this.studentId },
+      { name: 'studentId' },
       {$inc: { count: 1 } },
       { new: true, upsert: true, setDefaultsOnInsert: true }
     );
 
-    this.studentId = counter.count;
+    
+if(!counter.count) {
 
+  await Counter.updateOne({ name: 'studentId' }, { count: 1000 });
+
+  this.studentId = 1000;
+}else{
+
+  this.studentId = counter.count;
+}
+  
   }
-
   next();
 
 });
@@ -106,7 +114,7 @@ const User = mongoose.model('User', userSchema);
 
   if (!counter) {
 
-    await Counter.create({ name: 'studentId', count: 1000});
+    await Counter.create({ name: 'studentId', count: 999});
   }
 
 })();
