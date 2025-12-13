@@ -3,11 +3,11 @@ import { getAllStudentsData, getStudentById , getStudentByIdPage } from '../cont
 
 const router = express.Router();
 
-router.post('/get-student-by-id', getStudentById );
+router.post('/api/get-student-by-id', getStudentById );
 
-router.get('/get-student-by-id', getStudentByIdPage);
+router.get('/api/get-student-by-id', getStudentByIdPage);
 
-router.get('/get-all-student-data', getAllStudentsData);
+router.get('/api/get-all-student-data', getAllStudentsData);
 
 
 export default router;
