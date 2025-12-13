@@ -40,7 +40,7 @@ export const getStudentById = async (request, response) => {
         
         const studentId = parseInt(request.params.studentId);
 
-        const student = await User.findOne({ studentId }).exec(); //'student' stores the student information from the database.
+        const student = await User.findOne({ studentId })//'student' stores the student information from the database.
 
         if(!student) {
 
@@ -72,8 +72,15 @@ export const getStudentByIdPage = async (request, response) => {
 
 
     
-response.render('getStudentById');
 
+    try {
+        
+        response.render('getStudentById');
+
+    } catch (error) {
+        
+        console.log('Error', error);
+    }
 
 
 }

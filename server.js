@@ -52,7 +52,7 @@ app.use('/', studenDashboardSettingRoutes); //This is the routes for student das
 
 // Database connection
 
-connectDB();
+//connectDB();
 
 // Authentication Middleware
 const authenticate = async (request, response, next) => {
