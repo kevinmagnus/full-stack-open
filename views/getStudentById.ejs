@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student's Data by ID</title>
+  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
+</head>
+<body>
+  <header class='item head'>
+    <nav class="navBar">
+      <div class="navbar-nav">
+        <a class="navBar-item" href="/" id="'home-nav">Home</a>
+        
+        
+        
+      </div>
+    </nav><!--end nav-->
+  </header>
+
+  <main class="container">
+
+    <div class="item">
+
+      <% if (locals.message) { %>
+
+        <p style="color: springgreen"><%= locals.message %></p>
+
+      <% } else{ %>
+
+        <p style="color: red"><%= locals.error %></p>
+
+      <% } %>
+     
+    </div>
+
+
+    <div class="item">
+
+
+        <form action="/get-student-by-id" method="POST">
+
+            <fieldset>
+
+                <legend>
+                    Enter the student's ID
+                </legend>
+
+    
+
+                
+                <label for="email">Enter the student's ID:</label> <br>
+
+                <input type="number" name ='studentID' id="studentID" placeholder="Enter the ID" autocomplete="off" class='log-in-input' required >  <br>
+
+                
+                
+
+               <input type ="submit" value="Show Student's Details" id = 'sign-up-button' >
+               
+
+               
+
+                
+            </fieldset>
+            
+
+        </form>
+
+    </div>
+    
+    </main>
+
+
+    
+  </footer>
+  <p id="copyright"></p>
+  <script>
+    const copyRightHolder = document.getElementById("copyright");
+    const today = new Date();
+    const thisYear = today.getFullYear();
+    copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+    copyRightHolder.style.color = 'yellowGreen';
+  </script>
+</body>
+</html>

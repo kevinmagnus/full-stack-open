@@ -1,10 +1,28 @@
 import mongoose from 'mongoose';
 
+
+const counterSchema = new mongoose.Schema({
+
+  name: String,
+  count: Number,
+
+});
+
+
+const Counter = new mongoose.model('Counter', counterSchema);
+
 const userSchema = new mongoose.Schema({
 
   firstName: {
     type: String,
     required: true
+  },
+
+  studentId: {
+
+type: Number,
+unique: true,
+
   },
 
   lastName: {
@@ -56,6 +74,43 @@ required: true,
   timestamps: true
 } );
 
+
+userSchema.pre('save', async function(next) {
+
+
+  if(this.isNew) {
+
+    const counter = await Counter.findOneAndUpdate(
+
+      { name: this.studentId },
+      {$inc: { count: 1 } },
+      { new: true, upsert: true, setDefaultsOnInsert: true }
+    );
+
+    this.studentId = counter.count;
+
+  }
+
+  next();
+
+});
+
+
 const User = mongoose.model('User', userSchema);
+
+//initialize the counter if it doesn't exist
+
+( async () => {
+
+  const counter = await Counter.findOne({ name: 'studentId'});
+
+  if (!counter) {
+
+    await Counter.create({ name: 'studentId', count: 1000});
+  }
+
+})();
+
+
 
 export default User;

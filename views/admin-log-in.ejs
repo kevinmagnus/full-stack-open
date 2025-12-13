@@ -30,42 +30,11 @@
 
             <p style="color:springgreen;"> <%= locals.message %> </p>
 
-        <form action="/api/admin-log-in" method="POST">
-
-            <fieldset>
-
-                <legend>
-                    Enter your admin log in details:
-                </legend>
-
-    
-
-                
-                <label for="email">Enter your email address:</label> <br>
-
-                <input type="email" name ='email' id="email" placeholder="Enter email" autocomplete="off" class='log-in-input' required >  <br>
-
-                <label for="password">Enter your password:</label> <br> 
-
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' autocomplete="off" class='log-in-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
-
-                <label for="show-password-checkbox">Show password</label> <br> <br>
-
-               <input type ="submit" value="Log In" id = 'sign-up-button' >
-               <br>
-
-               
-
-                
-            </fieldset>
-            <a href="/password-reset/forgot-password">Forgotten password</a>
-
-        </form>
+        
     </div>
 
     <p class="link-paragraph">You don't have an account?
 <a href="/Create-Account">Create account</a> </p>
-
 
 
 <footer class="footer item">

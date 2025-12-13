@@ -237,8 +237,11 @@ app.get('/send-email-page', (request, response) => {
 
 // Protected Routes
 app.get('/dashboard', authenticate, (request, response) => {
+
   const user = request.user;
+
   response.render('dashboard', { user });
+
 });
 
 app.get('/all-courses', authenticate, (request, response) => {
