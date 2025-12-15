@@ -2,6 +2,7 @@ import express from 'express';
 import User from "../models/userSignUpModel.js";
 import bcrypt from 'bcrypt';
 import path from 'path';
+import jwt from 'jsonwebtoken';
 
 const app = express();
 
