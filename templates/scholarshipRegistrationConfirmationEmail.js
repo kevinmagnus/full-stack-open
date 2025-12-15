@@ -1,14 +1,25 @@
+import studentScholarshipRegistrationModel from "../models/studentScholarshipRegistrationModel.js";
+
+
+const scholar = new studentScholarshipRegistrationModel();
+
+
+export const scholarshipRegistrationConfirmationEmail = `
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forgot Password</title>
-  <style>
-    body {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Application Confirmation</title>
+
+    <style>
+
+body {
 
     text-align: center;
-    background-color: white;
+    background-color: black;
 }
 
 
@@ -402,68 +413,38 @@ em {
 
   color: springgreen;
 }
-  </style>
-  
-  
+
+select {
+    background-color: white;
+}
+
+    </style>
 </head>
 <body>
-  <header class='item head' >
+    
+    <main class="container">
+
+        <div class="item">
+
+            <p>Hello, ${scholar.name},
+
+            </p>
+
+            <p>
+                We've received your scholarship application for ${scholar.course}. Keep an eye here to get your decision.
+            </p>
 
         
+
+        </div>
         
-    <nav class="navBar">
-        <div class="navbar-nav">
-                <a class="navBar-item"  href="/" id="'home-nav">Home</a>
-                <a class="navBar-item" href="/Our-Mission">Our Mission</a>
-                <a class="navBar-item" class="navBar-item" href="/Contact-Us">Contact Us</a> 
-                <a class="navBar-item active" aria-current="page" class="navBar-item" href="/api/Create-Account">Log In/Sign Up</a>
-  </div>
-    </nav>
-    
-</header>
-    
-  <div class="container">
+<hr>
+        <p>
 
-    <div class="item">
-    <h1>Forgot Password?</h1>
-    
-<p>
-    <% if (error) { %>
-      <div id='reset-link-error' ><%= error %></div>
-    <% } %>
-
-    <% if (message) { %>
-      <div id ='reset-link-success' ><%= message %></div>
-    <% } %>
-
-    </p>
-
-    <form action="/password-reset/forgot-password" method="POST">
-
-      <fieldset>
-
-        <legend>Enter your email address to get your password reset link:</legend>
-      <div class="form-group">
-        <label for="email">Email Address:</label>
-        <br>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          placeholder="Enter your email:"
-          required
-        >
-      </div>
-
-      <button type="submit" class="enrollment">Send Reset Link</button>
-      
-      </fieldset>
-    </form>
-
-    
-      <a href="/api/Log-In">← Back to Login</a>
-    </div>
-  </div>
-  </div>
+            Best Regards, <br>
+            Code Skill Africa Team
+        </p>
+    </main>
 </body>
 </html>
+`

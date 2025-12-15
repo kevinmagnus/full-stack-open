@@ -22,7 +22,7 @@ export const authenticate = async (request, response, next) => {
 
     console.log('No token found, redirecting to login');
 
-    return response.redirect('/Log-In');
+    return response.redirect('/api/Log-In');
     
 
   }
@@ -43,7 +43,7 @@ export const authenticate = async (request, response, next) => {
 
       response.clearCookie('token');
 
-      return response.redirect('/Log-In');
+      return response.redirect('/api/Log-In');
 
     }
 
@@ -58,7 +58,7 @@ export const authenticate = async (request, response, next) => {
 
     response.clearCookie('token');
 
-    return response.redirect('/Log-In');
+    return response.redirect('/api/Log-In');
 
   }
 };

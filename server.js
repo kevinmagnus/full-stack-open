@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
+import authenticate from './controllers/authController.js';
 
 
 
@@ -17,9 +18,10 @@ import passwordRoutes from './routes/passwordRoutes.js';
 import adminCreateAccountRoutes from './routes/adminCreateAccountRoutes.js';
 import adminLogInRoutes from './routes/adminLogInRoutes.js';
 import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
-import createStudentAccountRoutes from './routes/studentCreateAccountRoutes.js';
-import emailRoutes from './routes/emailRoutes.js';
 import studenDashboardSettingRoutes from './routes/studentDashboardSettingsRoutes.js';
+import studentAccountRoutes from './routes/studentAccountRoutes.js';
+import sendUsMessageRoutes from './routes/sendUsMessageRoutes.js';
+
 // Load environment variables first
 dotenv.config();
 
@@ -45,16 +47,23 @@ app.use(cookieParser());
 app.use('/', scholarshipRegistrationRoute); //This route is for the students scholarhip registration logics.
 app.use('/', adminCreateAccountRoutes);
 app.use('/', adminLogInRoutes);
-app.use('/', getAllStudentsDataRoutes); 
-app.use('/', createStudentAccountRoutes);
-app.use('/', emailRoutes);
-app.use('/', studenDashboardSettingRoutes); //This is the routes for student dashboard settings.
+app.use('/', getAllStudentsDataRoutes);
+app.use('/', studenDashboardSettingRoutes);
+app.use('/', studentAccountRoutes);
+app.use('/', sendUsMessageRoutes);
+app.use('/', passwordRoutes);
 
-// Database connection
+
+
+/*
+app.use('/', createStudentAccountRoutes);
+*/
 
 connectDB();
 
 // Authentication Middleware
+
+/*
 const authenticate = async (request, response, next) => {
 
   console.log('Authenticate middleware called');
@@ -67,7 +76,7 @@ const authenticate = async (request, response, next) => {
 
     console.log('No token found, redirecting to login');
 
-    return response.redirect('/Log-In');
+    return response.redirect('/api/Log-In');
 
   }
 
@@ -87,7 +96,7 @@ const authenticate = async (request, response, next) => {
 
       response.clearCookie('token');
 
-      return response.redirect('/Log-In');
+      return response.redirect('/api/Log-In');
 
     }
 
@@ -98,20 +107,26 @@ const authenticate = async (request, response, next) => {
   } catch (error) {
     console.log('Error authenticating user:', error);
     response.clearCookie('token');
-    return response.redirect('/Log-In');
+    return response.redirect('/api/Log-In');
   }
 };
+
+
+*/
 
 // Use password routes
 app.use('/password-reset', passwordRoutes);
 
 // Login Route
+
+/*
 app.post('/User-Log-In', async (request, response) => {
 
   try {
     const { email, password } = request.body;
 
     if (!email || !password) {
+
       return response.status(400).render('response', { error: 'Email and password are required' });
     }
 
@@ -144,6 +159,8 @@ app.post('/User-Log-In', async (request, response) => {
   }
 });
 
+*/
+
 // Public Routes
 app.get('/', (request, response) => {
   const filePath = path.join(__dirname, 'Home.html');
@@ -156,11 +173,13 @@ app.get('/Home', (request, response) => {
   response.sendFile(filePath);
 });
 
-
+/*
 app.get('/Log-In', (request, response) => {
   const filePath = path.join(__dirname, 'public/Pages', 'Log-In.html');
   response.sendFile(filePath);
 });
+
+*/
 
 app.get('/Front-End-Learn-More', (request, response) => {
   const filePath = path.join(__dirname, 'public/Pages', 'Front-End-Learn-More.html');
@@ -194,10 +213,6 @@ app.get('/Our-Mission', (request, response) => {
   response.sendFile(filePath);
 });
 
-app.get('/Contact-Us', (request, response) => {
-  const filePath = path.join(__dirname, 'public/Pages', 'Contact-Us.html');
-  response.sendFile(filePath);
-});
 
 app.get('/Payment-Success', (request, response) => {
   const filePath = path.join(__dirname, 'public/Pages', 'Payment-Success.html');
@@ -273,7 +288,7 @@ app.post('/change-password', authenticate, async (request, response) => {
 
 app.get('/logout', (request, response) => {
   response.clearCookie('token');
-  response.redirect('/Log-In');
+  response.redirect('/api/Log-In');
 });
 
 // Start Server

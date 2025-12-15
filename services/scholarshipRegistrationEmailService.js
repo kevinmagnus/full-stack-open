@@ -1,14 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forgot Password</title>
-  <style>
-    body {
+import nodemailer from 'nodemailer';
+
+// Create transporter
+const createTransporter = () => {
+  return nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 547,
+    secure: false,
+    tls: {
+rejectUnauthorized: false,
+    },
+     // or 'smtp.gmail.com'
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASSWORD // Use App Password for Gmail
+    }
+  });
+};
+
+// Send password reset email
+const scholarshipRegistrationConfirmationEmail = async (email, firstName) => {
+    
+  const transporter = createTransporter();
+
+  const mailOptions = {
+    from: `"Code Skill Africa" <${process.env.EMAIL_USER}>`,
+    to: email,
+    subject: 'Scholarship Application Received',
+    html: `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <style>
+          body {
 
     text-align: center;
-    background-color: white;
+    background-color: black;
 }
 
 
@@ -392,78 +418,33 @@ em {
     background-color: black;
     border-radius: 5px 5px 5px 5px;
 }
-
-
-#reset-link-error, #scholarship-submit-error {
-  color: red;
-}
-
-#reset-link-success, #scholarship-submit-success {
-
-  color: springgreen;
-}
-  </style>
-  
-  
-</head>
-<body>
-  <header class='item head' >
-
-        
-        
-    <nav class="navBar">
-        <div class="navbar-nav">
-                <a class="navBar-item"  href="/" id="'home-nav">Home</a>
-                <a class="navBar-item" href="/Our-Mission">Our Mission</a>
-                <a class="navBar-item" class="navBar-item" href="/Contact-Us">Contact Us</a> 
-                <a class="navBar-item active" aria-current="page" class="navBar-item" href="/api/Create-Account">Log In/Sign Up</a>
-  </div>
-    </nav>
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="content">
+            <h2>Password Reset Request</h2>
     
-</header>
-    
-  <div class="container">
+            <p>Hi ${firstName},</p>
 
-    <div class="item">
-    <h1>Forgot Password?</h1>
-    
-<p>
-    <% if (error) { %>
-      <div id='reset-link-error' ><%= error %></div>
-    <% } %>
+            <p>We've received your application for our ${request.body.course} scholarship. We'll  send you a response soon. Keep an eye on your email.</p>
+            
+            
+            <div class="footer">
 
-    <% if (message) { %>
-      <div id ='reset-link-success' ><%= message %></div>
-    <% } %>
+              <p>Best regards,<br>Code Skill Africa Team</p>
 
-    </p>
 
-    <form action="/password-reset/forgot-password" method="POST">
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>
+    `
+  };
 
-      <fieldset>
+  await transporter.sendMail(mailOptions);
+};
 
-        <legend>Enter your email address to get your password reset link:</legend>
-      <div class="form-group">
-        <label for="email">Email Address:</label>
-        <br>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          placeholder="Enter your email:"
-          required
-        >
-      </div>
 
-      <button type="submit" class="enrollment">Send Reset Link</button>
-      
-      </fieldset>
-    </form>
-
-    
-      <a href="/api/Log-In">← Back to Login</a>
-    </div>
-  </div>
-  </div>
-</body>
-</html>
+export default scholarshipRegistrationConfirmationEmail;

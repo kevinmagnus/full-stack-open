@@ -26,17 +26,18 @@ export const createStudentAccount = async (request, response) => {
     
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-          return response.status(400).render('response', { error: 'Email already exists' });
+          return response.status(400).render('response', { error: 'A user with that email already exists' });
         }
     
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ firstName, lastName, email, country, password: hashedPassword });
         await user.save();
     
-        const studentId = user.studentId;
-
-        response.render('response', { message: `Your account was created successfully! Your ID is ${studentId}. Write it down.` });
+        
+        response.render('response', { message: `Your account was created successfully!` });
     
+        console.log("Account was created successfully!");
+
       } catch (error) {
     
         console.error('Error creating user:', error);

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Email</title>
-    <link href= "Stylesheet/style.css" rel='stylesheet'>
+    <title>Send Message</title>
+    <link href= "../Stylesheet/style.css" rel='stylesheet'>
     <link rel = 'icon' type="image/x-icon" href="Images/fullstack logo.png">
 </head>
 <body>
@@ -17,7 +17,8 @@
         <div class="navbar-nav">
                 <a  href="/" class="navBar-item">Home</a>
                 <a class="navBar-item" href="/Our-Mission">Our Mission</a>
-                <a class="navBar-item active" aria-current="page" class="navBar-item" href="/Contact-Us">Contact us</a>
+                <a class="navBar-item" href="/api/Create-Account">Log In/Sign Up</a>
+                <a class="navBar-item active"  href="/api/send-email">Contact us</a>
             </div>
     </nav><!--end nav-->
     
@@ -30,25 +31,26 @@
 
         <div class="item">
 
-            <h1>
-                Contact Us:
-            </h1>
-<p>
-    Tel: +2347078399448 <br>
 
-    Email: codeskillafr@gmail.com
+<form action="/api/send-email" autocomplete="off" method='POST'> 
 
-    <address>
-        Address: 18, Oredola street, Ajunwo, Lagos, Nigeria.
-    </address>
 
-    <br>
 
-    
+    <% if (locals.error) { %>
+        
+
+      <p style="color: red"><%= locals.error %>  <br>
 </p>
+    <% } %>
+
+     <% if (locals.message) { %>
 
 
-<form action="/send-email" autocomplete="off" method='POST'> 
+      <p style="color: springgreen"><%= locals.message %> <br>
+        <a href="/dashboard"><button class="enrollment">Dashboard</button></a> <br>
+        <a href="/"><button class="enrollment">Home</button></a>
+    </p>
+    <% } %>
 
     <h2>Message Us:</h2>
     <fieldset>
@@ -57,13 +59,23 @@
 Enter your details and message
 </legend>
 
+
+<label for ='name'> Enter your full name: </label> <br>
+
+<input type ='text' id="name" name="name" autocomplete="off"  placeholder="Enter first and last name.." required> <br>
+
+
+<label for ='email'> Enter your email address: </label> <br>
+
+<input type ='email' id="email" name="email" autocomplete="off" placeholder="Enter your email here.." required> <br>
+
 <label for ='subject'> Enter message subject: </label> <br>
 
-<input type ='text' id="subject" name="subject"> <br>
+<input type ='text' id="subject" name="subject" placeholder="Enter message subject.." autocomplete="off"> <br>
 
 <label for ='message'> Enter your message: </label> <br>
 
-<textarea name="message" id="message" required></textarea> <br>
+<textarea name="message" id="message" placeholder="Enter your message here.." required></textarea> <br>
 
 <input type="submit" value="Send message" class="enrollment">
 
@@ -81,7 +93,6 @@ Enter your details and message
 
 <footer class="footer item">
 
-<a href ='/Contact-Us'>Contact Us</a> <br>
 <a href = '/Our-Mission'>Our Mission</a> <br>
 
 
@@ -123,6 +134,30 @@ userMessage.style.height = userMessage.scrollHeight + "px";
 
     
 });
+
+
+function clearForm() {
+
+    const loginForm = document.querySelector('form');
+
+    if(locals.message) {
+
+        
+        loginForm.reset = true;
+}
+
+  
+
+
+  if (locals.error) {
+
+loginForm.reset = false;
+
+  }
+    
+}
+
+clearForm();
 
     </script>
 </body>

@@ -1,5 +1,6 @@
 import studentScholarshipRegistrationModel from "../models/studentScholarshipRegistrationModel.js";
-
+import sendScholarshipRegistrationConfirmationEmail from '../services/scholarshipRegistrationEmailService.js';
+import scholarshipRegistrationConfirmationEmail from '../services/scholarshipRegistrationEmailService.js';
 
 export const createScholarshipRegistration = async(request, response) =>{
 
@@ -15,9 +16,11 @@ export const createScholarshipRegistration = async(request, response) =>{
 
         console.log('Scholarship application submitted successfully!');
 
-
+        scholarshipRegistrationConfirmationEmail (request.body.email, firstName);
 
         response.render('scholarship-registration-response', {error: null, message: `${firstName}, your scholarship application was submitted successfully! Look forward to hear from us sooner.`});
+
+        await sendScholarshipRegistrationConfirmationEmail(scholar);
 
         
     } catch (error) {
@@ -56,17 +59,9 @@ export const showScholarshipApplicationPage = async (request, response) => {
 
     export const showScholarshipApplicationResponse = async (request, response) => {
 
-
-    
-      try {
     
         response.redirect('/api/show-application-response');
         
-      } catch (error) {
-    
-        response.render('/api/', {error: 'There was an error showing loading the page. Please make sure you have a good internet connection and try again.', message: null})
-        
-      }
 
     
     }
