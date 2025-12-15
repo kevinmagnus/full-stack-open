@@ -3,6 +3,7 @@ import User from "../models/userSignUpModel.js";
 import bcrypt from 'bcrypt';
 import path from 'path';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.set('view engine', 'ejs');
 
 const __dirname = path.resolve();
 
+
+dotenv.config();
 
 
 
@@ -51,7 +54,7 @@ export const studentLogIn = async (request, response) => {
           return response.status(401).render('response', { error: 'Invalid email or password' });
         }
     
-        const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '3m' });
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '3m' });
         
         response.cookie('token', token, { 
           httpOnly: true,

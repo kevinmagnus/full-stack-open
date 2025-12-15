@@ -15,8 +15,6 @@ import authenticate from './controllers/authController.js';
 // Routes imports
 import scholarshipRegistrationRoute from './routes/studentScholarshipRegistrationRoutes.js';
 import passwordRoutes from './routes/passwordRoutes.js';
-import adminCreateAccountRoutes from './routes/adminCreateAccountRoutes.js';
-import adminLogInRoutes from './routes/adminLogInRoutes.js';
 import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
 import studenDashboardSettingRoutes from './routes/studentDashboardSettingsRoutes.js';
 import studentAccountRoutes from './routes/studentAccountRoutes.js';
@@ -45,8 +43,6 @@ app.set('view engine', 'ejs');
 app.use(cookieParser());
 
 app.use('/', scholarshipRegistrationRoute); //This route is for the students scholarhip registration logics.
-app.use('/', adminCreateAccountRoutes);
-app.use('/', adminLogInRoutes);
 app.use('/', getAllStudentsDataRoutes);
 app.use('/', studenDashboardSettingRoutes);
 app.use('/', studentAccountRoutes);
