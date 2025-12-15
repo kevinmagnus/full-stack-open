@@ -426,7 +426,9 @@ em {
        <main class ='container'>
 
        <div class='item'>
-       Name: ${name} <br>
+       Name: ${name} <br> <br>
+
+       Email: ${email} <br> <br>
 
        Message: ${message}
 
