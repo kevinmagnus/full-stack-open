@@ -4,12 +4,11 @@ import nodemailer from 'nodemailer';
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 547,
-    secure: false,
+    port: 587, // Correct port for TLS
+    secure: false, // Use false for port 587, true for port 465
     tls: {
-rejectUnauthorized: false,
+      rejectUnauthorized: false,
     },
-     // or 'smtp.gmail.com'
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD // Use App Password for Gmail
@@ -17,8 +16,8 @@ rejectUnauthorized: false,
   });
 };
 
-// Send password reset email
-const scholarshipRegistrationConfirmationEmail = async (email, firstName) => {
+// Send scholarship registration confirmation email
+const scholarshipRegistrationConfirmationEmail = async (firstName, course, email) => {
     
   const transporter = createTransporter();
 
@@ -32,409 +31,125 @@ const scholarshipRegistrationConfirmationEmail = async (email, firstName) => {
       <head>
         <style>
           body {
-
-    text-align: center;
-    background-color: black;
-}
-
-
-.container {
-
-    display: flex;
-    flex-direction: column;
-    
-    justify-content: center;
-    
-
-}
-
-.item {
-    
-justify-content: center;
-    margin: 5%;
-    background-color:  rgb(4, 67, 88);
-    color: gray;
-    border:  solid 3px rgb(73, 88, 102);
-    border-radius: 8px 8px 8px 8px;
-    padding: 10px;
-    width:auto;
-    flex-wrap: wrap;
-    
-   
-    
-}
-
-.card {
-
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 0 10px; 
-    background-color: rgba(66, 53, 53, 0.733);
-    padding: 10px;
-    transition: all 0.3s ease-in-out;
-    margin: 10px;
-    text-align: center;
-    width:auto;
-    flex-wrap: wrap;
-
-
-
-}
-
-
-.card:hover {
-
-    box-shadow: 0 0 20px rgba(0, 0, 0,0.2);
-    transform: translateY(-5px);
-}
-
-
-.enrollment,#sign-up-button {
-
-    border: solid 3px gray;
-    border-radius: 10px 0px 10px 0px;
-    font-size: 25px;
-    font-weight: 50px;
-    color: rgb(0, 255, 179);
-    width: auto;
-    background-color: black;
-    
-}
-
-img {
-
-    margin: auto;
-    padding: 0px;
-    border-radius: 20px 20px 20px 20px;
-    background-color: rgb(1, 28, 37);
-    height: auto;
-    border: solid turquoise;
-    width: 100%;
-
-
-}
-
-p {
-
-    color: rgb(111, 197, 197);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-#motto {
-
-    margin: 10px;
-    color: springgreen;
-    font-style: oblique;
-}
-
-
-h1, h2 {
-
-    color: rgb(152, 217, 219);
-    margin: 3px;
-}
-
-a {
-
-
-color: rgb(97, 255, 176);
-    font-weight: 40px;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-
-
-.price {
-
-    font-size: 25px;
-    font-weight: 40px;
-    color: springgreen;
-}
-
-
-.course-title {
-
-    color: turquoise;
-    font-size: 25px;
-    font-style: oblique;
-    font-family:monospace;
-    font-weight: bold;
-}
-
-.footer {
-
-    background-color: rgb(82, 10, 150);
-    width:auto;
-    
-}
-
-
-
-
-
-
-
-
-
-
-header{
-    width:98vw;
-    position:relative;
-    top: 0;
-    z-index:10;
-    justify-self: center;
-    margin: 20px;
-    border: solid 2px gray;
-    border-radius: 30px 0px 30px 0px;
-
-}
-
-
-
-.navBar{
-    background:var(--overlay);
-    height: 3em;
-    padding:0.75em;
-    display:flex;
-    justify-content:start;
-    align-items:center;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    box-shadow: inset var(--overlayBoxShadow);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur;
-}
-.navBar nav{
-    padding:0 1em;
-    display:flex;
-    justify-content:end;
-    align-items:center;
-}
-
-
-.navBar-item{
-    text-decoration:none;
-    font: bold 1.5em Comic;
-    margin-left: 2em;
-    display: flex;
-    flex-direction: column;
-}
-
-.active{
-    color: var(--primaryLight);
-}
-
-#home-nav {
-
-    color: rgb(17, 112, 103);
-}
-
-.head {
-
-    background-color: black;
-    text-align: left;
-    padding: 30px;
-}
-
-legend {
-    color: orange;
-}
-
-
-label {
-
-    color: rgb(39, 236, 154);
-}
-
-fieldset {
-
-    border-radius: 20px 20px 20px 20px;
-    margin: 30px;
-    border: solid 5px gray;
-    padding: 10px;
-}
-
-
-
-.submit-button {
-
-    background-color: rgb(1, 126, 84);
-    color: rgb(201, 199, 199);
-    margin: 40px;
-    padding: 30px;
-}
-
-input, textarea{
-
-    color: rgb(22, 133, 122);
-    border: solid 2px gray;
-    border-radius: 5px 5px 5px 5px;
-    margin:5px;
-}
-
-
-strong {
-
-    font-size:xx-large;
-    font-weight: bolder;
-    font-style:oblique;
-    font-family:cursive;
-    color:rgb(65, 249, 255);
-    margin: 40px;
-}
-
-#logo {
-
-    height: auto;
-    width: auto;
-}
-
-li {
-
-    color: rgb(175, 139, 139);
-    margin: 10px;
-
-}
-
-
-
-em {
-    color: springgreen;
-}
-
-
-
-
-
-
-
-
-
-.icon {
-
-    color: yellow;
-}
-
-
-#payment-success-message, #email-success-message{
-
-    color: springgreen;
-}
-
-
-.list-item {
-
-    color: springgreen;
-}
-
-
-.ambition , .introduction-paragraph {
-
-    color: teal;
-}
-
-
-.entrepreneural-journey-heading {
-
-    margin: 40px;
-}
-
- .barrier-and-solution {
-
-    color:#6cffd3e3;
-}
-
-
-
-
-
-
-
-.slider, .unemployment-data {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  overflow: hidden;
-}
-
-.slide, .slide-data {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 1s;
-}
-
-.slide.active, .slide-data.active1 {
-  opacity: 1;
-}
-
-.slide {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#email-error-message {
-
-    color: red;
-}
-
-.introduction-para {
-
-    color: rgb(95, 214, 214);
-}
-
-
-.awarded {
-
-    font-size: larger;
-    font-weight: 300;
-    font-style: italic;
-    color: rgb(212, 182, 182);
- 
-}
-
-.award-data{
-
-    color: springgreen;
-    font-size: 80px;
-}
-
-.offer {
-    color: springgreen;
-    font-size: 15px;
-    
-}
-
-
-.sign-up-response {
-
-    background-color: black;
-    border-radius: 5px 5px 5px 5px;
-}
+            text-align: center;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+          }
+
+          .address {
+          
+          color: teal;
+          
+          }
+
+          .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+          }
+
+          .content {
+            background-color: rgb(4, 67, 88);
+            border: solid 3px rgb(73, 88, 102);
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+          }
+
+          h2 {
+            color: rgb(152, 217, 219);
+            margin: 10px 0 20px 0;
+            font-size: 28px;
+          }
+
+          p {
+            color: rgb(111, 197, 197);
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            line-height: 1.8;
+            margin: 15px 0;
+            font-size: 16px;
+          }
+
+          .highlight {
+            color: #00ff7f;
+            font-weight: bold;
+            font-style: italic;
+          }
+
+          .greeting {
+            color: rgb(152, 217, 219);
+            font-size: 18px;
+            font-weight: bold;
+          }
+
+          .message-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid #00ff7f;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+          }
+
+          .footer {
+            background-color: black;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 5px;
+          }
+
+          .footer p {
+            color: rgb(175, 175, 175);
+            margin: 5px 0;
+            font-size: 14px;
+          }
+
+          .logo {
+            color: #40e0d0;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+          }
+
+          .note {
+            color: #ffd700;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 20px;
+          }
         </style>
       </head>
       <body>
         <div class="container">
           <div class="content">
-            <h2>Password Reset Request</h2>
-    
-            <p>Hi ${firstName},</p>
-
-            <p>We've received your application for our ${request.body.course} scholarship. We'll  send you a response soon. Keep an eye on your email.</p>
+            <div class="logo">Code Skill Africa</div>
             
+            <h2>Scholarship Application Confirmation</h2>
+    
+            <p class="greeting">Hi ${firstName},</p>
+
+            <div class="message-box">
+              <p>We've received your application for our <span class="highlight">${course}</span> scholarship program.</p>
+            </div>
+
+            <p>Thank you for your interest in advancing your skills with Code Skill Africa. Our team will review your application carefully and get back to you soon.</p>
+            
+            <p class="note">⚠️ Please keep an eye on your email inbox (including spam/junk folders) for our response.</p>
+
+            <p>We appreciate your patience during the review process.</p>
             
             <div class="footer">
+              <p><strong>Best regards,</strong></p>
+              <p>The Code Skill Africa Team</p>
+              <p style="color: #00ff7f; margin-top: 10px;">...Building African tech innovators.</p>
 
-              <p>Best regards,<br>Code Skill Africa Team</p>
-
-
+              <p class='address'> 3rd floor, The CORE Building, No. 35, ICT Avenue, Cybercity, Ebene, Mauritius.</p>
             </div>
           </div>
         </div>
@@ -443,8 +158,13 @@ em {
     `
   };
 
-  await transporter.sendMail(mailOptions);
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`Scholarship confirmation email sent successfully to ${email}`);
+  } catch (error) {
+    console.error('Error sending scholarship confirmation email:', error);
+    throw new Error('Failed to send confirmation email');
+  }
 };
-
 
 export default scholarshipRegistrationConfirmationEmail;
