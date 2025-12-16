@@ -28,9 +28,12 @@ export const createStudentAccount = async (request, response) => {
         if (existingUser) {
           return response.status(400).render('response', { error: 'A user with that email already exists' });
         }
+
+        const userId = await User.generateUserId();
     
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ firstName, lastName, email, country, password: hashedPassword });
+        
+        const user = new User({ userId, firstName, lastName, email, country, password: hashedPassword });
         await user.save();
     
         

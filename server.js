@@ -248,7 +248,7 @@ app.get('/dashboard', authenticate, (request, response) => {
 
   const user = request.user;
 
-  response.render('dashboard', { firstName: user.firstName, studentId: user.studentId });
+  response.render('dashboard', { firstName: user.firstName, studentId: user.userId });
 
 });
 
