@@ -1,7 +1,7 @@
-import studentScholarshipRegistrationModel from "../models/studentScholarshipRegistrationModel.js";
+import User from "../models/userSignUpModel.js";
 
 
-const scholar = new studentScholarshipRegistrationModel();
+const user = new User();
 
 
 export const scholarshipRegistrationConfirmationEmail = `
@@ -426,12 +426,12 @@ select {
 
         <div class="item">
 
-            <p>Hello, ${scholar.name},
+            <p>Hello, ${user.name},
 
             </p>
 
             <p>
-                We've received your scholarship application for ${scholar.course}. Keep an eye here to get your decision.
+                We've received your scholarship application for ${user.course}. Keep an eye here to get your decision.
             </p>
 
         

@@ -1,4 +1,5 @@
-
+import { useReducer } from 'react';
+import scholarshipRegistrationConfirmationEmail from '../services/scholarshipRegistrationEmailService.js';
 
 //Controller that handles the student application logic.
 
@@ -38,6 +39,8 @@ await user.save();
 response.status(201).render('scholarship-registration', { error: null, message: `Your scholarship application for ${course} course was successful! Keep an eye on your email to hear back from us sooner.`});
 
 console.log('Scholarship application submitted successfully!');
+
+scholarshipRegistrationConfirmationEmail(user.firstName, user.course);
 
 }catch(error) {
 
