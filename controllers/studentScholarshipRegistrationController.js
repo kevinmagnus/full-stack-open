@@ -1,40 +1,54 @@
-import studentScholarshipRegistrationModel from "../models/studentScholarshipRegistrationModel.js";
-import sendScholarshipRegistrationConfirmationEmail from '../services/scholarshipRegistrationEmailService.js';
-import scholarshipRegistrationConfirmationEmail from '../services/scholarshipRegistrationEmailService.js';
+
+
+//Controller that handles the student application logic.
 
 export const createScholarshipRegistration = async(request, response) =>{
 
-    try {
 
-      
-      
-        const scholar = new studentScholarshipRegistrationModel(request.body);
 
-        const firstName = request.body.first_name;
+  try {
 
-        await scholar.save();
 
-        console.log('Scholarship application submitted successfully!');
+  
+  const { course, reason }  = request.body;
 
-        scholarshipRegistrationConfirmationEmail (request.body.email, firstName);
+  if (!course || !reason) {
 
-        response.render('scholarship-registration-response', {error: null, message: `${firstName}, your scholarship application was submitted successfully! Look forward to hear from us sooner.`});
+    return response.status(400).render('scholarship-registration', { error: 'All fields are required.', message: null });
+  }
+  
+    
+  const user = request.user;
 
-        await sendScholarshipRegistrationConfirmationEmail(scholar);
+  //Code to check igf user has previously applied to the course.
 
-        
-    } catch (error) {
+  const existingApplication = user.scholarshipAppliedCourses.find( (application) => application.course.toLowerCase() === course.toLowerCase());
+  
+  if (existingApplication)  {
 
-        console.log(error);
-        response.render('scholarship-registration-response', {error: 'Sorry, there was an error submitting your application. Kindly try again.', message: null});
-    }
+    return response.status(400).render('scholarship-registration', { error: `You have already applied for ${course} course.`, message: null });
 
 }
 
 
+user.scholarshipAppliedCourses.push({course, reason});
+
+await user.save();
+
+response.status(201).render('scholarship-registration', { error: null, message: `Your scholarship application for ${course} course was successful! Keep an eye on your email to hear back from us sooner.`});
+
+console.log('Scholarship application submitted successfully!');
+
+}catch(error) {
+
+  console.log('Error', error);
+
+  response.status(500).render('scholarship-registration', { error: 'An error occured while trying to submit your application. Please try again.', message: null });
 
 
-    
+}
+
+}
 
 
 
@@ -56,6 +70,9 @@ export const showScholarshipApplicationPage = async (request, response) => {
     }
     
 
+
+
+    //Controller that renders the scholarship application page.
 
     export const showScholarshipApplicationResponse = async (request, response) => {
 

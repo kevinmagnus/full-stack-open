@@ -13,7 +13,7 @@ import authenticate from './controllers/authController.js';
 
 
 // Routes imports
-import scholarshipRegistrationRoute from './routes/studentScholarshipRegistrationRoutes.js';
+import scholarshipRegistrationRoutes from './routes/studentScholarshipRegistrationRoutes.js';
 import passwordRoutes from './routes/passwordRoutes.js';
 import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
 import studenDashboardSettingRoutes from './routes/studentDashboardSettingsRoutes.js';
@@ -42,7 +42,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(cookieParser());
 
-app.use('/', scholarshipRegistrationRoute); //This route is for the students scholarhip registration logics.
+app.use('/', scholarshipRegistrationRoutes); //This route is for the students scholarhip registration logics.
 app.use('/', getAllStudentsDataRoutes);
 app.use('/', studenDashboardSettingRoutes);
 app.use('/', studentAccountRoutes);
@@ -270,6 +270,7 @@ app.post('/change-password', authenticate, async (request, response) => {
 
     const isValidPassword = await bcrypt.compare(oldPassword, user.password);
     if (!isValidPassword) {
+
       return response.render('change-password', { error: 'Invalid old password' });
     }
 
@@ -277,9 +278,13 @@ app.post('/change-password', authenticate, async (request, response) => {
     user.password = hashedPassword;
     await user.save();
 
-    response.render('dashboard', { message: 'Password changed successfully' });
+    response.render('dashboard', { message: 'Password changed successfully', error: null });
+    console.log('Password changed successfully.');
+
   } catch (error) {
+    
     console.log(error);
+
     response.status(500).render('change-password', { error: 'Failed to change password' });
   }
 });

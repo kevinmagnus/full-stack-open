@@ -69,10 +69,17 @@ default: Date.now
         type: [String],
         default: [],
     },
-    scholarshipAppliedCourses: {
-        type: [String],
-        default: [],
+    scholarshipAppliedCourses: [
+    
+    {
+        
+      course: { type: String},
+      reason: { type: String },
+      appliedAt: { type: Date, default: Date.now },
+
     }
+
+  ]
 
   },
   
