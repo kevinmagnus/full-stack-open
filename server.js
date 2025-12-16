@@ -263,7 +263,9 @@ app.get('/change-password', authenticate, (request, response) => {
 app.post('/change-password', authenticate, async (request, response) => {
 
   try {
+    
     const user = request.user;
+
     const { oldPassword, newPassword } = request.body;
 
     const isValidPassword = await bcrypt.compare(oldPassword, user.password);
