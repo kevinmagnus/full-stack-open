@@ -83,9 +83,28 @@ default: Date.now
 
 userSchema.statics.generateUserId = async function() {
 
-  const lastUser = await this.findOne({}, {userId: 1}).sort({userId: -1}).limit(1);
 
-  return lastUser ? lastUser.userId + 1 : 100000;
+  try {
+
+     const lastUser = await this.findOne({}).sort({userId: -1}).limit(1).lean();
+
+     if (lastUser && lastUser.userId) {
+
+      return lastUser.userId + 1;
+
+     }
+
+     return 100000
+    
+  } catch (error) {
+    
+    console.error('Error generating userId:', error);
+
+    throw new Error('Failed to generate user ID');
+  }
+ 
+
+  
 }
   
 const User = mongoose.model('User', userSchema);

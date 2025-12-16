@@ -30,10 +30,17 @@ export const createStudentAccount = async (request, response) => {
         }
 
         const userId = await User.generateUserId();
+
+        console.log('Generated userId:', userId, 'Type:', typeof userId);
+
+        if (!userId || isNaN(userId)) {
+
+          throw new Error('Invalid userId generated');
+        }
     
         const hashedPassword = await bcrypt.hash(password, 10);
-        
-        const user = new User({ userId, firstName, lastName, email, country, password: hashedPassword });
+
+        const user = new User({ firstName, lastName, email, country, password: hashedPassword, userId: Number(userId) });
         await user.save();
     
         
