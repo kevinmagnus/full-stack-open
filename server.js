@@ -163,24 +163,26 @@ app.post('/change-password', authenticate, async (request, response) => {
     const isValidPassword = await bcrypt.compare(oldPassword, user.password);
     if (!isValidPassword) {
 
-      return response.render('change-password', { error: 'Invalid old password' });
+      return response.render('change-password', { error: 'Invalid old password' , message: null });
     }
 
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcrypt.hash(newPassword, 50);
 
     user.password = hashedPassword;
 
     await user.save();
 
-    response.render('dashboard', { message: 'Password changed successfully', error: null });
-
     console.log('Password changed successfully.');
+
+    return response.render('change-password', { message: 'Password changed successfully', error: null });
+
+    
 
   } catch (error) {
     
     console.log(error);
 
-    response.status(500).render('change-password', { error: 'Failed to change password' });
+   return response.status(500).render('change-password', { error: 'An error occured while trying to change your password. Try again.' });
   }
 });
 
