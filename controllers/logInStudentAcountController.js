@@ -47,14 +47,20 @@ export const studentLogIn = async (request, response) => {
 
         //Build query to search by email or userID
         const isNumericId = /^\d+$/.test(identifier);
-        const query = isNumericId
-        ? { userId: parseInt(identifier) }
-        : { email: identifier.toLowerCase() };
-
+        
 
         
     
-        const user = await User.findOne({ query });
+        const user = await User.findOne({ 
+
+          $or: [
+
+            { email: identifier.toLowerCase() },
+
+            ...(isNumericId ? [ { userId: parseInt(identifier) } ] : [])
+
+          ]
+         });
 
         if (!user) {
           return response.status(401).render('response', { error: 'Invalid credentials.' });
