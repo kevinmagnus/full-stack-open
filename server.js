@@ -52,7 +52,7 @@ app.use('/password-reset', passwordRoutes);
 
 
 
-//connectDB();
+connectDB();
 
 
 // Public Routes
