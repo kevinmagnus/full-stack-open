@@ -26,6 +26,22 @@ export const createStudentAccount = async (request, response) => {
 
         }
 
+        //Validate email address
+
+        const emailRegex = /^\S+@\S+\.\S+$/;
+
+        if (!emailRegex.test(email)) {
+
+          return response.status(400).render('response', { error: 'Please enter a valid email address.', message: null });
+
+        }
+
+
+        if(password.length < 6) {
+
+          return response.status(400).render('response', { error: 'Password must be at least 6 characters long.', message: null})
+        }
+
 
         
     
@@ -53,10 +69,11 @@ export const createStudentAccount = async (request, response) => {
         const user = new User({ firstName, lastName, email, country, password: hashedPassword, userId: Number(userId) });
         await user.save();
     
-        
-        response.render('response', { message: `Your account was created successfully!` });
+      console.log("Account was created successfully!");
+
+       return response.render('response', { message: `Your account was created successfully!`, error: null });
     
-        console.log("Account was created successfully!");
+        
 
       } catch (error) {
     

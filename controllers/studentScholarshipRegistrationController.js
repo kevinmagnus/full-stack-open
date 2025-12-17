@@ -17,9 +17,11 @@ export const createScholarshipRegistration = async (request, response) => {
     const user = request.user;
 
     // Check if user has already applied for 2 courses (maximum limit)
-    if (user.scholarshipAppliedCourses.length >= 2) {
+    if (user.scholarshipAppliedCourses.length >= 4) {
+
       return response.status(400).render('scholarship-registration', { 
-        error: 'You have reached the maximum limit of 2 scholarship applications.', 
+
+        error: 'You have reached the maximum limit of scholarship applications.', 
         message: null 
       });
     }
@@ -41,14 +43,7 @@ export const createScholarshipRegistration = async (request, response) => {
     await user.save();
 
     // Send confirmation email (with error handling)
-    try {
-      await scholarshipRegistrationConfirmationEmail(user.firstName, course, user.email);
-      console.log('Scholarship confirmation email sent successfully!');
-    } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError);
-      // Application still succeeds even if email fails
-    }
-
+    
     console.log('Scholarship application submitted successfully!');
 
     // Calculate remaining applications
@@ -61,6 +56,21 @@ export const createScholarshipRegistration = async (request, response) => {
       error: null, 
       message: `Your scholarship application for the ${course} course was successful! Keep an eye on your email to hear back from us soon.` 
     });
+
+    try {
+
+      await scholarshipRegistrationConfirmationEmail(user.firstName, course, user.email);
+
+      console.log('Scholarship confirmation email sent successfully!');
+
+    } catch (emailError) {
+
+
+      console.error('Failed to send confirmation email:', emailError);
+      
+      // Application still succeeds even if email fails
+    }
+
 
   } catch (error) {
     console.error('Error submitting scholarship application:', error);

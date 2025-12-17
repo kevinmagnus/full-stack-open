@@ -37,24 +37,38 @@ export const studentLogIn = async (request, response) => {
 
 
     try {
-        const { email, password } = request.body;
+
+        const { identifier, password } = request.body;
     
-        if (!email || !password) {
+        if (!identifier || !password) {
           
-          return response.status(400).render('response', { error: 'Email and password are required' });
+          return response.status(400).render('response', { error: 'Email/Student ID and password are required' });
         }
+
+        //Build query to search by email or userID
+        const isNumericId = /^\d+$/.test(identifier);
+        const query = isNumericId
+        ? { userId: parseInt(identifier) }
+        : { email: identifier.toLowerCase() };
+
+
+        
     
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ query });
+
         if (!user) {
-          return response.status(401).render('response', { error: 'Invalid email or password' });
+          return response.status(401).render('response', { error: 'Invalid credentials.' });
         }
     
         const isValidPassword = await bcrypt.compare(password, user.password);
+
         if (!isValidPassword) {
-          return response.status(401).render('response', { error: 'Invalid email or password' });
+
+          return response.status(401).render('response', { error: 'Invalid credentials.' });
+          
         }
     
-        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '3m' });
+        const token = jwt.sign({ userId: user._id, studentId: user.userId, email: user.email, name: `${user.firstName} ${user.lastName}`}, process.env.JWT_SECRET, { expiresIn: '3m' });
         
         response.cookie('token', token, { 
           httpOnly: true,
@@ -64,12 +78,15 @@ export const studentLogIn = async (request, response) => {
         });
         
         console.log(response);
+
+        console.log(`User logged in: ${user.email} (Student ID: ${user.userId})`)
     
-        response.redirect('/dashboard');
+        return response.redirect('/dashboard');
     
       } catch (error) {
         console.error('Log in unsuccessful:', error);
-        response.status(500).render('response', { error: 'An error occurred while logging to your account. Please try again.' });
+
+        response.status(500).render('response', { error: 'An error occured during login. Please try again.' });
       }
 
       

@@ -1,13 +1,10 @@
 import express from 'express';
 import path from 'path';
-import ejs from 'ejs';
 import connectDB from './config/database.js';
-import User from './models/userSignUpModel.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
-import jwt from 'jsonwebtoken';
 import authenticate from './controllers/authController.js';
 
 
@@ -34,7 +31,8 @@ if (!secretKey) {
   process.exit(1);
 }
 
-// Middleware
+
+//Middlewares
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -48,114 +46,14 @@ app.use('/', studenDashboardSettingRoutes);
 app.use('/', studentAccountRoutes);
 app.use('/', sendUsMessageRoutes);
 app.use('/', passwordRoutes);
-
-
-
-/*
-app.use('/', createStudentAccountRoutes);
-*/
-
-connectDB();
-
-// Authentication Middleware
-
-/*
-const authenticate = async (request, response, next) => {
-
-  console.log('Authenticate middleware called');
-
-  const token = request.cookies.token;
-
-  console.log('Token:', token);
-  
-  if (!token) {
-
-    console.log('No token found, redirecting to login');
-
-    return response.redirect('/api/Log-In');
-
-  }
-
-  try {
-
-    const decoded = jwt.verify(token, secretKey);
-
-    console.log('Decoded token:', decoded);
-    
-    const user = await User.findById(decoded.userId);
-
-    console.log('User:', user);
-    
-    if (!user) {
-
-      console.log('User not found, redirecting to login');
-
-      response.clearCookie('token');
-
-      return response.redirect('/api/Log-In');
-
-    }
-
-    request.user = user;
-    
-    console.log('User authenticated, proceeding to next middleware');
-    next();
-  } catch (error) {
-    console.log('Error authenticating user:', error);
-    response.clearCookie('token');
-    return response.redirect('/api/Log-In');
-  }
-};
-
-
-*/
-
-// Use password routes
 app.use('/password-reset', passwordRoutes);
 
-// Login Route
 
-/*
-app.post('/User-Log-In', async (request, response) => {
 
-  try {
-    const { email, password } = request.body;
 
-    if (!email || !password) {
 
-      return response.status(400).render('response', { error: 'Email and password are required' });
-    }
+//connectDB();
 
-    const user = await User.findOne({ email });
-    if (!user) {
-      return response.status(401).render('response', { error: 'Invalid email or password' });
-    }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return response.status(401).render('response', { error: 'Invalid email or password' });
-    }
-
-    const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '3m' });
-    
-    response.cookie('token', token, { 
-      httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      sameSite: 'Strict',
-      secure: process.env.NODE_ENV === 'production'
-    });
-    
-    console.log(response);
-
-    response.redirect('/dashboard');
-
-  } catch (error) {
-    console.error('Log in unsuccessful:', error);
-    response.status(500).render('response', { error: 'An error occurred while logging to your account. Please try again.' });
-  }
-});
-
-*/
 
 // Public Routes
 app.get('/', (request, response) => {
@@ -169,13 +67,7 @@ app.get('/Home', (request, response) => {
   response.sendFile(filePath);
 });
 
-/*
-app.get('/Log-In', (request, response) => {
-  const filePath = path.join(__dirname, 'public/Pages', 'Log-In.html');
-  response.sendFile(filePath);
-});
 
-*/
 
 app.get('/Front-End-Learn-More', (request, response) => {
   const filePath = path.join(__dirname, 'public/Pages', 'Front-End-Learn-More.html');
@@ -275,10 +167,13 @@ app.post('/change-password', authenticate, async (request, response) => {
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
+
     user.password = hashedPassword;
+
     await user.save();
 
     response.render('dashboard', { message: 'Password changed successfully', error: null });
+
     console.log('Password changed successfully.');
 
   } catch (error) {
