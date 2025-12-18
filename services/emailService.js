@@ -4,7 +4,7 @@ import nodemailer from 'nodemailer';
 const createTransporter = () => {
   return nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 547,
+    port: 587,
     secure: false,
     tls: {
 rejectUnauthorized: false,
