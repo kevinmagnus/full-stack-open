@@ -27,9 +27,11 @@ try {
 
     await sendUsMessage(name, email, subject, message);
 
-    response.render('send-email', { message: 'Your email was sent successfully! Look forward to hear from us sooner.', error: null})
-
     console.log('Message sent successfully!');
+
+   return response.render('send-email', { message: 'Your email was sent successfully! Look forward to hear from us sooner.', error: null})
+
+    
 
 
     
@@ -37,7 +39,7 @@ try {
 
     console.log('Error:', error);
 
-    response.render('send-email', { message: null, error: 'An error occured while trying to send your message. Please try again later.'});
+    return response.render('send-email', { message: null, error: 'An error occured while trying to send your message. Please try again later.'});
     
 }
 

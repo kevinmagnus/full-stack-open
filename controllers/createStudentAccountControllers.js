@@ -69,9 +69,9 @@ export const createStudentAccount = async (request, response) => {
         const user = new User({ firstName, lastName, email, country, password: hashedPassword, userId: Number(userId) });
         await user.save();
     
-      console.log("Account was created successfully!");
+      console.log("Your account was created successfully!");
 
-       return response.render('response', { message: `Your account was created successfully!`, error: null });
+       return response.status(201).render('response', { message: `Your account was created successfully!`, error: null });
     
         
 
