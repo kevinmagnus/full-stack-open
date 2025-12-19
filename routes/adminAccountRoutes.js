@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/api/admin-create-account', getAdminCreateAccountPage );
 
 //router to get admin dashboard page
- router.get('/api/admin-dashboard', getAdminDashboardPage, authenticateAdmin );
+ router.get('/api/admin-dashboard', authenticateAdmin, getAdminDashboardPage );
 
  //router to get admin login page.
  router.get('/api/admin-log-in', getAdminLogInPage );
