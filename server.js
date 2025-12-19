@@ -166,7 +166,8 @@ app.post('/change-password', authenticate, async (request, response) => {
       return response.render('change-password', { error: 'Invalid old password' , message: null });
     }
 
-    const hashedPassword = await bcrypt.hash(newPassword, 50);
+    
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
 
     user.password = hashedPassword;
 
@@ -174,7 +175,13 @@ app.post('/change-password', authenticate, async (request, response) => {
 
     console.log('Password changed successfully.');
 
-    return response.render('change-password', { message: 'Password changed successfully', error: null });
+    
+
+
+    return response.status(200).render('response', { message: 'Password changed successfully! Please log in with your new password.', error: null })
+
+    
+
 
     
 
