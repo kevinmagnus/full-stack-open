@@ -78,7 +78,7 @@ export const studentLogIn = async (request, response) => {
         
         response.cookie('token', token, { 
           httpOnly: true,
-          maxAge: 7 * 24 * 60 * 60 * 1000,
+          maxAge: 3 * 60 * 1000,
           sameSite: 'Strict',
           secure: process.env.NODE_ENV === 'production'
         });

@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    select: false,
+    
   },
 
   country: {
@@ -60,13 +60,13 @@ select: false,
   resetPasswordToken: {
     type: String,
     default: null,
-    select: false,
+    
   },
 
   resetPasswordExpires: {
     type: Date,
     default: null,
-    select: false,
+  
   },
 
   enrolledCourses: {
