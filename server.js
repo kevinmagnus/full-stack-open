@@ -39,6 +39,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, "views"));
 app.use(cookieParser());
 
 app.use('/', scholarshipRegistrationRoutes); //This route is for the students scholarhip registration logics.
@@ -49,6 +50,7 @@ app.use('/', passwordRoutes);
 app.use('/password-reset', passwordRoutes);
 app.use('/', adminCreateAccountRoutes);
 app.use('/', getAllStudentsDataRoutes);
+
 
 
 
@@ -68,6 +70,10 @@ app.get('/Home', (request, response) => {
   response.sendFile(filePath);
 });
 
+app.get('/code-editor', (request, response) => {
+  const filePath = path.join(__dirname, 'public/Pages', 'editor.html');
+  response.sendFile(filePath);
+});
 
 
 app.get('/Front-End-Learn-More', (request, response) => {
