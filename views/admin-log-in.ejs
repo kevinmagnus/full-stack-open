@@ -21,21 +21,66 @@
 </header>
 
     
+<main class="container">
+
+    
+
+<div class="item">
+        <h1>Log In:</h1>
 
 
-    <div class="item">
-
+        <% if (locals.error) { %>
         
-            <p style="color:red;"><%= locals.error %></p>
 
-            <p style="color:springgreen;"> <%= locals.message %> </p>
+      <p style="color: red"><%= locals.error %>  <br>
+</p>
+    <% } %>
 
-        
+     <% if (locals.message) { %>
+
+
+      <p style="color: springgreen"><%= locals.message %> <br>
+    </p>
+    <% } %>
+
+
+        <form action="/api/admin-log-in" method="POST">
+
+            <fieldset>
+
+                <legend>
+                    Enter your admin login details
+                </legend>
+
+    
+
+                
+                <label for="identifier">Enter your email:</label> <br>
+
+                <input type="text" name ='identifier' id="identifier" placeholder="Enter email.." autocomplete="off" class='log-in-input' required >  <br>
+
+                <label for="password">Enter your password:</label> <br> 
+
+                <input type="password" name ='password' placeholder="Enter password" id='password-input' autocomplete="off" class='log-in-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
+
+                <label for="show-password-checkbox">Show password</label> <br> <br>
+
+               <input type ="submit" value="Log In" id = 'sign-up-button' >
+               <br>
+
+               
+
+                
+            </fieldset>
+            <a href="/password-reset/forgot-password">Forgotten password</a>
+
+        </form>
     </div>
 
     <p class="link-paragraph">You don't have an account?
-<a href="/Create-Account">Create account</a> </p>
+<a href="/api/Create-Account">Create account</a> </p>
 
+</main>
 
 <footer class="footer item">
 

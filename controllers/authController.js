@@ -1,5 +1,3 @@
-import bcrypt from 'bcrypt';
-import cookieParser from "cookie-parser";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import User from '../models/userSignUpModel.js';

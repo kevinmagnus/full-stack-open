@@ -16,6 +16,7 @@ import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
 import studenDashboardSettingRoutes from './routes/studentDashboardSettingsRoutes.js';
 import studentAccountRoutes from './routes/studentAccountRoutes.js';
 import sendUsMessageRoutes from './routes/sendUsMessageRoutes.js';
+import adminCreateAccountRoutes from './routes/adminAccountRoutes.js';
 
 // Load environment variables first
 dotenv.config();
@@ -47,6 +48,7 @@ app.use('/', studentAccountRoutes);
 app.use('/', sendUsMessageRoutes);
 app.use('/', passwordRoutes);
 app.use('/password-reset', passwordRoutes);
+app.use('/', adminCreateAccountRoutes);
 
 
 
