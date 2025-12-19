@@ -1,3 +1,5 @@
+/*
+
 import express from 'express';
 import { getAllStudentsData, getStudentById , getStudentByIdPage } from '../controllers/showAllStudentsControllers.js';
 
@@ -11,3 +13,5 @@ router.get('/api/get-all-student-data', getAllStudentsData);
 
 
 export default router;
+
+*/

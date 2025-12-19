@@ -12,11 +12,11 @@ import authenticate from './controllers/authController.js';
 // Routes imports
 import scholarshipRegistrationRoutes from './routes/studentScholarshipRegistrationRoutes.js';
 import passwordRoutes from './routes/passwordRoutes.js';
-import getAllStudentsDataRoutes from './routes/getAllStudentsDataRoutes.js';
 import studenDashboardSettingRoutes from './routes/studentDashboardSettingsRoutes.js';
 import studentAccountRoutes from './routes/studentAccountRoutes.js';
 import sendUsMessageRoutes from './routes/sendUsMessageRoutes.js';
 import adminCreateAccountRoutes from './routes/adminAccountRoutes.js';
+import getAllStudentsDataRoutes from './routes/adminStudentsRoutes.js';
 
 // Load environment variables first
 dotenv.config();
@@ -42,14 +42,13 @@ app.set('view engine', 'ejs');
 app.use(cookieParser());
 
 app.use('/', scholarshipRegistrationRoutes); //This route is for the students scholarhip registration logics.
-app.use('/', getAllStudentsDataRoutes);
 app.use('/', studenDashboardSettingRoutes);
 app.use('/', studentAccountRoutes);
 app.use('/', sendUsMessageRoutes);
 app.use('/', passwordRoutes);
 app.use('/password-reset', passwordRoutes);
 app.use('/', adminCreateAccountRoutes);
-
+app.use('/', getAllStudentsDataRoutes);
 
 
 

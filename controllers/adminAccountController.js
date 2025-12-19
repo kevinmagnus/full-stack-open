@@ -19,6 +19,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 
+
+
+
+
+const COOKIE_OPTS = {
+
+
+    httpOnly: true,
+    secure: process.env.NODE_ENV,
+    sameSite: 'strict',
+    maxAge: 3*60*1000,
+};
 // Logic to get render admin create account page
 export const getAdminCreateAccountPage = async (request, response) => {
 
@@ -154,65 +166,57 @@ const emailRegex = /^\S+@\S+\.\S+$/;
 //logic to handle admin log in.
 
 export const adminLogIn = async (request, response) => {
-
-
-try {
+  try {
+    const { email, password } = request.body;
     
+    if (!email || !password) {
 
+      return response.status(400).render('response', { error: 'Email and password are required' });
+    }
 
-const { email, password } = request.body;
+    // Find admin by email
+    const admin = await adminCreateAccountModel.findOne({ email });
+
+    if (!admin) {
+      return response.status(401).render('response', { error: 'Invalid credentials.' });
+    }
+
+    // FIXED: Changed 'user.password' to 'admin.password'
+    const isValidPassword = await bcrypt.compare(password, admin.password);
+
+    if (!isValidPassword) {
+      return response.status(401).render('response', { error: 'Invalid credentials' });
+    }
+
+    // FIXED: Sign only userId, not entire admin object
+    const token = jwt.sign(
+      { id: admin._id }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '3m' }
+    );
     
-        if (!identifier || !password) {
-          
-          return response.status(400).render('response', { error: 'email and password are required' });
-
-        }
-
+    // FIXED: Cookie maxAge now matches JWT expiration (3 minutes)
+    // FIXED: Changed 'Strict' to 'strict' (lowercase)
+    response.cookie('adminToken', token, COOKIE_OPTS );
     
-        
+    console.log(`Admin logged in: ${token}`, admin);
 
-        
-    
-        const admin = await adminCreateAccountModel.findOne({ email });
+    return response.redirect('/api/admin-dashboard');
 
-        if (!admin) {
-
-          return response.status(401).render('response', { error: 'Invalid credentials.' });
-        }
-    
-        const isValidPassword = await bcrypt.compare(password, user.password);
-
-        if (!isValidPassword) {
-
-          return response.status(401).render('response', { error: 'Invalid credentials' });
-          
-        }
-    
-        const token = jwt.sign( admin, process.env.JWT_SECRET, { expiresIn: '3m' });
-        
-        response.cookie('token', token, { 
-          httpOnly: true,
-          maxAge: 7 * 24 * 60 * 60 * 1000,
-          sameSite: 'Strict',
-          secure: process.env.NODE_ENV === 'production'
-        });
-        
-        console.log(response);
-
-        console.log(`Admin logged in: ${admin.email}`);
-    
-        return response.redirect('/api/admin-dashboard');
-    
-
-
-
-} catch (error) {
-
+  } catch (error) {
     console.log('Error', error);
+    return response.status(500).render('admin-log-in', { 
+      message: null, 
+      error: 'An error occurred while logging into your account. Please try again.'
+    });
+  }
+};
 
-    return response.status(500).render('admin-log-in', { message: null, error: 'An error occured while logging into your account. Pleas try again.'});
-    
-}
 
+
+export const adminLogOut = async (request, response) => {
+
+    response.clearCookies('adminToken', COOKIE_OPTS);
+    response.redirect('/api/admin-log-in');
 
 }

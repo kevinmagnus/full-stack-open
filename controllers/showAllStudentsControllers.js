@@ -1,3 +1,6 @@
+
+
+/*
 import express from "express";
 import User from "../models/userSignUpModel.js";
 
@@ -7,6 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 
+*/
+
+/*
 
 export const getAllStudentsData = async (request, response) => {
 
@@ -84,3 +90,5 @@ export const getStudentByIdPage = async (request, response) => {
 
 
 }
+
+*/

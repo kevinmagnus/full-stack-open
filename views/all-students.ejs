@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Log In</title>
+    <title>All students</title>
     <link href="../Stylesheet/style.css" rel="stylesheet">
     <link rel = 'shortcut icon' type="image/png" href="Images/fullstack logo.png">
 </head>
@@ -26,7 +26,10 @@
     
 
 <div class="item">
-        <h1>Log In:</h1>
+
+    <h1>All Students' Data</h1>
+
+        
 
 
         <% if (locals.error) { %>
@@ -36,50 +39,66 @@
 </p>
     <% } %>
 
-     <% if (locals.message) { %>
+     
 
 
-      <p style="color: springgreen"><%= locals.message %> <br>
-    </p>
-    <% } %>
-
-
-        <form action="/api/admin-log-in" method="POST">
-
-            <fieldset>
-
-                <legend>
-                    Enter your admin login details
-                </legend>
 
     
 
-                
-                <label for="identifier">Enter your email:</label> <br>
 
-                <input type="text" name ='email' id="email" placeholder="Enter email.." autocomplete="off" class='log-in-input' required >  <br>
 
-                <label for="password">Enter your password:</label> <br> 
 
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' autocomplete="off" class='log-in-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
 
-                <label for="show-password-checkbox">Show password</label> <br> <br>
 
-               <input type ="submit" value="Log In" id = 'sign-up-button' >
-               <br>
 
-               
 
-                
-            </fieldset>
-            <a href="/password-reset/forgot-password">Forgotten password</a>
 
-        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <% users.forEach(user => { %>
+    <div class="user-card">
+      <div><span class="label">User ID:</span> <%= user.userId %></div>
+      <div><span class="label">First Name:</span> <%= user.firstName %></div>
+      <div><span class="label">Last Name:</span> <%= user.lastName %></div>
+      <div><span class="label">Email:</span> <%= user.email %></div>
+      <div><span class="label">Country:</span> <%= user.country %></div>
+      <div><span class="label">Registered:</span> <%= user.registrationDate.toLocaleDateString() %></div>
+      <div><span class="label">Enrolled Courses:</span> <%= user.enrolledCourses.join(', ') || 'None' %></div>
+
+      <% if (user.scholarshipAppliedCourses.length) { %>
+        <div><span class="label">Scholarship Applications:</span></div>
+        <ul>
+          <% user.scholarshipAppliedCourses.forEach(app => { %>
+            <li>
+              Course: <%= app.course %><br>
+              Reason: <%= app.reason %><br>
+              Applied: <%= app.appliedAt.toLocaleDateString() %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+  <% }) %>
+
+
+
+
+        
     </div>
 
-    <p class="link-paragraph">You don't have an account?
-<a href="/api/Create-Account">Create account</a> </p>
-
+    
 </main>
 
 <footer class="footer item">
