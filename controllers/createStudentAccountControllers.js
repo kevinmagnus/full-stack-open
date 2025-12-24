@@ -19,9 +19,9 @@ export const createStudentAccount = async (request, response) => {
 
     try {
 
-        const { firstName, lastName, email, password , country} = request.body;
+        const { firstName, lastName, email, password , country, phoneNumber, dateOfBirth } = request.body;
         
-        if (!firstName || !lastName || !email || !password || !country) {
+        if (!firstName || !lastName || !email || !password || !country || !dateOfBirth || !phoneNumber ) {
           return response.status(400).render('response', { error: 'All fields are required' });
 
         }
@@ -66,7 +66,8 @@ export const createStudentAccount = async (request, response) => {
     
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const user = new User({ firstName, lastName, email, country, password: hashedPassword, userId: Number(userId) });
+        const user = new User({ firstName, lastName, email, country, password: hashedPassword, phoneNumber, dateOfBirth, userId: Number(userId) });
+
         await user.save();
     
       console.log("Your account was created successfully!");

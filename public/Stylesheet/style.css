@@ -26,6 +26,8 @@ justify-content: center;
     padding: 10px;
     width:auto;
     flex-wrap: wrap;
+
+    
     
    
     
@@ -36,7 +38,7 @@ justify-content: center;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 0 10px; 
-    background-color: rgba(66, 53, 53, 0.733);
+    background-color: white;
     padding: 10px;
     transition: all 0.3s ease-in-out;
     margin: 10px;
@@ -50,6 +52,31 @@ justify-content: center;
 
 
 .card:hover {
+
+    box-shadow: 0 0 20px rgba(0, 0, 0,0.2);
+    transform: translateY(-5px);
+}
+
+
+.course-card {
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px; 
+    background-color: rgb(34, 32, 32);
+    padding: 10px;
+    transition: all 0.3s ease-in-out;
+    margin: 10px;
+    text-align: center;
+    width:auto;
+    flex-wrap: wrap;
+
+
+
+}
+
+
+.course-card:hover {
 
     box-shadow: 0 0 20px rgba(0, 0, 0,0.2);
     transform: translateY(-5px);
@@ -403,4 +430,14 @@ select {
 .label {
 
     color: springgreen;
+}
+
+.learn-more-head {
+
+    color: springgreen;
+}
+
+.coming-soon {
+
+    color: orange;
 }

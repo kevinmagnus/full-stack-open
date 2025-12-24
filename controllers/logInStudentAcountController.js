@@ -20,7 +20,7 @@ dotenv.config();
 
 
 
-// code to show the tudenyt log in page
+// code to show the s log in page
 export const studentLogInPage = async (request, response) => {
 
 const filePath = path.join(__dirname, 'public/Pages', 'Log-In.html');

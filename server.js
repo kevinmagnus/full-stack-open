@@ -18,6 +18,7 @@ import sendUsMessageRoutes from './routes/sendUsMessageRoutes.js';
 import adminCreateAccountRoutes from './routes/adminAccountRoutes.js';
 import getAllStudentsDataRoutes from './routes/adminStudentsRoutes.js';
 
+
 // Load environment variables first
 dotenv.config();
 
@@ -43,7 +44,7 @@ app.set('views', path.join(__dirname, "views"));
 app.use(cookieParser());
 
 app.use('/', scholarshipRegistrationRoutes); //This route is for the students scholarhip registration logics.
-app.use('/', studenDashboardSettingRoutes);
+app.use('/', studenDashboardSettingRoutes); //This route i for the student dashboard settings.
 app.use('/', studentAccountRoutes);
 app.use('/', sendUsMessageRoutes);
 app.use('/', passwordRoutes);
@@ -125,6 +126,11 @@ app.get('/Admin-Dashboard', (request, response) => {
 });
 
 
+app.get('/cybersecurity-learn-more', (request, response) => {
+  const filePath = path.join(__dirname, 'public/Pages', 'Cybersecurity-Learn-More.html');
+  response.sendFile(filePath);
+});
+
 
 
 
@@ -132,6 +138,8 @@ app.get('/Admin-Dashboard', (request, response) => {
 app.get('/forgot-password-page', (request, response) => {
   response.render('forgot-password');
 });
+
+
 
 
 app.get('/send-email-page', (request, response) => {
@@ -151,7 +159,7 @@ app.get('/dashboard', authenticate, (request, response) => {
 
 });
 
-app.get('/all-courses', authenticate, (request, response) => {
+app.get('/all-courses', authenticate, (request, response) => { 
   response.render('all-courses');
 });
 

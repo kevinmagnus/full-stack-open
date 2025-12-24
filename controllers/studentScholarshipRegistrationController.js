@@ -3,6 +3,7 @@ import scholarshipRegistrationConfirmationEmail from '../services/scholarshipReg
 // Controller that handles the student scholarship application logic.
 
 export const createScholarshipRegistration = async (request, response) => {
+
   try {
     const { course, reason } = request.body;
 
@@ -40,6 +41,7 @@ export const createScholarshipRegistration = async (request, response) => {
 
     // Add new scholarship application
     user.scholarshipAppliedCourses.push({ course, reason });
+    
     await user.save();
 
     // Send confirmation email (with error handling)

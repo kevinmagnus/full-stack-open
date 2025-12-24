@@ -17,6 +17,7 @@ auth: {
 
 });
 
+
 const sendEmail = async (to, subject, text) => {
 
 try {
@@ -30,7 +31,7 @@ text,
 
     });
 
-    console.log('Email sent successfully!');
+    console.log('Scholarship award email sent successfully!');
 
 } catch (error) {
 

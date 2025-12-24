@@ -36,6 +36,7 @@ export const getAdminCreateAccountPage = async (request, response) => {
 
     try {
         
+      console.log('Rendered admin create account page.');
     
         response.render('admin-create-account');
     
@@ -52,6 +53,8 @@ export const getAdminCreateAccountPage = async (request, response) => {
     export const getAdminLogInPage = async (request, response) => {
 
     try {
+
+      console.log('Rendered admin log in page.');
         
     
         response.render('admin-log-in');
@@ -73,6 +76,8 @@ export const getAdminCreateAccountPage = async (request, response) => {
     export const getAdminDashboardPage = async (request, response) => {
 
     try {
+
+      console.log('Rendered admin dashboard page.');
         
     
         response.render('admin-dashboard');

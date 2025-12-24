@@ -14,9 +14,10 @@
         
     <nav class="navBar">
         <div class="navbar-nav">
-                <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+                <a class="navBar-item " aria-current="page" href="/" id="'home-nav">Home</a>
                 <a class="navBar-item" href = '/Our-Mission'>Our Mission</a>
-<a class="navBar-item" href ='/Contac-Us'>Contact Us</a>
+                <a class="navBar-item active" href="/api/Create-Account">Log In/Sign Up</a>
+<a class="navBar-item" href ='/api/send-email'>Contact Us</a>
 
             </div>
     </nav><!--end nav-->
@@ -80,7 +81,7 @@
             <fieldset>
 
                 <legend>
-                    Enter your details to create your account
+                    Enter your details to create an account:
                 </legend>
 
     
@@ -97,6 +98,16 @@
                 <label for="email">Enter your email address: </label> <br>
                 
                 <input type = 'email' name="email"  id="email" placeholder="Enter your email" autocomplete="off" class="log-in-input" required> <br>
+
+                <label for="dateOfBirth">Enter your birth date: </label> <br>
+                
+                <input type = 'date' name="dateOfBirth"  id="dateOfBirth" placeholder="Enter your birth date.." autocomplete="off" class="log-in-input" required> <br>
+
+                <label for="phoneNumber">Enter your phone number with country code: </label> <br>
+                
+                <input type = 'tel' name="phoneNumber"  id="phoneNumber" placeholder="e.g +2347078099898" autocomplete="off" class="log-in-input" required> <br>
+
+
 
 
                 <label for ='country'>Choose your country:</label> <br>
@@ -189,7 +200,7 @@
     <footer class="footer item">
 
 <a href = '/Our-Mission'>Our Mission</a> <br>
-<a href ='/Contac-Us'>Contact Us</a> <br>
+<a href ='/api/send-email'>Contact Us</a> <br>
 
 
 

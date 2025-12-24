@@ -17,14 +17,14 @@ const createTransporter = () => {
 };
 
 // Send scholarship registration confirmation email
-const scholarshipRegistrationConfirmationEmail = async (firstName, course, email) => {
+const frontEndWebDevelopmentScholarshipEmail = async (firstName, scholarshipCourse, email) => {
     
   const transporter = createTransporter();
 
   const mailOptions = {
     from: `"Code Skill Africa" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: 'Scholarship Application Received',
+    subject: 'Awarded Scholarship',
     html: `
       <!DOCTYPE html>
       <html>
@@ -130,19 +130,21 @@ const scholarshipRegistrationConfirmationEmail = async (firstName, course, email
           <div class="content">
             <div class="logo">Code Skill Africa</div>
             
-            <h2>Scholarship Application Confirmation</h2>
+            <h2>${scholarshipCourse} Course Scholarship Award</h2>
     
             <p class="greeting">Hi ${firstName},</p>
 
             <div class="message-box">
-              <p>We've received your application for our <span class="highlight">${course}</span> scholarship program.</p>
+              <p> Congratulations! We're delighted to inform you that you've officially been awarded a tech scholarship with <span class='highlight'> Code Skill Africa </span> to study <span class="highlight">${scholarshipCourse}</span>.</p>
             </div>
 
-            <p>Thank you for your interest in advancing your skills with Code Skill Africa. Our team will review your application carefully and get back to you soon.</p>
+            <p>This scholarship covers 100% of your tuition ($385).</p>
             
-            <p class="note">⚠️ Please keep an eye on your email inbox (including spam/junk folders) for our response.</p>
+            <h2> Next Step - Secure Your Spot</h2>
 
-            <p>We appreciate your patience during the review process.</p>
+            <p>To confirm your scholarship and reserve your place in the upcoming cohort starting <span class='highlight'>April 27, 2026, please complete your application fee payment using the button below:</p>
+
+            <a href='/'> <button> </button> </a>
             
             <div class="footer">
               <p><strong>Best regards,</strong></p>

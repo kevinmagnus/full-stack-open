@@ -62,4 +62,5 @@ export const authenticate = async (request, response, next) => {
 };
 
 
+//This line exports the authenticate function.
 export default authenticate;
