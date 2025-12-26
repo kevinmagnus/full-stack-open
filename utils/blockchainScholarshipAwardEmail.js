@@ -154,13 +154,13 @@ export const sendScholarshipAwardEmail = async (firstName, course, email) => {
               <p>Congratulations! 🎊 We're delighted to inform you that you've officially been awarded a <span class="highlight">Tech Scholarship</span> with <span class="highlight">Code Skill Africa</span> to study <span class="highlight">${course}</span>.</p>
             </div>
 
-            <p>The scholarship covers 100% of your tuition <span class="highlight">&#x20A6;480,000 </span>.</p>
+            <p>The scholarship covers 100% of your tuition <span class="highlight">(&#x20A6;480,000) </span>.</p>
 
             <p> <span class="highlight">Next Step - Secure Your Spot</span> </p>
 
             <p>To confirm your scholarship, reserve your place in the upcoming cohort starting March 25, 2026, and stand a chance to win a <span class="highlight">laptop </span>, please pay your <span class="highlight">certification fee</span> using the button below: </p>
 
-            <a href='/'> <button class='enrollment'>Pay Certification Fee- &#x20A6;9,500 </a></button> 
+            <a href='/'> <button class='enrollment'>Pay Certification Fee - &#x20A6;9,500 </a></button> 
 
             <p>Note that this scholarship spot is for a limited time.</p>
             
