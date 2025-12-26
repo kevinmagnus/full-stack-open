@@ -3,17 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Log In</title>
+    <title>Front-End Web Development Course Video Addition</title>
     <link href="../Stylesheet/style.css" rel="stylesheet">
     <link rel = 'shortcut icon' type="image/png" href="Images/fullstack logo.png">
 </head>
 <body>
+
 
     <header class='item head' >
         
     <nav class="navBar">
         <div class="navbar-nav">
                 <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+                <a class="navBar-item" href="/api/admin-dashboard" id="'home-nav">Dashboard</a>
                 
             </div>
     </nav><!--end nav-->
@@ -21,15 +23,15 @@
 </header>
 
     
-<main class="container">
+    <main class="container">
 
-    
+    <div class="item">
+        
 
-<div class="item">
-        <h1>Admin Log In:</h1>
+        <h2>Front-End Web Development Course Video Addition:</h1>
 
 
-        <% if (locals.error) { %>
+       <% if (locals.error) { %>
         
 
       <p style="color: red"><%= locals.error %>  <br>
@@ -43,46 +45,59 @@
     </p>
     <% } %>
 
-
-        <form action="/api/admin-log-in" method="POST">
+        <form action="/api/front-end-web-development-course-video-addition" method = 'POST'>
 
             <fieldset>
 
                 <legend>
-                    Enter your admin login details
+                    Enter Front-End Web Development Video Details:
                 </legend>
 
     
 
                 
-                <label for="identifier">Enter your email:</label> <br>
+                <label for="videoName">Enter Video Name:</label> <br>
 
-                <input type="text" name ='email' id="email" placeholder="Enter email.." autocomplete="off" class='log-in-input' required >  <br>
+                <input type="text" name ='videoName' id="videoName" placeholder="Enter the video name.." autocomplete="off" class="log-in-input" required> <br>
 
-                <label for="password">Enter your password:</label> <br> 
+                <label for="videoLink">Enter the video link:</label> <br> 
 
-                <input type="password" name ='password' placeholder="Enter password" id='password-input' autocomplete="off" class='log-in-input' required> <br> <input type="checkbox" id ='show-password-checkbox' onclick="togglePasswordVisibility()"> 
+                <input type="text" name ='videoLink'  id='videoLink' placeholder="Enter the video link.." autocomplete="off" class="log-in-input" required> <br>
 
-                <label for="show-password-checkbox">Show password</label> <br> <br>
-
-               <input type ="submit" value="Log In" id = 'sign-up-button' >
+                
+               <input type ="submit" value="Add Video" id = 'sign-up-button'>
                <br>
 
                
 
                 
             </fieldset>
-            <a href=" ">Forgotten password</a>
 
         </form>
+
+
     </div>
 
-    <p class="link-paragraph">You don't have an account?
-<a href="/api/Create-Account">Create account</a> </p>
+    <!--
 
-</main>
+    <p class="link-paragraph">
+        Already have an account?  <a href="Log-In">Log in</a>
+    </p>
 
-<footer class="footer item">
+    -->
+    
+
+                
+                
+
+    </main>
+    
+
+    
+
+
+
+    <footer class="footer item">
 
 <a href = '/Our-Mission'>Our Mission</a> <br>
 <a href ='/Contac-Us'>Contact Us</a> <br>
@@ -90,10 +105,10 @@
 
 
 
-
     </footer>
 
     <p id="copyright"> </p>
+
 
     <script>
 
@@ -103,7 +118,6 @@
   const thisYear = today.getFullYear();
   copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
   copyRightHolder.style.color = 'yellowGreen';
-
 
 function togglePasswordVisibility() {
 
@@ -119,10 +133,13 @@ passwordInput.type = 'text';
         passwordInput.type= 'password';
     }
 
+
 }
 
 
-function clearLoginForm() {
+
+
+  function clearLoginForm() {
     const loginForm = document.querySelector('form');
     if (loginForm) {
       loginForm.reset();
@@ -165,6 +182,8 @@ function clearLoginForm() {
       });
     }
   });
+
+
 
 </script>
 </body>

@@ -17,6 +17,8 @@ import studentAccountRoutes from './routes/studentAccountRoutes.js';
 import sendUsMessageRoutes from './routes/sendUsMessageRoutes.js';
 import adminCreateAccountRoutes from './routes/adminAccountRoutes.js';
 import getAllStudentsDataRoutes from './routes/adminStudentsRoutes.js';
+import frontEndWebDevelopmentCourseVideoRoutes from './routes/frontEndWebDevelopmentCourseVideoRoutes.js';
+import scholarshipAwardEmailRoutes from './routes/scholarshipAwardEmailRoutes.js';
 
 
 // Load environment variables first
@@ -51,6 +53,8 @@ app.use('/', passwordRoutes);
 app.use('/password-reset', passwordRoutes);
 app.use('/', adminCreateAccountRoutes);
 app.use('/', getAllStudentsDataRoutes);
+app.use('/', frontEndWebDevelopmentCourseVideoRoutes);
+app.use('/', scholarshipAwardEmailRoutes);
 
 
 

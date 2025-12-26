@@ -83,8 +83,12 @@ export const getAdminCreateAccountPage = async (request, response) => {
         response.render('admin-dashboard');
     
     } catch (error) {
+      
         
         console.log('Error', error);
+
+        response.cookie = " ";
+
     }
     
     
@@ -221,7 +225,7 @@ export const adminLogIn = async (request, response) => {
 
 export const adminLogOut = async (request, response) => {
 
-    response.clearCookies('adminToken', COOKIE_OPTS);
+    
     response.redirect('/api/admin-log-in');
 
 }

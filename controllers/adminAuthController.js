@@ -50,8 +50,9 @@ next();
     
 } catch (error) {
 
-    response.clearCookies('adminToken', COOKIE_OPTS);
+    
     response.redirect('/api/admin/log-in');
+    response.cookies = " ";
     
 }
 
