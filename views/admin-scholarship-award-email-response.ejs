@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Student Award Email Send Response</title>
+  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
+</head>
+<body>
+  <header class='item head'>
+    <nav class="navBar">
+      <div class="navbar-nav">
+        <a class="navBar-item" href="/" id="'home-nav">Home</a>
+        <a class="navBar-item active" aria-current="page" href="/api/admin-dashboard">Dashboard</a>
+        
+      </div>
+    </nav><!--end nav-->
+  </header>
+  <main class="container">
+
+    <div class="item">
+
+<h1 class="award-head">Award Email Response </h1>
+
+      <p style="color:springgreen;"> <%= message %> </p>
+
+<p style="color:red;"> <%= error %> </p>
+
+      
+    </div>
+  </main>
+  <footer class="footer item">
+    <a href='/Contact-Us'>Contact Us</a> <br>
+<a href='/Our-Mission'>Our Mission </a>
+    <br>
+    
+  </footer>
+  <p id="copyright"></p>
+  <script>
+    const copyRightHolder = document.getElementById("copyright");
+    const today = new Date();
+    const thisYear = today.getFullYear();
+    copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+    copyRightHolder.style.color = 'yellowGreen';
+
+    
+  </script>
+</body>
+</html>

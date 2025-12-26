@@ -432,7 +432,7 @@ select {
     color: springgreen;
 }
 
-.learn-more-head {
+.learn-more-head, .award-head {
 
     color: springgreen;
 }
@@ -441,3 +441,4 @@ select {
 
     color: orange;
 }
+
