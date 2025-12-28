@@ -63,7 +63,7 @@ app.use('/', scholarshipAwardEmailRoutes);
 
 
 
-//connectDB();
+connectDB();
 
 
 // Public Routes
