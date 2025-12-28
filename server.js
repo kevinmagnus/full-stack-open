@@ -40,7 +40,10 @@ if (!secretKey) {
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(express.static('public'));
+
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, "views"));
 app.use(cookieParser());
@@ -60,13 +63,30 @@ app.use('/', scholarshipAwardEmailRoutes);
 
 
 
-connectDB();
+//connectDB();
 
 
 // Public Routes
 app.get('/', (request, response) => {
+
   const filePath = path.join(__dirname, 'Home.html');
+
+  response.set('Cache-Control', 'public, max-age=31536000');
+
   response.sendFile(filePath);
+
+  app.use(express.static('public', {
+
+  maxAge: '1y',
+  setHeaders: (response, path)=> {
+
+    response.set('Cache-Control', 'public, max-age=31536000');
+
+  }
+
+}));
+ 
+
 });
 
 

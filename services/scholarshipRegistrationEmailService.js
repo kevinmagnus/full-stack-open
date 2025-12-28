@@ -97,14 +97,18 @@ const scholarshipRegistrationConfirmationEmail = async (firstName, course, email
             border-radius: 4px;
           }
 
-          .footer {
-            background-color: black;
+          footer {
+          
+          background-color:  rgb(9, 56, 56);
             padding: 20px;
             margin-top: 30px;
             border-radius: 5px;
-          }
+            color: turquoise
+            
+            }
+          
 
-          .footer p {
+          p {
             color: rgb(175, 175, 175);
             margin: 5px 0;
             font-size: 14px;
@@ -144,12 +148,14 @@ const scholarshipRegistrationConfirmationEmail = async (firstName, course, email
 
             <p>We appreciate your patience during the review process.</p>
             
-            <div class="footer">
+            <div>
               <p><strong>Best regards,</strong></p>
               <p>The Code Skill Africa Team</p>
               <p style="color: #00ff7f; margin-top: 10px;">...Building African tech innovators.</p>
 
-              <p class='address'> 3rd floor, The CORE Building, No. 35, ICT Avenue, Cybercity, Ebene, Mauritius.</p>
+              <footer> <address> 3rd floor, The CORE Building, No. 35, ICT Avenue, Cybercity, Ebene, Mauritius. </address>
+            </footer>
+
             </div>
           </div>
         </div>

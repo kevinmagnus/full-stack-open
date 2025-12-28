@@ -273,7 +273,7 @@ strong {
     font-size:xx-large;
     font-weight: bolder;
     font-style:oblique;
-    font-family:cursive;
+    font-family: 'Courier New', cursive;
     color:rgb(65, 249, 255);
     margin: 40px;
 }
