@@ -64,7 +64,7 @@ app.use('/', certificationFeeSubmissionRoutes );
 
 
 
-//connectDB();
+connectDB();
 
 
 // Public Routes
