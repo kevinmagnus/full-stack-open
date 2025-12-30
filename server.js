@@ -19,7 +19,7 @@ import adminCreateAccountRoutes from './routes/adminAccountRoutes.js';
 import getAllStudentsDataRoutes from './routes/adminStudentsRoutes.js';
 import frontEndWebDevelopmentCourseVideoRoutes from './routes/frontEndWebDevelopmentCourseVideoRoutes.js';
 import scholarshipAwardEmailRoutes from './routes/scholarshipAwardEmailRoutes.js';
-
+import certificationFeeSubmissionRoutes from './routes/certificationFeePaymentSubmissionRoutes.js';
 
 // Load environment variables first
 dotenv.config();
@@ -58,12 +58,13 @@ app.use('/', adminCreateAccountRoutes);
 app.use('/', getAllStudentsDataRoutes);
 app.use('/', frontEndWebDevelopmentCourseVideoRoutes);
 app.use('/', scholarshipAwardEmailRoutes);
+app.use('/', certificationFeeSubmissionRoutes );
 
 
 
 
 
-connectDB();
+//connectDB();
 
 
 // Public Routes

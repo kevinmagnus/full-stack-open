@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front-End Certification Fee Payment Submission</title>
+  <link href="../Stylesheet/style.css" rel="stylesheet">
+  <link rel='shortcut icon' type="image/png" href="../Images/fullstack logo.png">
+  
+</head>
+<body>
+  <header class='item head'>
+    <nav class="navBar">
+      <div class="navbar-nav">
+        <a class="navBar-item" href="/" id="'home-nav">Home</a>
+        <a class="navBar-item" href="/api/send-email">Contact us</a>
+        <a class="navBar-item" aria-current="page" href="/api/Create-Account">Log In/Sign Up</a>
+        
+      </div>
+    </nav><!--end nav-->
+  </header>
+  <main class="container">
+    
+
+    <div class="item"> <p style="color: yellow;"> IMPORTANT: <%= note1 %> <em>Code Skill Africa account email address</em>. <%= note2 %> </p> </div>
+
+
+    <div class="item">
+
+
+        <% if (locals.message) { %>
+        <p style="color: springgreen"><%= locals.message %></p> <br> 
+      <% } else{ %>
+        <p style="color: red"><%= locals.error %></p> <br>
+        
+      <% } %>
+
+
+        <form action="/p" method="POST">
+
+
+            <fieldset>
+
+                <legend>
+                    Please enter your Code Skill Africa account email address for our system to record your payment:
+                </legend>
+
+    
+
+                
+                <label for="identifier">Enter your account email:</label> <br>
+
+                <input type="text" name ='identifier' id="identifier" placeholder="Enter email.." autocomplete="off" class='log-in-input' required >  <br>
+
+                
+               <input type ="submit" value="Submit" id = 'sign-up-button' >
+               <br>
+
+               
+
+                
+            </fieldset>
+
+
+        </form>
+
+
+    </div>
+
+
+  </main>
+  <footer class="footer item">
+    
+    <br>
+    <a href='/Our-Mission'>Our Mission</a>
+    <br>
+    
+  </footer>
+  <p id="copyright"></p>
+  <script>
+    const copyRightHolder = document.getElementById("copyright");
+    const today = new Date();
+    const thisYear = today.getFullYear();
+    copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+    copyRightHolder.style.color = 'yellowGreen';
+  </script>
+</body>
+</html>

@@ -54,6 +54,35 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
+  paidForFrontEndWebDevelopment: {
+
+    type: Boolean,
+    default: false
+  },
+  paidForBackEndWebDevelopment: {
+
+    type: Boolean,
+    default: false
+
+
+  },
+  paidForFullStackWebDevelopment: {
+
+    type: Boolean,
+    default: false,
+  },
+  paidForCybersecurity: {
+type: Boolean,
+default: false
+
+  },
+  paidForBlockchainDevelopment: {
+
+    type: Boolean,
+    default: false
+
+
+  },
   resetPasswordToken: {
     type: String,
     default: null,
