@@ -43,6 +43,24 @@ export const createStudentAccount = async (request, response) => {
         }
 
 
+        const birthDate = new Date(request.body.dateOfBirth);
+
+        const today = new Date();
+
+        const age = today.getFullYear() - birthDate.getFullYear;
+
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+
+        const dayDiff = today.getDate() - birthDate.getDate();
+
+        if (age < 8 || age === 8 && (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0 ))) {
+
+          return response.render('response', { error: 'You should be more than 8 years old to register.', message: null });
+        }
+
+
+
+
         
     
         const existingUser = await User.findOne({ email });

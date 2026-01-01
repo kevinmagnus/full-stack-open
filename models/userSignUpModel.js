@@ -32,10 +32,12 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
+    select: false
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: true,
+    trim: true
   },
   dateOfBirth: {
     type: Date,
@@ -45,11 +47,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-    select: false,
-  },
+
   registrationDate: {
     type: Date,
     default: Date.now

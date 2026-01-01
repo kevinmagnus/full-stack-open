@@ -64,6 +64,9 @@ app.use('/', certificationFeeSubmissionRoutes );
 
 
 
+
+
+
 connectDB();
 
 
@@ -103,6 +106,7 @@ app.get('/code-editor', (request, response) => {
 
 
 app.get('/Front-End-Learn-More', (request, response) => {
+
   const filePath = path.join(__dirname, 'public/Pages', 'Front-End-Learn-More.html');
   response.sendFile(filePath);
 });

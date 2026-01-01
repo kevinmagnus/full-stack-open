@@ -13,7 +13,7 @@ const __dirname = path.resolve();
 
 
 
-const getFrontEndWebDevelopmentCertificationFeeSubmissionPage = async (request, response) => {
+export const getFrontEndWebDevelopmentCertificationFeeSubmissionPage = async (request, response) => {
 
     try {
 
@@ -28,4 +28,70 @@ const getFrontEndWebDevelopmentCertificationFeeSubmissionPage = async (request, 
     }
 }
 
-export default getFrontEndWebDevelopmentCertificationFeeSubmissionPage;
+
+export const getBackEndWebDevelopmentCertificationFeeSubmissionPage = async (request, response) => {
+
+    try {
+
+        response.render('backEndWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: null, note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'});
+        
+        console.log('Rendered back end web development certification fee payment submission page.');
+        
+    } catch (error) {
+        
+
+        console.log("Couldn't render back end web development certification fee payment submission page. There was an error", error);
+    }
+}
+
+
+
+
+export const getFullStackWebDevelopmentCertificationFeeSubmissionPage = async (request, response) => {
+
+    try {
+
+        response.render('fullStackWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: null, note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'});
+        
+        console.log('Rendered full stack web development certification fee payment submission page.');
+        
+    } catch (error) {
+        
+
+        console.log("Couldn't render full stack web development certification fee payment submission page. There was an error", error);
+    }
+}
+
+
+
+export const getCybersecurityCertificationFeeSubmissionPage = async (request, response) => {
+
+    try {
+
+        response.render('cybersecurityCertificationFeePaymentSubmission', { message: null, error: null, note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'});
+        
+        console.log('Rendered cybersecurity certification fee payment submission page.');
+        
+    } catch (error) {
+        
+
+        console.log("Couldn't render cybersecurity certification fee payment submission page. There was an error", error);
+    }
+}
+
+
+
+export const getBlockchainDevelopmentCertificationFeeSubmissionPage = async (request, response) => {
+
+    try {
+
+        response.render('blockchainDevelopmentCertificationFeePaymentSubmission', { message: null, error: null, note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'});
+        
+        console.log('Rendered blockchain development certification fee payment submission page.');
+        
+    } catch (error) {
+        
+
+        console.log("Couldn't render blockchain development certification fee payment submission page. There was an error", error);
+    }
+}
