@@ -3,192 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All students</title>
+    <title>All Students - Code Skill Africa</title>
     <link href="../Stylesheet/style.css" rel="stylesheet">
-    <link rel = 'shortcut icon' type="image/png" href="Images/fullstack logo.png">
+    <link rel="shortcut icon" type="image/png" href="Images/fullstack logo.png">
+    <style>
+        .stats-summary {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .stats-summary h2 {
+            margin: 0;
+            font-size: 48px;
+        }
+        
+        .stats-summary p {
+            margin: 10px 0 0 0;
+            font-size: 18px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        
+        .students-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .students-table th {
+            background: #333;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .students-table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .students-table tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .students-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .students-table tr:nth-child(even):hover {
+            background: #f0f0f0;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            background: #FFF3CD;
+            color: #856404;
+        }
+        
+        .status-approved {
+            background: #D4EDDA;
+            color: #155724;
+        }
+        
+        .status-rejected {
+            background: #F8D7DA;
+            color: #721C24;
+        }
+        
+        .status-active {
+            color: #28a745;
+        }
+        
+        .status-inactive {
+            color: #dc3545;
+        }
+        
+        .paid-badge {
+            color: #28a745;
+            font-size: 12px;
+        }
+        
+        .course-list {
+            font-size: 13px;
+            max-width: 200px;
+        }
+        
+        .scholarship-info {
+            font-size: 12px;
+            line-height: 1.4;
+        }
+        
+        .error-message {
+            background: #F8D7DA;
+            color: #721C24;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .students-table {
+                font-size: 12px;
+            }
+            
+            .students-table th,
+            .students-table td {
+                padding: 8px 4px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header class='item head' >
-        
-    <nav class="navBar">
-        <div class="navbar-nav">
-                <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
-                <a class="navBar-item" href='/api/admin-dashboard'>Dashboard</a>
-                
+    <header class="item head">
+        <nav class="navBar">
+            <div class="navbar-nav">
+                <a class="navBar-item" href="/" id="home-nav">Home</a>
+                <a class="navBar-item active" aria-current="page" href="/api/admin-dashboard">Dashboard</a>
             </div>
-    </nav><!--end nav-->
-    
-</header>
+        </nav>
+    </header>
 
-    
-<main class="container">
+    <main class="container">
+        <div class="item">
+            <h1>All Students' Data</h1>
 
-    
+            <% if (locals.error) { %>
+                <div class="error-message">
+                    <%= locals.error %>
+                </div>
+            <% } %>
 
-<div class="item">
+            <% if (users && users.length > 0) { %>
+                <!-- Total Users Count -->
+                <div class="stats-summary">
+                    <h2><%= users.length %></h2>
+                    <p>Total Students in Database</p>
+                </div>
 
-    <h1>All Students' Data</h1>
+                <!-- Students Table -->
+                <div class="table-container">
+                    <table class="students-table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Country</th>
+                                <th>Date of Birth</th>
+                                <th>Registered</th>
+                                <th>Status</th>
+                                <th>Enrolled Courses</th>
+                                <th>Paid Courses</th>
+                                <th>Scholarships</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user => { %>
+                                <tr>
+                                    <!-- User ID -->
+                                    <td><strong><%= user.userId %></strong></td>
+                                    
+                                    <!-- Full Name -->
+                                    <td><%= user.firstName %> <%= user.lastName %></td>
+                                    
+                                    <!-- Email -->
+                                    <td><%= user.email %></td>
+                                    
+                                    <!-- Phone -->
+                                    <td><%= user.phoneNumber %></td>
+                                    
+                                    <!-- Country -->
+                                    <td><%= user.country %></td>
+                                    
+                                    <!-- Date of Birth -->
+                                    <td><%= new Date(user.dateOfBirth).toLocaleDateString() %></td>
+                                    
+                                    <!-- Registration Date -->
+                                    <td><%= new Date(user.createdAt).toLocaleDateString() %></td>
+                                    
+                                    <!-- Status -->
+                                    <td>
+                                        <span class="<%= user.isActive ? 'status-active' : 'status-inactive' %>">
+                                            <%= user.isActive ? '✅ Active' : '❌ Inactive' %>
+                                        </span>
+                                    </td>
+                                    
+                                    <!-- Enrolled Courses -->
+                                    <td class="course-list">
+                                        <% if (user.enrolledCourses && user.enrolledCourses.length > 0) { %>
+                                            <%= user.enrolledCourses.join(', ') %>
+                                        <% } else { %>
+                                            <em>None</em>
+                                        <% } %>
+                                    </td>
+                                    
+                                    <!-- Paid Courses -->
+                                    <td class="course-list">
+                                        <% if (user.paidCourses && user.paidCourses.size > 0) { %>
+                                            <% let hasPaid = false; %>
+                                            <% Array.from(user.paidCourses.entries()).forEach(([courseName, courseData]) => { %>
+                                                <% if (courseData.paid) { %>
+                                                    <% hasPaid = true; %>
+                                                    <div class="paid-badge">
+                                                        ✓ <%= courseName %>
+                                                        <% if (courseData.amount) { %>
+                                                            ($<%= courseData.amount %>)
+                                                        <% } %>
+                                                    </div>
+                                                <% } %>
+                                            <% }) %>
+                                            <% if (!hasPaid) { %>
+                                                <em>None</em>
+                                            <% } %>
+                                        <% } else { %>
+                                            <em>None</em>
+                                        <% } %>
+                                    </td>
+                                    
+                                    <!-- Scholarship Applications -->
+                                    <td class="scholarship-info">
+                                        <% if (user.scholarshipAppliedCourses && user.scholarshipAppliedCourses.length > 0) { %>
+                                            <% user.scholarshipAppliedCourses.forEach((app, index) => { %>
+                                                <div style="margin-bottom: 8px;">
+                                                    <strong><%= app.course %></strong>
+                                                    <% if (app.status) { %>
+                                                        <span class="status-badge status-<%= app.status %>">
+                                                            <%= app.status %>
+                                                        </span>
+                                                    <% } %>
+                                                    <br>
+                                                    <small>Applied: <%= new Date(app.appliedAt).toLocaleDateString() %></small>
+                                                    <% if (app.reason) { %>
+                                                        <br>
+                                                        <small><em>Reason: <%= app.reason.substring(0, 50) %><%= app.reason.length > 50 ? '...' : '' %></em></small>
+                                                    <% } %>
+                                                    <% if (app.awardEmailSent) { %>
+                                                        <br>
+                                                        <small style="color: #28a745;">✉️ Award email sent on <%= new Date(app.awardEmailSentAt).toLocaleDateString() %></small>
+                                                    <% } %>
+                                                </div>
+                                            <% }) %>
+                                        <% } else { %>
+                                            <em>None</em>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+                </div>
+            <% } else { %>
+                <div class="no-data">
+                    <h2>No students found in the database</h2>
+                    <p>There are currently no registered students.</p>
+                </div>
+            <% } %>
+        </div>
+    </main>
 
-        
-
-
-        <% if (locals.error) { %>
-        
-
-      <p style="color: red"><%= locals.error %>  <br>
-</p>
-    <% } %>
-
-     
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  <% users.forEach(user => { %>
-    <div class="user-card">
-      <div><span class="label">User ID:</span> <%= user.userId %></div>
-      <div><span class="label">First Name:</span> <%= user.firstName %></div>
-      <div><span class="label">Last Name:</span> <%= user.lastName %></div>
-      <div><span class="label">Email:</span> <%= user.email %></div>
-      <div><span class="label">Country:</span> <%= user.country %></div>
-      <div><span class="label">Registered:</span> <%= user.registrationDate.toLocaleDateString() %></div>
-      <div><span class="label">Enrolled Courses:</span> <%= user.enrolledCourses.join(', ') || 'None' %></div>
-
-      <% if (user.scholarshipAppliedCourses.length) { %>
-        <div><span class="label">Scholarship Applications:</span></div>
-        <ul>
-          <% user.scholarshipAppliedCourses.forEach(app => { %>
-            <li>
-              Course: <%= app.course %><br>
-              Reason: <%= app.reason %><br>
-              Applied: <%= app.appliedAt.toLocaleDateString() %>
-            </li>
-          <% }) %>
-        </ul>
-      <% } %>
-    </div>
-  <% }) %>
-
-  <br>
-  <br>
-
-
-
-
-        
-    </div>
-
-    
-</main>
-
-<footer class="footer item">
-
-<a href = '/Our-Mission'>Our Mission</a> <br>
-<a href ='/Contac-Us'>Contact Us</a> <br>
-
-
-
-
-
+    <footer class="footer item">
+        <a href="/Our-Mission">Our Mission</a><br>
+        <a href="/Contact-Us">Contact Us</a><br>
+        <p id="copyright"></p>
     </footer>
 
-    <p id="copyright"> </p>
-
     <script>
+        // Copyright year
+        const copyRightHolder = document.getElementById("copyright");
+        const today = new Date();
+        const thisYear = today.getFullYear();
+        copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+        copyRightHolder.style.color = 'yellowGreen';
 
+        // Optional: Add search/filter functionality
+        function searchTable() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.querySelector('.students-table');
+            const rows = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+                
+                for (let j = 0; j < cells.length; j++) {
+                    const cell = cells[j];
+                    if (cell.textContent.toLowerCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+                
+                row.style.display = found ? '' : 'none';
+            }
+        }
 
- const copyRightHolder = document.getElementById("copyright");
-  const today = new Date();
-  const thisYear = today.getFullYear();
-  copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
-  copyRightHolder.style.color = 'yellowGreen';
-
-
-function togglePasswordVisibility() {
-
-    const passwordInput = document.getElementById('password-input');
-    const showPasswordCheckbox = document.getElementById('show-password-checkbox');
-
-    if (showPasswordCheckbox.checked) {
-
-passwordInput.type = 'text';
-
-    }else{
-
-        passwordInput.type= 'password';
-    }
-
-}
-
-
-function clearLoginForm() {
-    const loginForm = document.querySelector('form');
-    if (loginForm) {
-      loginForm.reset();
-      
-      // Also clear any input fields manually (in case reset doesn't work)
-      const inputs = loginForm.querySelectorAll('.log-in-input');
-      inputs.forEach(input => {
-        input.value = '';
-      });
-      
-      // Clear any error messages if they exist
-      const errorMessages = document.querySelectorAll('.error-message');
-      errorMessages.forEach(error => {
-        error.textContent = '';
-      });
-    }
-  }
-
-  // Clear form when page loads
-  window.addEventListener('load', clearLoginForm);
-
-  // Clear form on page show (handles browser back/forward)
-  window.addEventListener('pageshow', (event) => {
-    // Force clear even from cache
-    clearLoginForm();
-  });
-
-  // Clear form when user leaves and comes back
-  window.addEventListener('focus', clearLoginForm);
-
-  // Prevent autocomplete from persisting data
-  document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.querySelector('form');
-    if (loginForm) {
-      loginForm.setAttribute('autocomplete', 'off');
-      
-      const inputs = loginForm.querySelectorAll('input');
-      inputs.forEach(input => {
-        input.setAttribute('autocomplete', 'off');
-      });
-    }
-  });
-
-</script>
+        // Print table functionality
+        function printTable() {
+            window.print();
+        }
+    </script>
 </body>
 </html>
