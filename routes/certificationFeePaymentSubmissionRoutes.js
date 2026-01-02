@@ -1,5 +1,5 @@
 import express from "express";
-import { getFrontEndWebDevelopmentCertificationFeeSubmissionPage, updateFrontEndPayment, getBackEndWebDevelopmentCertificationFeeSubmissionPage, getFullStackWebDevelopmentCertificationFeeSubmissionPage, getCybersecurityCertificationFeeSubmissionPage, getBlockchainDevelopmentCertificationFeeSubmissionPage  } from '../controllers/certificationFeePaymentSubmissionControllers.js';
+import { getFrontEndWebDevelopmentCertificationFeeSubmissionPage, updateCybersecurityPayment, updateBlockchainDevelopmentPayment, updateBackEndPayment, updateFullStackPayment, updateFrontEndPayment, getBackEndWebDevelopmentCertificationFeeSubmissionPage, getFullStackWebDevelopmentCertificationFeeSubmissionPage, getCybersecurityCertificationFeeSubmissionPage, getBlockchainDevelopmentCertificationFeeSubmissionPage  } from '../controllers/certificationFeePaymentSubmissionControllers.js';
 
 const router = express.Router();
 
@@ -11,11 +11,22 @@ router.post('/api/front-end-web-development-certification-fee-submission', updat
 
 router.get('/api/back-end-web-development-certification-fee-submission', getBackEndWebDevelopmentCertificationFeeSubmissionPage  );
 
+router.post('/api/back-end-web-development-certification-fee-submission', updateBackEndPayment  );
+
+
 router.get('/api/full-stack-web-development-certification-fee-submission', getFullStackWebDevelopmentCertificationFeeSubmissionPage  );
+
+router.post('/api/full-stack-web-development-certification-fee-submission', updateFullStackPayment  );
+
 
 router.get('/api/cybersecurity-certification-fee-submission', getCybersecurityCertificationFeeSubmissionPage  );
 
+router.post('/api/cybersecurity-certification-fee-submission', updateCybersecurityPayment );
+
+
 router.get('/api/blockchain-development-certification-fee-submission', getBlockchainDevelopmentCertificationFeeSubmissionPage );
+
+router.post('/api/blockchain-development-certification-fee-submission', updateBlockchainDevelopmentPayment );
 
 
 

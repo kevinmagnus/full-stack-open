@@ -115,7 +115,7 @@ export const updateFrontEndPayment = async (request, response) => {
     // Validate email is provided
     if (!email) {
 
-      return response.status(400).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: 'Email address is required'  });
+      return response.status(400).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: 'Email address is required', note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'  });
     }
 
     // Find user and update payment status
@@ -131,7 +131,8 @@ export const updateFrontEndPayment = async (request, response) => {
     if (!user) {
       return response.status(404).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { 
         message: null, 
-        error: 'No user found with that email address' 
+        error: 'No user found with that email address' ,
+        note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
       });
     }
 
@@ -140,7 +141,8 @@ export const updateFrontEndPayment = async (request, response) => {
     return response.status(200).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { 
       error: null, 
 
-      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey."
+      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
 
     });
 
@@ -148,9 +150,238 @@ export const updateFrontEndPayment = async (request, response) => {
 
     console.error('Error updating front-end web development payment status:', error);
 
-    return response.status(500).json({ 
+    return response.status(500).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { 
       message: null , 
-      error: 'An error occurred while tracking your payment. Please enter your account email again.' 
+      error: 'An error occurred while tracking your payment. Please enter your account email again.', 
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+    });
+  }
+
+
+};
+
+
+
+export const updateBackEndPayment = async (request, response) => {
+
+
+  try {
+
+    const { email } = request.body;
+
+    // Validate email is provided
+    if (!email) {
+
+      return response.status(400).render('backEndWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: 'Email address is required', note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'  });
+    }
+
+    // Find user and update payment status
+    const user = await User.findOneAndUpdate(
+
+      { email: email.trim().toLowerCase() },
+      { paidForBackEndWebDevelopment: true },
+
+      { new: true } // Returns the updated document
+    );
+
+    // Check if user exists
+    if (!user) {
+      return response.status(404).render('backEndWebDevelopmentCertificationFeePaymentSubmission', { 
+        message: null, 
+        error: 'No user found with that email address' ,
+        note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+      });
+    }
+
+    console.log(`Payment status updated for user: ${user.email} (Student ID: ${user.userId})`);
+
+    return response.status(200).render('backEndWebDevelopmentCertificationFeePaymentSubmission', { 
+      error: null, 
+
+      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+
+    });
+
+  } catch (error) {
+
+    console.error('Error updating back-end web development payment status:', error);
+
+    return response.status(500).render('backEndWebDevelopmentCertificationFeePaymentSubmission', { 
+      message: null , 
+      error: 'An error occurred while tracking your payment. Please enter your account email again.', 
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+    });
+  }
+
+
+};
+
+
+
+export const updateFullStackPayment = async (request, response) => {
+
+
+  try {
+
+    const { email } = request.body;
+
+    // Validate email is provided
+    if (!email) {
+
+      return response.status(400).render('fullStackWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: 'Email address is required', note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'  });
+    }
+
+    // Find user and update payment status
+    const user = await User.findOneAndUpdate(
+
+      { email: email.trim().toLowerCase() },
+      { paidForFullStackWebDevelopment: true },
+
+      { new: true } // Returns the updated document
+    );
+
+    // Check if user exists
+    if (!user) {
+      return response.status(404).render('fullStackWebDevelopmentCertificationFeePaymentSubmission', { 
+        message: null, 
+        error: 'No user found with that email address' ,
+        note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+      });
+    }
+
+    console.log(`Payment status updated for user: ${user.email} (Student ID: ${user.userId})`);
+
+    return response.status(200).render('fullStackWebDevelopmentCertificationFeePaymentSubmission', { 
+      error: null, 
+
+      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+
+    });
+
+  } catch (error) {
+
+    console.error('Error updating Full Stack Web development payment status:', error);
+
+    return response.status(500).render('fullStackWebDevelopmentCertificationFeePaymentSubmission', { 
+      message: null , 
+      error: 'An error occurred while tracking your payment. Please enter your account email again.', 
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+    });
+  }
+
+
+};
+
+
+
+export const updateCybersecurityPayment = async (request, response) => {
+
+
+  try {
+
+    const { email } = request.body;
+
+    // Validate email is provided
+    if (!email) {
+
+      return response.status(400).render('cybersecurityCertificationFeePaymentSubmission', { message: null, error: 'Email address is required', note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'  });
+    }
+
+    // Find user and update payment status
+    const user = await User.findOneAndUpdate(
+
+      { email: email.trim().toLowerCase() },
+      { paidForCybersecurity: true },
+
+      { new: true } // Returns the updated document
+    );
+
+    // Check if user exists
+    if (!user) {
+      return response.status(404).render('cybersecurityCertificationFeePaymentSubmission', { 
+        message: null, 
+        error: 'No user found with that email address' ,
+        note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+      });
+    }
+
+    console.log(`Payment status updated for user: ${user.email} (Student ID: ${user.userId})`);
+
+    return response.status(200).render('cybersecurityCertificationFeePaymentSubmission', { 
+      error: null, 
+
+      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+
+    });
+
+  } catch (error) {
+
+    console.error('Error updating Cybersecurity payment status:', error);
+
+    return response.status(500).render('cybersecurityCertificationFeePaymentSubmission', { 
+      message: null , 
+      error: 'An error occurred while tracking your payment. Please enter your account email again.', 
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+    });
+  }
+
+
+};
+
+
+
+export const updateBlockchainDevelopmentPayment = async (request, response) => {
+
+
+  try {
+
+    const { email } = request.body;
+
+    // Validate email is provided
+    if (!email) {
+
+      return response.status(400).render('blockchainDevelopmentCertificationFeePaymentSubmission', { message: null, error: 'Email address is required', note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'  });
+    }
+
+    // Find user and update payment status
+    const user = await User.findOneAndUpdate(
+
+      { email: email.trim().toLowerCase() },
+      { paidForBlockchainDevelopment: true },
+
+      { new: true } // Returns the updated document
+    );
+
+    // Check if user exists
+    if (!user) {
+      return response.status(404).render('blockchainDevelopmentCertificationFeePaymentSubmission', { 
+        message: null, 
+        error: 'No user found with that email address' ,
+        note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+      });
+    }
+
+    console.log(`Payment status updated for user: ${user.email} (Student ID: ${user.userId})`);
+
+    return response.status(200).render('blockchainDevelopmentCertificationFeePaymentSubmission', { 
+      error: null, 
+
+      message: "Your certification fee payment for Blockchain Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+
+    });
+
+  } catch (error) {
+
+    console.error('Error updating Blockchain Development payment status:', error);
+
+    return response.status(500).render('blockchainDevelopmentCertificationFeePaymentSubmission', { 
+      message: null , 
+      error: 'An error occurred while tracking your payment. Please enter your account email again.', 
+      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
     });
   }
 
