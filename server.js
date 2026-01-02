@@ -71,7 +71,7 @@ connectDB();
 
 
 // Public Routes
-app.get('/', (request, response) => {
+app.get('/', (request,response) => {
 
   const filePath = path.join(__dirname, 'Home.html');
 

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End Video Addition</title>
+    <link href="../public/Stylesheet/style.css" rel="stylesheet">
+    <link rel = 'shortcut icon' type="image/png" href="Images/fullstack logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icon@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <header class='item head' >
+        
+    <nav class="navBar">
+        <div class="navbar-nav">
+                <a class="navBar-item active" aria-current="page" href="/" id="'home-nav">Home</a>
+                <a href = '/api/admin-dashboard' class="navBar-item">Dashboard</a>
+
+
+            </div>
+    </nav><!--end nav-->
+    
+</header>
+
+    
+
+
+    <div class="item">
+        <h1>Add Front-End Coure Video:</h1>
+
+        <form action="/api/Log-In" method="POST">
+
+            <fieldset>
+
+                <legend>
+                    Enter front end course video details:
+                </legend>
+
+    
+
+                
+                <label for="identifier">Enter course title:</label> <br>
+
+                <input type="text" name ='title' id="title" placeholder="Enter course video  title" autocomplete="off" class='log-in-input' required >  <br>
+
+                <label for="link">Enter course link:</label> <br> 
+
+                <input type="text" name ='link' placeholder="Enter video link" id='link' style="padding-right: 35px;" autocomplete="off" class='log-in-input' required> <br>
+
+                <label for="link">Enter video record date:</label> <br> 
+
+                <input type="date" name ='date' placeholder="Enter video record date" id='link' style="padding-right: 35px;" autocomplete="off" class='log-in-input' required> <br>
+
+
+
+               <input type ="submit" value="Add Video" id = 'sign-up-button' >
+               <br>
+
+               
+
+                
+            </fieldset>
+            
+
+        </form>
+    </div>
+
+    
+
+<footer class="footer item">
+
+<a href = '/Our-Mission'>Our Mission</a> <br>
+<a href ='/Contac-Us'>Contact Us</a> <br>
+
+
+
+
+
+    </footer>
+
+    <p id="copyright"> </p>
+
+    <script>
+
+
+ const copyRightHolder = document.getElementById("copyright");
+  const today = new Date();
+  const thisYear = today.getFullYear();
+  copyRightHolder.innerText = `Code Skill Africa \u00A9 ${thisYear}. All Rights Reserved.`;
+  copyRightHolder.style.color = 'yellowGreen';
+
+/*
+function togglePasswordVisibility() {
+
+    const passwordInput = document.getElementById('password-input');
+    const showPasswordCheckbox = document.getElementById('show-password-checkbox');
+
+    if (showPasswordCheckbox.checked) {
+
+passwordInput.type = 'text';
+
+    }else{
+
+        passwordInput.type= 'password';
+    }
+
+}
+    */
+
+
+    const passwordInput = document.getElementById('passwordInput');
+
+    const togglePassword = document.getElementById('togglePassword');
+
+    togglePassword.addEventListener('click', function() {
+
+      const icon = this.querySelector('i');
+
+      if (passwordInput.type === 'password') {
+
+        passwordInput.type = 'text';
+
+        icon.classList.remove('bi-eye-slash');
+
+        icon.classList.add('bi-eye');
+
+      }else{
+
+        passwordInput.type = 'password';
+
+        icon.classList.remove('bi-eye');
+
+        icon.classList.add('bi-eye-slash');
+      }
+
+
+    });
+
+
+function clearLoginForm() {
+    const loginForm = document.querySelector('form');
+    if (loginForm) {
+      loginForm.reset();
+      
+      // Also clear any input fields manually (in case reset doesn't work)
+      const inputs = loginForm.querySelectorAll('.log-in-input');
+      inputs.forEach(input => {
+        input.value = '';
+      });
+      
+      // Clear any error messages if they exist
+      const errorMessages = document.querySelectorAll('.error-message');
+      errorMessages.forEach(error => {
+        error.textContent = '';
+      });
+    }
+  }
+
+  // Clear form when page loads
+  window.addEventListener('load', clearLoginForm);
+
+  // Clear form on page show (handles browser back/forward)
+  window.addEventListener('pageshow', (event) => {
+    // Force clear even from cache
+    clearLoginForm();
+  });
+
+  // Clear form when user leaves and comes back
+  window.addEventListener('focus', clearLoginForm);
+
+  // Prevent autocomplete from persisting data
+  document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.querySelector('form');
+    if (loginForm) {
+      loginForm.setAttribute('autocomplete', 'off');
+      
+      const inputs = loginForm.querySelectorAll('input');
+      inputs.forEach(input => {
+        input.setAttribute('autocomplete', 'off');
+      });
+    }
+  });
+
+</script>
+</body>
+</html>
