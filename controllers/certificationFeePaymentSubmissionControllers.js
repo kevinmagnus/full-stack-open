@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import User from '../models/userSignUpModel.js';
 
 const app = express();
 
@@ -95,3 +96,63 @@ export const getBlockchainDevelopmentCertificationFeeSubmissionPage = async (req
         console.log("Couldn't render blockchain development certification fee payment submission page. There was an error", error);
     }
 }
+
+
+
+
+
+
+
+
+    
+export const updateFrontEndPayment = async (request, response) => {
+
+
+  try {
+
+    const { email } = request.body;
+
+    // Validate email is provided
+    if (!email) {
+
+      return response.status(400).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { message: null, error: 'Email address is required'  });
+    }
+
+    // Find user and update payment status
+    const user = await User.findOneAndUpdate(
+
+      { email: email.trim().toLowerCase() },
+      { paidForFrontEndWebDevelopment: true },
+
+      { new: true } // Returns the updated document
+    );
+
+    // Check if user exists
+    if (!user) {
+      return response.status(404).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { 
+        message: null, 
+        error: 'No user found with that email address' 
+      });
+    }
+
+    console.log(`Payment status updated for user: ${user.email} (Student ID: ${user.userId})`);
+
+    return response.status(200).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { 
+      error: null, 
+
+      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey."
+
+    });
+
+  } catch (error) {
+
+    console.error('Error updating front-end web development payment status:', error);
+
+    return response.status(500).json({ 
+      message: null , 
+      error: 'An error occurred while tracking your payment. Please enter your account email again.' 
+    });
+  }
+
+
+};
