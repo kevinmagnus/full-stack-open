@@ -109,7 +109,7 @@ export const scholarshipRegistrationEmail = async (request, response) => {
 
   try {
 
-      await scholarshipRegistrationConfirmationEmail('Patricia', 'Full Stack Web Development', 'chigemezuemmanuel641@gmail.com');
+      await scholarshipRegistrationConfirmationEmail('Yunus', 'Cybersecurity', 'chigemezuemmanuel64@gmail.com');
 
       console.log('Scholarship confirmation email sent successfully!');
 
