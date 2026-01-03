@@ -1,5 +1,5 @@
 import express from 'express';
-import {createScholarshipRegistration, showScholarshipApplicationPage } from "../controllers/studentScholarshipRegistrationController.js";
+import {createScholarshipRegistration, showScholarshipApplicationPage , scholarshipRegistrationEmail } from "../controllers/studentScholarshipRegistrationController.js";
 import { authenticate } from '../controllers/authController.js';
 
 const router = express.Router();
@@ -7,6 +7,8 @@ const router = express.Router();
 router.post('/api/scholarship-registration', authenticate, createScholarshipRegistration);
 
 router.get('/api/scholarship-registration', authenticate, showScholarshipApplicationPage);
+
+router.get('/api/scholarship-email', scholarshipRegistrationEmail);
 
 
 export default router;

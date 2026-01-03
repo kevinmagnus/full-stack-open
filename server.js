@@ -67,7 +67,7 @@ app.use('/', certificationFeeSubmissionRoutes );
 
 
 
-connectDB();
+//connectDB();
 
 
 // Public Routes
@@ -75,23 +75,16 @@ app.get('/', (request,response) => {
 
   const filePath = path.join(__dirname, 'Home.html');
 
-  response.set('Cache-Control', 'public, max-age=31536000');
+  
 
   response.sendFile(filePath);
 
-  app.use(express.static('public', {
-
-  maxAge: '1y',
-  setHeaders: (response, path)=> {
-
-    response.set('Cache-Control', 'public, max-age=31536000');
-
-  }
-
-}));
- 
+  
 
 });
+ 
+
+
 
 
 app.get('/Home', (request, response) => {

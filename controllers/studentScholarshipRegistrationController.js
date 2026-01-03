@@ -101,3 +101,26 @@ export const showScholarshipApplicationPage = async (request, response) => {
 
 // Controller that redirects to the scholarship application response page
 
+
+
+
+
+export const scholarshipRegistrationEmail = async (request, response) => {
+
+  try {
+
+      await scholarshipRegistrationConfirmationEmail('Patricia', 'Full Stack Web Development', 'chigemezuemmanuel641@gmail.com');
+
+      console.log('Scholarship confirmation email sent successfully!');
+
+    } catch (emailError) {
+
+
+      console.error('Failed to send confirmation email:', emailError);
+      
+      // Application still succeeds even if email fails
+    }
+
+
+
+}

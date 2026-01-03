@@ -151,9 +151,9 @@ const scholarshipRegistrationConfirmationEmail = async (firstName, course, email
             <div>
               <p><strong>Best regards,</strong></p>
               <p>The Code Skill Africa Team</p>
-              <p style="color: #00ff7f; margin-top: 10px;">...Building African tech innovators.</p>
+              <p style="color: #00ff7f; margin-top: 10px;">...Empowering African tech innovators.</p>
 
-              <footer> <address> 3rd floor, The CORE Building, No. 35, ICT Avenue, Cybercity, Ebene, Mauritius. </address>
+              <footer> <address> 5th floor, Tower Building, No. 35, ICT Avenue, Ebene, Mauritius. </address>
             </footer>
 
             </div>

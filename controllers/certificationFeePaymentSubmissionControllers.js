@@ -119,21 +119,26 @@ export const updateFrontEndPayment = async (request, response) => {
     }
 
     // Find user and update payment status
-    const user = await User.findOneAndUpdate(
-
-      { email: email.trim().toLowerCase() },
-      { paidForFrontEndWebDevelopment: true },
-
-      { new: true } // Returns the updated document
-    );
+    const user = await User.findOne({ email});
 
     // Check if user exists
     if (!user) {
       return response.status(404).render('frontEndWebDevelopmentCertificationFeePaymentSubmission', { 
         message: null, 
-        error: 'No user found with that email address' ,
+        error: 'The email address you entered is not associated with any account. Re-check email and try again.' ,
         note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
       });
+    }
+
+
+
+    if(user.paidForFrontEndWebDevelopment) {
+
+      console.log('User has already paid for Front-End Web Development');
+
+      return response.render('frontEndWebDevelopmentCertificationFeePaymentSubmission', )
+
+
     }
 
     console.log(`Payment status updated for user: ${user.email} (Student ID: ${user.userId})`);
@@ -142,7 +147,7 @@ export const updateFrontEndPayment = async (request, response) => {
       error: null, 
 
       message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
-      note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
+      note1:  'Please never fail to ete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
 
     });
 
@@ -198,7 +203,7 @@ export const updateBackEndPayment = async (request, response) => {
     return response.status(200).render('backEndWebDevelopmentCertificationFeePaymentSubmission', { 
       error: null, 
 
-      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      message: "Your certification fee payment for Back-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
       note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
 
     });
@@ -255,7 +260,7 @@ export const updateFullStackPayment = async (request, response) => {
     return response.status(200).render('fullStackWebDevelopmentCertificationFeePaymentSubmission', { 
       error: null, 
 
-      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      message: "Your certification fee payment for Full Stack Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
       note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
 
     });
@@ -312,7 +317,7 @@ export const updateCybersecurityPayment = async (request, response) => {
     return response.status(200).render('cybersecurityCertificationFeePaymentSubmission', { 
       error: null, 
 
-      message: "Your certification fee payment for Front-End Web Development course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
+      message: "Your certification fee payment for Cybersecurity course was received successfully! You'll receive an email from us shortly for next steps towards your tech journey.",
       note1:  'Please never fail to complete the last step below by entering your', note2 :  'It will help our system process your payment very quickly and update your payment status instantly.'
 
     });
