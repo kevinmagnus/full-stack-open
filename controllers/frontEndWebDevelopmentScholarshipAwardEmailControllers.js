@@ -193,6 +193,7 @@ export const sendDelayedAwardEmails = async () => {
 */
 
 
+/*
 
 import express from 'express';
 import User from '../models/userSignUpModel.js';
@@ -208,8 +209,10 @@ app.set('view engine', 'ejs');
 export const sendAwardEmailsForFrontend = async (request, response) => {
   try {
     const course = 'Front-End Web Development';
-    const now = new Date();
+    
+    /*const now = new Date();
     const fiveDaysAgo = new Date(now.getTime() - 5 * 24 * 60 * 60 * 1000);
+    
 
     const users = await User.find({ 'scholarshipAppliedCourses.course': course });
 
@@ -240,11 +243,12 @@ export const sendAwardEmailsForFrontend = async (request, response) => {
 
         console.log(`Award email already sent to ${user.email} for ${course}. Skipping.`);
 
-      }
+    
 
       if (tooSoonApps.length > 0) {
         console.log(`Application for ${user.email} is less than 5 days ago for ${course}. Email not sent.`);
       }
+        
 
       for (const app of eligibleApps) {
         await sendScholarshipAwardEmail(user.firstName, app.course, user.email);
@@ -350,5 +354,157 @@ export const sendDelayedAwardEmails = async () => {
   } catch (error) {
     console.error('Error in sending delayed award emails:', error);
     throw new Error('Failed to send delayed award emails');
+  }
+};
+
+*/
+
+
+import express from 'express';
+import User from '../models/userSignUpModel.js';
+import { sendScholarshipAwardEmail } from '../utils/email.js';
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.set('view engine', 'ejs');
+
+// Admin route: manually trigger award emails (immediate send, no 5-day wait)
+export const sendAwardEmailsForFrontend = async (request, response) => {
+  try {
+    const course = 'Front-End Web Development';
+
+    // Find users who have applied for the course and haven't received the award email yet
+    const users = await User.find({
+      'scholarshipAppliedCourses': {
+        $elemMatch: {
+          course: course,
+          awardEmailSent: { $ne: true } // not sent yet
+        }
+      }
+    });
+
+    if (users.length === 0) {
+      return response.render('admin-scholarship-award-email-response', {
+        error: `No students eligible for award email (either none applied or all already received it) for ${course}.`,
+        message: null
+      });
+    }
+
+    let sentCount = 0;
+
+    for (const user of users) {
+      // Get all applications for this course that haven't had the email sent
+      const pendingApps = user.scholarshipAppliedCourses.filter(
+        app => app.course === course && !app.awardEmailSent
+      );
+
+      // Optional logging if user has already received the email for this course
+      const alreadySent = user.scholarshipAppliedCourses.some(
+        app => app.course === course && app.awardEmailSent
+      );
+      if (alreadySent) {
+        console.log(`Award email already sent to ${user.email} for ${course}. Skipping duplicates.`);
+      }
+
+      for (const app of pendingApps) {
+        await sendScholarshipAwardEmail(user.firstName, app.course, user.email);
+
+        // Mark this specific application as emailed
+        await User.updateOne(
+          { _id: user._id, 'scholarshipAppliedCourses._id': app._id },
+          {
+            $set: {
+              'scholarshipAppliedCourses.$.awardEmailSent': true,
+              'scholarshipAppliedCourses.$.awardEmailSentAt': new Date()
+            }
+          }
+        );
+
+        sentCount++;
+      }
+    }
+
+    const totalReceived = await User.countDocuments({
+      'scholarshipAppliedCourses': {
+        $elemMatch: {
+          course: course,
+          awardEmailSent: true
+        }
+      }
+    });
+
+    console.log(`Award emails sent to ${sentCount} students for ${course}. Total ever sent: ${totalReceived}`);
+
+    return response.render('admin-scholarship-award-email-response', {
+      message: `Successfully sent award emails to ${sentCount} students for ${course}.\nTotal students who have ever received the award email: ${totalReceived}`,
+      error: null
+    });
+
+  } catch (error) {
+    console.error('Error in sendAwardEmailsForFrontend:', error);
+    return response.render('admin-scholarship-award-email-response', {
+      error: 'An error occurred while trying to send scholarship award emails.',
+      message: null
+    });
+  }
+};
+
+// Background/cron job: send award emails immediately to anyone who hasn't received it yet
+export const sendDelayedAwardEmails = async () => {
+  try {
+    const course = 'Front-End Web Development';
+
+    const users = await User.find({
+      'scholarshipAppliedCourses': {
+        $elemMatch: {
+          course: course,
+          awardEmailSent: { $ne: true }
+        }
+      }
+    });
+
+    if (users.length === 0) {
+      console.log(`No students pending award email for ${course}.`);
+      return;
+    }
+
+    let sentCount = 0;
+
+    for (const user of users) {
+      const pendingApps = user.scholarshipAppliedCourses.filter(
+        app => app.course === course && !app.awardEmailSent
+      );
+
+      for (const app of pendingApps) {
+        await sendScholarshipAwardEmail(user.firstName, app.course, user.email);
+
+        await User.updateOne(
+          { _id: user._id, 'scholarshipAppliedCourses._id': app._id },
+          {
+            $set: {
+              'scholarshipAppliedCourses.$.awardEmailSent': true,
+              'scholarshipAppliedCourses.$.awardEmailSentAt': new Date()
+            }
+          }
+        );
+
+        sentCount++;
+      }
+    }
+
+    const totalReceived = await User.countDocuments({
+      'scholarshipAppliedCourses': {
+        $elemMatch: {
+          course: course,
+          awardEmailSent: true
+        }
+      }
+    });
+
+    console.log(`Award emails sent to ${sentCount} students for ${course}. Total ever sent: ${totalReceived}`);
+  } catch (error) {
+    console.error('Error in sendDelayedAwardEmails:', error);
+    throw new Error('Failed to send award emails');
   }
 };

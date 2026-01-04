@@ -21,6 +21,7 @@ import frontEndWebDevelopmentCourseVideoRoutes from './routes/frontEndWebDevelop
 import scholarshipAwardEmailRoutes from './routes/scholarshipAwardEmailRoutes.js';
 import certificationFeeSubmissionRoutes from './routes/certificationFeePaymentSubmissionRoutes.js';
 
+
 // Load environment variables first
 dotenv.config();
 
